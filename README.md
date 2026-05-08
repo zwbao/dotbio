@@ -1,5 +1,9 @@
 # dotbio
 
+[![ci](https://github.com/zwbao/dotbio/actions/workflows/ci.yml/badge.svg)](https://github.com/zwbao/dotbio/actions/workflows/ci.yml)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/)
+
 **An AI-native data structure for biology.**
 
 Status: v0 — early, not for clinical use. The format and CLI are alpha.
@@ -149,6 +153,15 @@ PYTHONPATH=src python -m dotbio compile ...   # no install needed
 Stdlib-only, Python ≥ 3.9. No external dependencies for the core CLI.
 
 For real-world VCF reading at scale, swap in [cyvcf2](https://github.com/brentp/cyvcf2) or [pysam](https://github.com/pysam-developers/pysam). The bundled `vcfio.py` is intentionally minimal.
+
+## Tests
+
+```bash
+pip install -e ".[test]"
+pytest -v
+```
+
+46 tests covering hashing/canonicalization, VCF parsing, the rule engine (ClinVar / PharmCAT / OncoKB), the full compile→update→diff pipeline, and round-trip determinism.
 
 ## Commands
 

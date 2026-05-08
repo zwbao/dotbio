@@ -19,9 +19,16 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Bio-Informatics",
 ]
 
+[project.optional-dependencies]
+test = ["pytest>=7.0"]
+
 [project.urls]
 Homepage = "https://github.com/zwbao/dotbio"
 Repository = "https://github.com/zwbao/dotbio"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
 
 [project.scripts]
 bio = "dotbio.cli:main"
