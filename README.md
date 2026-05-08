@@ -70,6 +70,17 @@ That last command is the one that matters. Output:
 
 Same VCF. Same patient. The interpretation changed because the world's knowledge changed. dotbio captured the change without rewriting anything — the old ref `stable` still resolves to the prior interpretation; the new ref `HEAD` resolves to the new one. An LLM asking "did this patient's report change since last visit?" gets a precise answer instead of a re-read of the whole genome.
 
+## Real data: NA12878
+
+The `examples/real-na12878/` directory contains genotypes for **NA12878** (HapMap CEU benchmark genome) extracted from the 1000 Genomes Project 30x high-coverage phased panel (GRCh38). Run:
+
+```bash
+bio compile examples/real-na12878/input.vcf -o /tmp/na12878.bio
+bio show /tmp/na12878.bio --view pgx
+```
+
+dotbio produces two clinically meaningful claims for NA12878 from real public data: **CYP2C19 \*1/\*2 → Intermediate Metabolizer** (with CPIC clopidogrel guidance) and **MTHFR C677T heterozygous** (folate metabolism reduced ~30%). Both match the published profile of this widely-benchmarked individual. See [examples/real-na12878/README.md](examples/real-na12878/README.md) for full provenance.
+
 ---
 
 ## What's in a view
@@ -161,7 +172,7 @@ pip install -e ".[test]"
 pytest -v
 ```
 
-46 tests covering hashing/canonicalization, VCF parsing, the rule engine (ClinVar / PharmCAT / OncoKB), the full compile→update→diff pipeline, and round-trip determinism.
+54 tests covering hashing/canonicalization, VCF parsing, the rule engine (ClinVar / PharmCAT / OncoKB), the full compile→update→diff pipeline, round-trip determinism, and real-data smoke tests on NA12878 (1000 Genomes 30x).
 
 ## Commands
 

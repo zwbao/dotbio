@@ -29,14 +29,15 @@
       "gene": "F5",
       "name": "Factor V Leiden",
       "consequence": "missense_variant (p.Arg506Gln)",
+      "_strand_note": "F5 is on the minus strand; plus-strand REF/ALT (per VCF convention) is C>T.",
       "by_genotype": {
-        "G/A": {
+        "C/T": {
           "significance": "risk_factor",
           "condition": "Venous thromboembolism",
           "evidence": "Heterozygous: ~4-7x VTE risk; relevant for hormonal therapy and pregnancy",
           "review_status": "reviewed_by_expert_panel"
         },
-        "A/A": {
+        "T/T": {
           "significance": "pathogenic",
           "condition": "Venous thromboembolism",
           "evidence": "Homozygous: ~80x VTE risk",
@@ -48,14 +49,15 @@
       "gene": "MTHFR",
       "name": "C677T",
       "consequence": "missense_variant (p.Ala222Val)",
+      "_strand_note": "MTHFR is on the minus strand; plus-strand REF/ALT is G>A.",
       "by_genotype": {
-        "C/T": {
+        "G/A": {
           "significance": "drug_response",
           "condition": "Folate metabolism reduced ~30%",
           "evidence": "Heterozygous: ~30% reduced enzyme activity; minimal clinical impact for most",
           "review_status": "criteria_provided"
         },
-        "T/T": {
+        "A/A": {
           "significance": "drug_response",
           "condition": "Folate metabolism reduced ~70%",
           "evidence": "Homozygous: ~70% reduced activity; consider methylfolate",
@@ -67,14 +69,15 @@
       "gene": "CFTR",
       "name": "ΔF508 (p.Phe508del)",
       "consequence": "inframe_deletion",
+      "_normalization_note": "1000G/gnomAD normalize this 3-bp deletion as ATCT>A (left-aligned anchor).",
       "by_genotype": {
-        "CTT/C": {
+        "ATCT/A": {
           "significance": "carrier",
           "condition": "Cystic fibrosis (carrier state)",
           "evidence": "Most common CF allele worldwide. Carrier is asymptomatic; reproductive-partner screening recommended.",
           "review_status": "reviewed_by_expert_panel"
         },
-        "C/C": {
+        "A/A": {
           "significance": "pathogenic",
           "condition": "Cystic fibrosis",
           "evidence": "Homozygous deletion causes classic CF phenotype",

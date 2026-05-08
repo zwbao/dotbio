@@ -5,9 +5,9 @@ A hand-crafted VCF covering the variant categories the demo rulesets understand:
 | rsID         | Gene     | Genotype  | Why it's here                                     |
 |--------------|----------|-----------|---------------------------------------------------|
 | rs429358     | APOE     | C/C       | Late-onset Alzheimer's risk (ε4/ε4 homozygous)    |
-| rs6025       | F5       | G/A       | Factor V Leiden — VTE risk                        |
-| rs1801133    | MTHFR    | C/T       | C677T heterozygous — folate metabolism            |
-| rs113993960  | CFTR     | CTT/C     | ΔF508 carrier — partner screening relevant        |
+| rs6025       | F5       | C/T       | Factor V Leiden — VTE risk (plus-strand)          |
+| rs1801133    | MTHFR    | G/A       | C677T heterozygous (plus-strand) — folate metab.  |
+| rs113993960  | CFTR     | ATCT/A    | ΔF508 carrier — partner screening relevant        |
 | rs1800562    | HFE      | G/G       | Negative — demonstrates "checked but absent"      |
 | rs80357906   | BRCA1    | GAG/G     | Founder mutation — used in the time-travel demo   |
 | rs28934578   | TP53     | G/A (somatic) | OncoKB hotspot p.R175H                        |

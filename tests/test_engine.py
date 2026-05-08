@@ -80,7 +80,7 @@ def test_clinvar_carries_previous_classification_on_reclassification() -> None:
 
 def test_clinvar_indel_genotype_match() -> None:
     rs = load_ruleset("clinvar@2026-05-01")
-    fact = _v("rs113993960", "CTT", "C", "CTT/C")
+    fact = _v("rs113993960", "ATCT", "A", "ATCT/A")
     claims = apply_clinvar([("sha256:abc", fact)], rs)
     assert len(claims) == 1
     assert claims[0]["gene"] == "CFTR"
