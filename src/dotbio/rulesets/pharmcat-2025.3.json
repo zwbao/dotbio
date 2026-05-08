@@ -1,0 +1,82 @@
+{
+  "name": "pharmcat",
+  "version": "2025.3",
+  "type": "pharmacogenomic",
+  "source": "PharmCAT-style allele tables (illustrative subset; not for clinical use)",
+  "url": "https://pharmcat.org/",
+  "license": "Mozilla Public License 2.0 (PharmCAT)",
+  "haplotypes": {
+    "CYP2C19": {
+      "*1": {"defining_variants": [], "function": "Normal function"},
+      "*2": {"defining_variants": [{"rsid": "rs4244285", "alt": "A"}], "function": "No function"},
+      "*17": {"defining_variants": [{"rsid": "rs12248560", "alt": "T"}], "function": "Increased function"}
+    },
+    "TPMT": {
+      "*1": {"defining_variants": [], "function": "Normal function"},
+      "*3C": {"defining_variants": [{"rsid": "rs1142345", "alt": "C"}], "function": "No function"}
+    },
+    "DPYD": {
+      "*1": {"defining_variants": [], "function": "Normal function"},
+      "*2A": {"defining_variants": [{"rsid": "rs3918290", "alt": "A"}], "function": "No function"}
+    }
+  },
+  "phenotypes": {
+    "CYP2C19": {
+      "*1/*1": "Normal Metabolizer",
+      "*1/*2": "Intermediate Metabolizer",
+      "*1/*17": "Rapid Metabolizer",
+      "*17/*17": "Ultrarapid Metabolizer",
+      "*2/*17": "Likely Intermediate Metabolizer",
+      "*2/*2": "Poor Metabolizer"
+    },
+    "TPMT": {
+      "*1/*1": "Normal Metabolizer",
+      "*1/*3C": "Intermediate Metabolizer",
+      "*3C/*3C": "Poor Metabolizer"
+    },
+    "DPYD": {
+      "*1/*1": "Normal Metabolizer",
+      "*1/*2A": "Intermediate Metabolizer",
+      "*2A/*2A": "Poor Metabolizer"
+    }
+  },
+  "guidance": {
+    "CYP2C19": {
+      "Ultrarapid Metabolizer": [
+        {"drug": "clopidogrel", "recommendation": "Standard dose; effective platelet inhibition", "guideline": "CPIC@2022"},
+        {"drug": "voriconazole", "recommendation": "Standard dose may be subtherapeutic; consider alternative azole or therapeutic drug monitoring", "guideline": "CPIC@2017"},
+        {"drug": "amitriptyline", "recommendation": "Avoid; consider alternative not metabolized by CYP2C19", "guideline": "CPIC@2023"},
+        {"drug": "citalopram", "recommendation": "Reduced exposure; consider alternative SSRI", "guideline": "CPIC@2015"},
+        {"drug": "escitalopram", "recommendation": "Reduced exposure; consider alternative SSRI", "guideline": "CPIC@2015"}
+      ],
+      "Poor Metabolizer": [
+        {"drug": "clopidogrel", "recommendation": "Avoid; reduced active metabolite. Use prasugrel or ticagrelor", "guideline": "CPIC@2022"},
+        {"drug": "voriconazole", "recommendation": "Reduce dose 50%; monitor closely", "guideline": "CPIC@2017"}
+      ],
+      "Intermediate Metabolizer": [
+        {"drug": "clopidogrel", "recommendation": "Consider alternative if ACS/PCI; standard dose otherwise", "guideline": "CPIC@2022"}
+      ]
+    },
+    "TPMT": {
+      "Intermediate Metabolizer": [
+        {"drug": "azathioprine", "recommendation": "Reduce starting dose 30-50%; monitor myelosuppression", "guideline": "CPIC@2018"},
+        {"drug": "mercaptopurine", "recommendation": "Reduce starting dose 30-50%", "guideline": "CPIC@2018"},
+        {"drug": "thioguanine", "recommendation": "Reduce starting dose 50%", "guideline": "CPIC@2018"}
+      ],
+      "Poor Metabolizer": [
+        {"drug": "azathioprine", "recommendation": "Avoid or reduce dose 90%; severe myelotoxicity risk", "guideline": "CPIC@2018"},
+        {"drug": "mercaptopurine", "recommendation": "Avoid or reduce dose 90%", "guideline": "CPIC@2018"}
+      ]
+    },
+    "DPYD": {
+      "Intermediate Metabolizer": [
+        {"drug": "fluorouracil", "recommendation": "Reduce starting dose 50%; severe toxicity risk", "guideline": "CPIC@2017"},
+        {"drug": "capecitabine", "recommendation": "Reduce starting dose 50%", "guideline": "CPIC@2017"}
+      ],
+      "Poor Metabolizer": [
+        {"drug": "fluorouracil", "recommendation": "Avoid; alternative therapy required", "guideline": "CPIC@2017"},
+        {"drug": "capecitabine", "recommendation": "Avoid", "guideline": "CPIC@2017"}
+      ]
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "oncokb",
+  "version": "2026-04-15",
+  "type": "somatic_oncology",
+  "source": "OncoKB-style annotations (illustrative subset; not for clinical use)",
+  "url": "https://www.oncokb.org/",
+  "license": "academic — see oncokb.org/terms",
+  "entries": {
+    "TP53:p.R175H": {
+      "gene": "TP53",
+      "alteration": "p.R175H",
+      "rsid": "rs28934578",
+      "oncogenicity": "Oncogenic",
+      "mutation_effect": "Loss-of-function with dominant-negative activity",
+      "level": null,
+      "context": "Pan-cancer hotspot. Most common TP53 missense in solid tumors. No FDA-approved targeted therapy.",
+      "drugs": []
+    }
+  }
+}

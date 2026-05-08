@@ -1,0 +1,117 @@
+{
+  "name": "clinvar",
+  "version": "2026-05-01",
+  "type": "germline_clinical",
+  "source": "ClinVar (illustrative subset; not for clinical use)",
+  "url": "https://www.ncbi.nlm.nih.gov/clinvar/",
+  "license": "public domain (NCBI)",
+  "entries": {
+    "rs429358": {
+      "gene": "APOE",
+      "consequence": "missense_variant (p.Cys130Arg)",
+      "by_genotype": {
+        "C/C": {
+          "significance": "risk_factor",
+          "condition": "Late-onset Alzheimer's disease",
+          "evidence": "ε4/ε4 homozygous confers 8-12x lifetime AD risk vs ε3/ε3 (Corder 1993; Genin 2011 meta-analysis)",
+          "review_status": "reviewed_by_expert_panel"
+        },
+        "T/C": {
+          "significance": "risk_factor",
+          "condition": "Late-onset Alzheimer's disease",
+          "evidence": "ε3/ε4 heterozygous: ~3x AD risk vs ε3/ε3",
+          "review_status": "reviewed_by_expert_panel"
+        }
+      }
+    },
+    "rs6025": {
+      "gene": "F5",
+      "name": "Factor V Leiden",
+      "consequence": "missense_variant (p.Arg506Gln)",
+      "by_genotype": {
+        "G/A": {
+          "significance": "risk_factor",
+          "condition": "Venous thromboembolism",
+          "evidence": "Heterozygous: ~4-7x VTE risk; relevant for hormonal therapy and pregnancy",
+          "review_status": "reviewed_by_expert_panel"
+        },
+        "A/A": {
+          "significance": "pathogenic",
+          "condition": "Venous thromboembolism",
+          "evidence": "Homozygous: ~80x VTE risk",
+          "review_status": "reviewed_by_expert_panel"
+        }
+      }
+    },
+    "rs1801133": {
+      "gene": "MTHFR",
+      "name": "C677T",
+      "consequence": "missense_variant (p.Ala222Val)",
+      "by_genotype": {
+        "C/T": {
+          "significance": "drug_response",
+          "condition": "Folate metabolism reduced ~30%",
+          "evidence": "Heterozygous: ~30% reduced enzyme activity; minimal clinical impact for most",
+          "review_status": "criteria_provided"
+        },
+        "T/T": {
+          "significance": "drug_response",
+          "condition": "Folate metabolism reduced ~70%",
+          "evidence": "Homozygous: ~70% reduced activity; consider methylfolate",
+          "review_status": "criteria_provided"
+        }
+      }
+    },
+    "rs113993960": {
+      "gene": "CFTR",
+      "name": "ΔF508 (p.Phe508del)",
+      "consequence": "inframe_deletion",
+      "by_genotype": {
+        "CTT/C": {
+          "significance": "carrier",
+          "condition": "Cystic fibrosis (carrier state)",
+          "evidence": "Most common CF allele worldwide. Carrier is asymptomatic; reproductive-partner screening recommended.",
+          "review_status": "reviewed_by_expert_panel"
+        },
+        "C/C": {
+          "significance": "pathogenic",
+          "condition": "Cystic fibrosis",
+          "evidence": "Homozygous deletion causes classic CF phenotype",
+          "review_status": "reviewed_by_expert_panel"
+        }
+      }
+    },
+    "rs1800562": {
+      "gene": "HFE",
+      "name": "C282Y",
+      "consequence": "missense_variant (p.Cys282Tyr)",
+      "by_genotype": {
+        "G/A": {
+          "significance": "carrier",
+          "condition": "Hereditary hemochromatosis (carrier)",
+          "evidence": "Heterozygous: typically asymptomatic; mildly elevated ferritin possible",
+          "review_status": "reviewed_by_expert_panel"
+        },
+        "A/A": {
+          "significance": "pathogenic",
+          "condition": "Hereditary hemochromatosis (HFE-HH)",
+          "evidence": "Homozygous: classic HH phenotype with variable penetrance",
+          "review_status": "reviewed_by_expert_panel"
+        }
+      }
+    },
+    "rs80357906": {
+      "gene": "BRCA1",
+      "name": "c.68_69delAG (185delAG)",
+      "consequence": "frameshift_variant",
+      "by_genotype": {
+        "GAG/G": {
+          "significance": "likely_pathogenic",
+          "condition": "Hereditary breast and ovarian cancer syndrome",
+          "evidence": "Ashkenazi Jewish founder mutation. Frameshift → truncated BRCA1.",
+          "review_status": "criteria_provided_multiple_submitters"
+        }
+      }
+    }
+  }
+}
