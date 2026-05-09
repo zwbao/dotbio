@@ -1,0 +1,17 @@
+id: q43
+domain: dose_adjustment
+question: "A 60-year-old patient with metastatic CRC is starting irinotecan-based chemotherapy. UGT1A1 genotyping reveals UGT1A1 *28/*28 (homozygous TA7/TA7). What dose modification is supported by the FDA label?"
+required_inputs:
+  - gene: UGT1A1
+  - genotype: "*28/*28 (TA7/TA7)"
+  - drug: irinotecan
+  - clinical_context: "metastatic CRC, irinotecan-based chemo"
+gold_answer:
+  verdict: "reduce irinotecan starting dose by at least one dose level; 70% of standard dose is a commonly cited target (DPWG); subsequent doses titrated to tolerance / neutrophil count"
+  cited_guideline: "Camptosar (irinotecan) FDA prescribing information (UGT1A1 section); DPWG 2018 (Dutch Pharmacogenetics Working Group); Onivyde (liposomal irinotecan) FDA label (recommends initial 50 mg/m^2)"
+  rationale: "UGT1A1 *28/*28 reduces glucuronidation of SN-38 (active metabolite) by ~70%, increasing risk of severe neutropenia and diarrhea. The FDA label states a one-dose-level reduction should be considered for *28 homozygotes; DPWG specifies starting at 70% of standard dose."
+scoring_rubric:
+  verdict_correct: 'recommends starting-dose reduction (one dose level OR ~70%) of irinotecan'
+  guideline_cited_with_version: 'includes "FDA label irinotecan" OR "DPWG"'
+  variant_evidence_cited: 'mentions UGT1A1 *28/*28 (or TA7/TA7)'
+primary_reference_url: https://www.clinpgx.org/labelAnnotation/PA166104831

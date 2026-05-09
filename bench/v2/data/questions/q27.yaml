@@ -1,0 +1,17 @@
+id: q27
+domain: carrier_screening
+question: "A pregnant 29-year-old woman has carrier screening showing she is heterozygous for a pathogenic CFTR variant (c.1521_1523delCTT, p.Phe508del). Her husband's CFTR sequencing returns NEGATIVE on the ACMG 100-variant panel. What is the residual risk that her fetus is affected with CF, and what counseling is indicated?"
+required_inputs:
+  - mother_status: "F508del heterozygote (carrier)"
+  - father_status: "CFTR carrier screening negative on ACMG 100-variant panel"
+  - clinical_context: "early pregnancy, residual-risk counseling"
+gold_answer:
+  verdict: "his residual carrier risk is reduced (depending on ancestry) but is non-zero — 100-variant panel detection rate is ~92-95% for non-Hispanic White and lower in some other populations; reproductive risk for the fetus is therefore reduced from the population prior, not eliminated. Provide ancestry-specific residual-risk counseling and consider extended sequencing if anxiety/family history warrants; routine prenatal CFTR diagnosis is generally not recommended when only the mother is a carrier."
+  cited_guideline: "ACMG Updated CFTR Carrier Screening Recommendations 2023 (Deignan et al., Genet Med 2023;25(8):100867)"
+  rationale: "Carrier-screening panels are not 100% sensitive; the ACMG 100-variant panel was constructed to capture ≥95% of carrier alleles in major US populations but has lower sensitivity in some less-represented populations. Residual risk after a negative result is calculated as (1 - detection rate) × population carrier frequency. This is a deliberately context-dependent question — the precise residual risk depends on the partner's ancestry."
+scoring_rubric:
+  verdict_correct: 'identifies that residual risk is reduced but non-zero AND that it depends on ancestry/detection rate'
+  guideline_cited_with_version: 'includes "ACMG 2023" CFTR guidance OR Deignan'
+  variant_evidence_cited: 'mentions ACMG 100-variant panel sensitivity / detection rate'
+context_dependent: true
+primary_reference_url: https://www.gimjournal.org/article/S1098-3600(23)00880-8/fulltext

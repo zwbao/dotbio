@@ -1,0 +1,16 @@
+id: q32
+domain: hereditary_risk
+question: "A 30-year-old woman with a known germline pathogenic BRCA2 variant has not yet had children but plans to. She has no personal history of cancer. When does NCCN recommend risk-reducing salpingo-oophorectomy (RRSO) for BRCA2 carriers?"
+required_inputs:
+  - gene: BRCA2
+  - variant: "germline pathogenic"
+  - clinical_context: "asymptomatic adult woman, intends to bear children"
+gold_answer:
+  verdict: "RRSO is recommended at age 40-45 years for BRCA2 carriers (after completion of childbearing), reflecting later mean age of onset of ovarian cancer in BRCA2 vs BRCA1; family-history-specific earlier timing may be considered if early-onset ovarian cancer in the family"
+  cited_guideline: "NCCN Genetic/Familial High-Risk Assessment: Breast, Ovarian, and Pancreatic v3.2024"
+  rationale: "BRCA2 ovarian-cancer onset is on average 8-10 years later than BRCA1, so NCCN allows delay of RRSO until 40-45 years. This contrasts directly with the BRCA1 recommendation of 35-40 (see q31). Lifetime ovarian-cancer risk for BRCA2 is ~10-20%."
+scoring_rubric:
+  verdict_correct: 'recommends RRSO at age 40-45 years for BRCA2'
+  guideline_cited_with_version: 'includes "NCCN" with version/year'
+  variant_evidence_cited: 'mentions BRCA2'
+primary_reference_url: https://www.nccn.org/guidelines/guidelines-detail?category=2&id=1545

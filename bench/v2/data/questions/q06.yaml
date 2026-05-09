@@ -1,0 +1,18 @@
+id: q06
+domain: pgx
+question: "A 9-year-old has been prescribed codeine for post-tonsillectomy analgesia. CYP2D6 genotyping shows the patient is an ultra-rapid metabolizer (e.g., CYP2D6 *1/*1xN). Should codeine be administered?"
+required_inputs:
+  - gene: CYP2D6
+  - phenotype: ultra-rapid metabolizer
+  - clinical_context: "pediatric post-tonsillectomy analgesia"
+gold_answer:
+  verdict: "no — avoid codeine (and tramadol); use an alternative analgesic"
+  phenotype: "CYP2D6 Ultra-rapid Metabolizer"
+  cited_guideline: "CPIC@2014 (Crews et al., Clin Pharmacol Ther 2014;95:376-382, PMID 24458010); reaffirmed in CPIC opioid guideline 2021 (Crews et al., Clin Pharmacol Ther 2021;110:888-896)"
+  rationale: "CYP2D6 UMs convert codeine to morphine more rapidly and completely, producing potentially fatal opioid toxicity (respiratory depression) at standard doses; the FDA contraindicates codeine after tonsillectomy/adenoidectomy in children. CPIC recommends avoidance of codeine and tramadol in UMs."
+scoring_rubric:
+  verdict_correct: 'matches "no", "avoid", "contraindicated", or recommends "alternative analgesic"'
+  phenotype_correct: 'includes "Ultra-rapid Metabolizer", "UM", or "ultrarapid"'
+  guideline_cited_with_version: 'includes "CPIC" AND a year (2014 or 2021) OR mentions FDA boxed warning'
+  variant_evidence_cited: 'mentions CYP2D6 UM, gene duplication, or activity score >2.25'
+primary_reference_url: https://cpicpgx.org/guidelines/guideline-for-codeine-and-cyp2d6/

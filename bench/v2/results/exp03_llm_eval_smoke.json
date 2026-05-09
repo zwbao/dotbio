@@ -1,0 +1,1521 @@
+{
+  "experiment": "exp03_llm_eval",
+  "schema_version": "v2.0",
+  "methodology": "Multi-LLM end-to-end eval per SPEC \u00a73.3. Each (format, model, question) triple is replicated N times with temperature>=0.5; responses scored on five binary rubric criteria from \u00a73.3.",
+  "date": "2026-05-09",
+  "replicates_per_cell": 3,
+  "temperature": 0.7,
+  "base_seed": 20260509,
+  "formats": [
+    "A1",
+    "A2",
+    "B",
+    "C"
+  ],
+  "model_families": [
+    "claude",
+    "openai",
+    "gemini"
+  ],
+  "question_ids": [
+    "q01"
+  ],
+  "questions": {
+    "q01": {
+      "id": "q01",
+      "domain": "pgx",
+      "question": "Patient has CYP2C19 *1/*2. Can they take clopidogrel at standard dose for ACS/PCI?",
+      "gold_answer": {
+        "verdict": [
+          "no",
+          "depends",
+          "alternative",
+          "consider alternative"
+        ],
+        "phenotype": "Intermediate Metabolizer",
+        "cited_guideline": "CPIC@2022",
+        "rationale": "Reduced active metabolite; alternative P2Y12 preferred."
+      }
+    }
+  },
+  "n_records": 36,
+  "any_live_client": false,
+  "conditions": [
+    {
+      "id": "A1-q01-claude-0",
+      "format": "A1",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "claude",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 0,
+      "temperature": 0.7,
+      "seed": 20260509,
+      "prompt_chars": 3206,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"linking these rsIDs to CYP2C19*2/*17 requires external knowledge\",\n  \"confidence\": \"low\",\n  \"diplotype\": \"unknown\",\n  \"guideline_cited\": \"unknown\",\n  \"phenotype\": \"unknown\",\n  \"reasoning\": \"Document lists genotypes only; no phenotype mapping or guideline.\",\n  \"variant_evidence\": \"rs4244285 G|A (heterozygous, CYP2C19); rs12248560 C|C\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "linking these rsIDs to CYP2C19*2/*17 requires external knowledge",
+        "confidence": "low",
+        "diplotype": "unknown",
+        "guideline_cited": "unknown",
+        "phenotype": "unknown",
+        "reasoning": "Document lists genotypes only; no phenotype mapping or guideline.",
+        "variant_evidence": "rs4244285 G|A (heterozygous, CYP2C19); rs12248560 C|C",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": false,
+        "guideline_cited_with_version": false,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": false,
+        "score_total": 2
+      },
+      "raw": {
+        "prompt_chars": 3206,
+        "fixture_key": [
+          "A1",
+          "q01",
+          "claude"
+        ]
+      }
+    },
+    {
+      "id": "A1-q01-claude-1",
+      "format": "A1",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "claude",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 1,
+      "temperature": 0.7,
+      "seed": 20260510,
+      "prompt_chars": 3206,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"all clinical interpretation external\",\n  \"confidence\": \"low\",\n  \"diplotype\": \"unknown\",\n  \"guideline_cited\": \"unknown\",\n  \"phenotype\": \"unknown\",\n  \"reasoning\": \"VCF alone is not interpretable.\",\n  \"variant_evidence\": \"rs4244285 (heterozygous)\",\n  \"verdict\": \"cannot_determine\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "all clinical interpretation external",
+        "confidence": "low",
+        "diplotype": "unknown",
+        "guideline_cited": "unknown",
+        "phenotype": "unknown",
+        "reasoning": "VCF alone is not interpretable.",
+        "variant_evidence": "rs4244285 (heterozygous)",
+        "verdict": "cannot_determine"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": false,
+        "guideline_cited_with_version": false,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": false,
+        "score_total": 2
+      },
+      "raw": {
+        "prompt_chars": 3206,
+        "fixture_key": [
+          "A1",
+          "q01",
+          "claude"
+        ]
+      }
+    },
+    {
+      "id": "A1-q01-claude-2",
+      "format": "A1",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "claude",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 2,
+      "temperature": 0.7,
+      "seed": 20260511,
+      "prompt_chars": 3206,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"linking these rsIDs to CYP2C19*2/*17 requires external knowledge\",\n  \"confidence\": \"low\",\n  \"diplotype\": \"unknown\",\n  \"guideline_cited\": \"unknown\",\n  \"phenotype\": \"unknown\",\n  \"reasoning\": \"Document lists genotypes only; no phenotype mapping or guideline.\",\n  \"variant_evidence\": \"rs4244285 G|A (heterozygous, CYP2C19); rs12248560 C|C\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "linking these rsIDs to CYP2C19*2/*17 requires external knowledge",
+        "confidence": "low",
+        "diplotype": "unknown",
+        "guideline_cited": "unknown",
+        "phenotype": "unknown",
+        "reasoning": "Document lists genotypes only; no phenotype mapping or guideline.",
+        "variant_evidence": "rs4244285 G|A (heterozygous, CYP2C19); rs12248560 C|C",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": false,
+        "guideline_cited_with_version": false,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": false,
+        "score_total": 2
+      },
+      "raw": {
+        "prompt_chars": 3206,
+        "fixture_key": [
+          "A1",
+          "q01",
+          "claude"
+        ]
+      }
+    },
+    {
+      "id": "A1-q01-openai-0",
+      "format": "A1",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "openai",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 0,
+      "temperature": 0.7,
+      "seed": 20260509,
+      "prompt_chars": 3206,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"rsID-to-haplotype mapping is external\",\n  \"confidence\": \"low\",\n  \"diplotype\": \"unknown\",\n  \"guideline_cited\": \"unknown\",\n  \"phenotype\": \"unknown\",\n  \"reasoning\": \"Raw VCF is insufficient without star-allele tables.\",\n  \"variant_evidence\": \"rs4244285 het; rs12248560 ref\",\n  \"verdict\": \"cannot_determine\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "rsID-to-haplotype mapping is external",
+        "confidence": "low",
+        "diplotype": "unknown",
+        "guideline_cited": "unknown",
+        "phenotype": "unknown",
+        "reasoning": "Raw VCF is insufficient without star-allele tables.",
+        "variant_evidence": "rs4244285 het; rs12248560 ref",
+        "verdict": "cannot_determine"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": false,
+        "guideline_cited_with_version": false,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": false,
+        "score_total": 2
+      },
+      "raw": {
+        "prompt_chars": 3206,
+        "fixture_key": [
+          "A1",
+          "q01",
+          "openai"
+        ]
+      }
+    },
+    {
+      "id": "A1-q01-openai-1",
+      "format": "A1",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "openai",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 1,
+      "temperature": 0.7,
+      "seed": 20260510,
+      "prompt_chars": 3206,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"rsID-to-haplotype mapping is external\",\n  \"confidence\": \"low\",\n  \"diplotype\": \"unknown\",\n  \"guideline_cited\": \"unknown\",\n  \"phenotype\": \"unknown\",\n  \"reasoning\": \"Raw VCF is insufficient without star-allele tables.\",\n  \"variant_evidence\": \"rs4244285 het; rs12248560 ref\",\n  \"verdict\": \"cannot_determine\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "rsID-to-haplotype mapping is external",
+        "confidence": "low",
+        "diplotype": "unknown",
+        "guideline_cited": "unknown",
+        "phenotype": "unknown",
+        "reasoning": "Raw VCF is insufficient without star-allele tables.",
+        "variant_evidence": "rs4244285 het; rs12248560 ref",
+        "verdict": "cannot_determine"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": false,
+        "guideline_cited_with_version": false,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": false,
+        "score_total": 2
+      },
+      "raw": {
+        "prompt_chars": 3206,
+        "fixture_key": [
+          "A1",
+          "q01",
+          "openai"
+        ]
+      }
+    },
+    {
+      "id": "A1-q01-openai-2",
+      "format": "A1",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "openai",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 2,
+      "temperature": 0.7,
+      "seed": 20260511,
+      "prompt_chars": 3206,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"rsID-to-haplotype mapping is external\",\n  \"confidence\": \"low\",\n  \"diplotype\": \"unknown\",\n  \"guideline_cited\": \"unknown\",\n  \"phenotype\": \"unknown\",\n  \"reasoning\": \"Raw VCF is insufficient without star-allele tables.\",\n  \"variant_evidence\": \"rs4244285 het; rs12248560 ref\",\n  \"verdict\": \"cannot_determine\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "rsID-to-haplotype mapping is external",
+        "confidence": "low",
+        "diplotype": "unknown",
+        "guideline_cited": "unknown",
+        "phenotype": "unknown",
+        "reasoning": "Raw VCF is insufficient without star-allele tables.",
+        "variant_evidence": "rs4244285 het; rs12248560 ref",
+        "verdict": "cannot_determine"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": false,
+        "guideline_cited_with_version": false,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": false,
+        "score_total": 2
+      },
+      "raw": {
+        "prompt_chars": 3206,
+        "fixture_key": [
+          "A1",
+          "q01",
+          "openai"
+        ]
+      }
+    },
+    {
+      "id": "A1-q01-gemini-0",
+      "format": "A1",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "gemini",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 0,
+      "temperature": 0.7,
+      "seed": 20260509,
+      "prompt_chars": 3206,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"guideline knowledge not in document\",\n  \"confidence\": \"low\",\n  \"diplotype\": \"unknown\",\n  \"guideline_cited\": \"unknown\",\n  \"phenotype\": \"unknown\",\n  \"reasoning\": \"Genotypes present but no clinical interpretation.\",\n  \"variant_evidence\": \"rs4244285, rs12248560 in CYP2C19\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "guideline knowledge not in document",
+        "confidence": "low",
+        "diplotype": "unknown",
+        "guideline_cited": "unknown",
+        "phenotype": "unknown",
+        "reasoning": "Genotypes present but no clinical interpretation.",
+        "variant_evidence": "rs4244285, rs12248560 in CYP2C19",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": false,
+        "guideline_cited_with_version": false,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": false,
+        "score_total": 2
+      },
+      "raw": {
+        "prompt_chars": 3206,
+        "fixture_key": [
+          "A1",
+          "q01",
+          "gemini"
+        ]
+      }
+    },
+    {
+      "id": "A1-q01-gemini-1",
+      "format": "A1",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "gemini",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 1,
+      "temperature": 0.7,
+      "seed": 20260510,
+      "prompt_chars": 3206,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"guideline knowledge not in document\",\n  \"confidence\": \"low\",\n  \"diplotype\": \"unknown\",\n  \"guideline_cited\": \"unknown\",\n  \"phenotype\": \"unknown\",\n  \"reasoning\": \"Genotypes present but no clinical interpretation.\",\n  \"variant_evidence\": \"rs4244285, rs12248560 in CYP2C19\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "guideline knowledge not in document",
+        "confidence": "low",
+        "diplotype": "unknown",
+        "guideline_cited": "unknown",
+        "phenotype": "unknown",
+        "reasoning": "Genotypes present but no clinical interpretation.",
+        "variant_evidence": "rs4244285, rs12248560 in CYP2C19",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": false,
+        "guideline_cited_with_version": false,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": false,
+        "score_total": 2
+      },
+      "raw": {
+        "prompt_chars": 3206,
+        "fixture_key": [
+          "A1",
+          "q01",
+          "gemini"
+        ]
+      }
+    },
+    {
+      "id": "A1-q01-gemini-2",
+      "format": "A1",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "gemini",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 2,
+      "temperature": 0.7,
+      "seed": 20260511,
+      "prompt_chars": 3206,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"guideline knowledge not in document\",\n  \"confidence\": \"low\",\n  \"diplotype\": \"unknown\",\n  \"guideline_cited\": \"unknown\",\n  \"phenotype\": \"unknown\",\n  \"reasoning\": \"Genotypes present but no clinical interpretation.\",\n  \"variant_evidence\": \"rs4244285, rs12248560 in CYP2C19\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "guideline knowledge not in document",
+        "confidence": "low",
+        "diplotype": "unknown",
+        "guideline_cited": "unknown",
+        "phenotype": "unknown",
+        "reasoning": "Genotypes present but no clinical interpretation.",
+        "variant_evidence": "rs4244285, rs12248560 in CYP2C19",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": false,
+        "guideline_cited_with_version": false,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": false,
+        "score_total": 2
+      },
+      "raw": {
+        "prompt_chars": 3206,
+        "fixture_key": [
+          "A1",
+          "q01",
+          "gemini"
+        ]
+      }
+    },
+    {
+      "id": "A2-q01-claude-0",
+      "format": "A2",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "claude",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 0,
+      "temperature": 0.7,
+      "seed": 20260509,
+      "prompt_chars": 3206,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"CPIC@2022\",\n  \"phenotype\": \"Intermediate Metabolizer\",\n  \"reasoning\": \"*2 defined by rs4244285; carrier status implies *1/*2 IM per ruleset.\",\n  \"variant_evidence\": \"rs4244285 G|A (heterozygous); rs12248560 absent\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "CPIC@2022",
+        "phenotype": "Intermediate Metabolizer",
+        "reasoning": "*2 defined by rs4244285; carrier status implies *1/*2 IM per ruleset.",
+        "variant_evidence": "rs4244285 G|A (heterozygous); rs12248560 absent",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": true,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": true,
+        "score_total": 5
+      },
+      "raw": {
+        "prompt_chars": 3206,
+        "fixture_key": [
+          "A2",
+          "q01",
+          "claude"
+        ]
+      }
+    },
+    {
+      "id": "A2-q01-claude-1",
+      "format": "A2",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "claude",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 1,
+      "temperature": 0.7,
+      "seed": 20260510,
+      "prompt_chars": 3206,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"CPIC@2022\",\n  \"phenotype\": \"Intermediate Metabolizer\",\n  \"reasoning\": \"*2 defined by rs4244285; carrier status implies *1/*2 IM per ruleset.\",\n  \"variant_evidence\": \"rs4244285 G|A (heterozygous); rs12248560 absent\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "CPIC@2022",
+        "phenotype": "Intermediate Metabolizer",
+        "reasoning": "*2 defined by rs4244285; carrier status implies *1/*2 IM per ruleset.",
+        "variant_evidence": "rs4244285 G|A (heterozygous); rs12248560 absent",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": true,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": true,
+        "score_total": 5
+      },
+      "raw": {
+        "prompt_chars": 3206,
+        "fixture_key": [
+          "A2",
+          "q01",
+          "claude"
+        ]
+      }
+    },
+    {
+      "id": "A2-q01-claude-2",
+      "format": "A2",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "claude",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 2,
+      "temperature": 0.7,
+      "seed": 20260511,
+      "prompt_chars": 3206,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"CPIC@2022\",\n  \"phenotype\": \"Intermediate Metabolizer\",\n  \"reasoning\": \"*2 defined by rs4244285; carrier status implies *1/*2 IM per ruleset.\",\n  \"variant_evidence\": \"rs4244285 G|A (heterozygous); rs12248560 absent\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "CPIC@2022",
+        "phenotype": "Intermediate Metabolizer",
+        "reasoning": "*2 defined by rs4244285; carrier status implies *1/*2 IM per ruleset.",
+        "variant_evidence": "rs4244285 G|A (heterozygous); rs12248560 absent",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": true,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": true,
+        "score_total": 5
+      },
+      "raw": {
+        "prompt_chars": 3206,
+        "fixture_key": [
+          "A2",
+          "q01",
+          "claude"
+        ]
+      }
+    },
+    {
+      "id": "A2-q01-openai-0",
+      "format": "A2",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "openai",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 0,
+      "temperature": 0.7,
+      "seed": 20260509,
+      "prompt_chars": 3206,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"CPIC 2022\",\n  \"phenotype\": \"Intermediate Metabolizer\",\n  \"reasoning\": \"Ruleset maps the variant to *2; CPIC table indicates IM.\",\n  \"variant_evidence\": \"rs4244285 het\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "CPIC 2022",
+        "phenotype": "Intermediate Metabolizer",
+        "reasoning": "Ruleset maps the variant to *2; CPIC table indicates IM.",
+        "variant_evidence": "rs4244285 het",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": true,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": true,
+        "score_total": 5
+      },
+      "raw": {
+        "prompt_chars": 3206,
+        "fixture_key": [
+          "A2",
+          "q01",
+          "openai"
+        ]
+      }
+    },
+    {
+      "id": "A2-q01-openai-1",
+      "format": "A2",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "openai",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 1,
+      "temperature": 0.7,
+      "seed": 20260510,
+      "prompt_chars": 3206,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"medium\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"CPIC 2022 clopidogrel\",\n  \"phenotype\": \"Intermediate Metabolizer\",\n  \"reasoning\": \"Ruleset path; minor text variance.\",\n  \"variant_evidence\": \"rs4244285 G/A\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "medium",
+        "diplotype": "*1/*2",
+        "guideline_cited": "CPIC 2022 clopidogrel",
+        "phenotype": "Intermediate Metabolizer",
+        "reasoning": "Ruleset path; minor text variance.",
+        "variant_evidence": "rs4244285 G/A",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": true,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": true,
+        "score_total": 5
+      },
+      "raw": {
+        "prompt_chars": 3206,
+        "fixture_key": [
+          "A2",
+          "q01",
+          "openai"
+        ]
+      }
+    },
+    {
+      "id": "A2-q01-openai-2",
+      "format": "A2",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "openai",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 2,
+      "temperature": 0.7,
+      "seed": 20260511,
+      "prompt_chars": 3206,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"CPIC 2022\",\n  \"phenotype\": \"Intermediate Metabolizer\",\n  \"reasoning\": \"Ruleset maps the variant to *2; CPIC table indicates IM.\",\n  \"variant_evidence\": \"rs4244285 het\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "CPIC 2022",
+        "phenotype": "Intermediate Metabolizer",
+        "reasoning": "Ruleset maps the variant to *2; CPIC table indicates IM.",
+        "variant_evidence": "rs4244285 het",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": true,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": true,
+        "score_total": 5
+      },
+      "raw": {
+        "prompt_chars": 3206,
+        "fixture_key": [
+          "A2",
+          "q01",
+          "openai"
+        ]
+      }
+    },
+    {
+      "id": "A2-q01-gemini-0",
+      "format": "A2",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "gemini",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 0,
+      "temperature": 0.7,
+      "seed": 20260509,
+      "prompt_chars": 3206,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"CPIC@2022\",\n  \"phenotype\": \"Intermediate Metabolizer (IM)\",\n  \"reasoning\": \"Heterozygous *2 carrier; CPIC says alternative agent for ACS/PCI.\",\n  \"variant_evidence\": \"rs4244285 G/A heterozygous\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "CPIC@2022",
+        "phenotype": "Intermediate Metabolizer (IM)",
+        "reasoning": "Heterozygous *2 carrier; CPIC says alternative agent for ACS/PCI.",
+        "variant_evidence": "rs4244285 G/A heterozygous",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": true,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": true,
+        "score_total": 5
+      },
+      "raw": {
+        "prompt_chars": 3206,
+        "fixture_key": [
+          "A2",
+          "q01",
+          "gemini"
+        ]
+      }
+    },
+    {
+      "id": "A2-q01-gemini-1",
+      "format": "A2",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "gemini",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 1,
+      "temperature": 0.7,
+      "seed": 20260510,
+      "prompt_chars": 3206,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"CPIC@2022\",\n  \"phenotype\": \"Intermediate Metabolizer (IM)\",\n  \"reasoning\": \"Heterozygous *2 carrier; CPIC says alternative agent for ACS/PCI.\",\n  \"variant_evidence\": \"rs4244285 G/A heterozygous\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "CPIC@2022",
+        "phenotype": "Intermediate Metabolizer (IM)",
+        "reasoning": "Heterozygous *2 carrier; CPIC says alternative agent for ACS/PCI.",
+        "variant_evidence": "rs4244285 G/A heterozygous",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": true,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": true,
+        "score_total": 5
+      },
+      "raw": {
+        "prompt_chars": 3206,
+        "fixture_key": [
+          "A2",
+          "q01",
+          "gemini"
+        ]
+      }
+    },
+    {
+      "id": "A2-q01-gemini-2",
+      "format": "A2",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "gemini",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 2,
+      "temperature": 0.7,
+      "seed": 20260511,
+      "prompt_chars": 3206,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"CPIC@2022\",\n  \"phenotype\": \"Intermediate Metabolizer (IM)\",\n  \"reasoning\": \"Heterozygous *2 carrier; CPIC says alternative agent for ACS/PCI.\",\n  \"variant_evidence\": \"rs4244285 G/A heterozygous\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "CPIC@2022",
+        "phenotype": "Intermediate Metabolizer (IM)",
+        "reasoning": "Heterozygous *2 carrier; CPIC says alternative agent for ACS/PCI.",
+        "variant_evidence": "rs4244285 G/A heterozygous",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": true,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": true,
+        "score_total": 5
+      },
+      "raw": {
+        "prompt_chars": 3206,
+        "fixture_key": [
+          "A2",
+          "q01",
+          "gemini"
+        ]
+      }
+    },
+    {
+      "id": "B-q01-claude-0",
+      "format": "B",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "claude",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 0,
+      "temperature": 0.7,
+      "seed": 20260509,
+      "prompt_chars": 3841,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"unknown\",\n  \"phenotype\": \"Intermediate Metabolizer (*1/*2)\",\n  \"reasoning\": \"Diplotype stated but no guideline citation in text.\",\n  \"variant_evidence\": \"unknown\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "unknown",
+        "phenotype": "Intermediate Metabolizer (*1/*2)",
+        "reasoning": "Diplotype stated but no guideline citation in text.",
+        "variant_evidence": "unknown",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": false,
+        "variant_evidence_cited": false,
+        "no_inference_required_outside_text": true,
+        "score_total": 3
+      },
+      "raw": {
+        "prompt_chars": 3841,
+        "fixture_key": [
+          "B",
+          "q01",
+          "claude"
+        ]
+      }
+    },
+    {
+      "id": "B-q01-claude-1",
+      "format": "B",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "claude",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 1,
+      "temperature": 0.7,
+      "seed": 20260510,
+      "prompt_chars": 3841,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"unknown\",\n  \"phenotype\": \"Intermediate Metabolizer (*1/*2)\",\n  \"reasoning\": \"Diplotype stated but no guideline citation in text.\",\n  \"variant_evidence\": \"unknown\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "unknown",
+        "phenotype": "Intermediate Metabolizer (*1/*2)",
+        "reasoning": "Diplotype stated but no guideline citation in text.",
+        "variant_evidence": "unknown",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": false,
+        "variant_evidence_cited": false,
+        "no_inference_required_outside_text": true,
+        "score_total": 3
+      },
+      "raw": {
+        "prompt_chars": 3841,
+        "fixture_key": [
+          "B",
+          "q01",
+          "claude"
+        ]
+      }
+    },
+    {
+      "id": "B-q01-claude-2",
+      "format": "B",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "claude",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 2,
+      "temperature": 0.7,
+      "seed": 20260511,
+      "prompt_chars": 3841,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"unknown\",\n  \"phenotype\": \"Intermediate Metabolizer (*1/*2)\",\n  \"reasoning\": \"Diplotype stated but no guideline citation in text.\",\n  \"variant_evidence\": \"unknown\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "unknown",
+        "phenotype": "Intermediate Metabolizer (*1/*2)",
+        "reasoning": "Diplotype stated but no guideline citation in text.",
+        "variant_evidence": "unknown",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": false,
+        "variant_evidence_cited": false,
+        "no_inference_required_outside_text": true,
+        "score_total": 3
+      },
+      "raw": {
+        "prompt_chars": 3841,
+        "fixture_key": [
+          "B",
+          "q01",
+          "claude"
+        ]
+      }
+    },
+    {
+      "id": "B-q01-openai-0",
+      "format": "B",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "openai",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 0,
+      "temperature": 0.7,
+      "seed": 20260509,
+      "prompt_chars": 3841,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"medium\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"unknown\",\n  \"phenotype\": \"IM\",\n  \"reasoning\": \"Format gives diplotype only.\",\n  \"variant_evidence\": \"unknown\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "medium",
+        "diplotype": "*1/*2",
+        "guideline_cited": "unknown",
+        "phenotype": "IM",
+        "reasoning": "Format gives diplotype only.",
+        "variant_evidence": "unknown",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": false,
+        "variant_evidence_cited": false,
+        "no_inference_required_outside_text": true,
+        "score_total": 3
+      },
+      "raw": {
+        "prompt_chars": 3841,
+        "fixture_key": [
+          "B",
+          "q01",
+          "openai"
+        ]
+      }
+    },
+    {
+      "id": "B-q01-openai-1",
+      "format": "B",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "openai",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 1,
+      "temperature": 0.7,
+      "seed": 20260510,
+      "prompt_chars": 3841,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"medium\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"unknown\",\n  \"phenotype\": \"IM\",\n  \"reasoning\": \"Format gives diplotype only.\",\n  \"variant_evidence\": \"unknown\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "medium",
+        "diplotype": "*1/*2",
+        "guideline_cited": "unknown",
+        "phenotype": "IM",
+        "reasoning": "Format gives diplotype only.",
+        "variant_evidence": "unknown",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": false,
+        "variant_evidence_cited": false,
+        "no_inference_required_outside_text": true,
+        "score_total": 3
+      },
+      "raw": {
+        "prompt_chars": 3841,
+        "fixture_key": [
+          "B",
+          "q01",
+          "openai"
+        ]
+      }
+    },
+    {
+      "id": "B-q01-openai-2",
+      "format": "B",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "openai",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 2,
+      "temperature": 0.7,
+      "seed": 20260511,
+      "prompt_chars": 3841,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"medium\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"unknown\",\n  \"phenotype\": \"IM\",\n  \"reasoning\": \"Format gives diplotype only.\",\n  \"variant_evidence\": \"unknown\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "medium",
+        "diplotype": "*1/*2",
+        "guideline_cited": "unknown",
+        "phenotype": "IM",
+        "reasoning": "Format gives diplotype only.",
+        "variant_evidence": "unknown",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": false,
+        "variant_evidence_cited": false,
+        "no_inference_required_outside_text": true,
+        "score_total": 3
+      },
+      "raw": {
+        "prompt_chars": 3841,
+        "fixture_key": [
+          "B",
+          "q01",
+          "openai"
+        ]
+      }
+    },
+    {
+      "id": "B-q01-gemini-0",
+      "format": "B",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "gemini",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 0,
+      "temperature": 0.7,
+      "seed": 20260509,
+      "prompt_chars": 3841,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"unknown\",\n  \"phenotype\": \"Intermediate Metabolizer\",\n  \"reasoning\": \"Reconstruction gives the call but lacks provenance.\",\n  \"variant_evidence\": \"unknown\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "unknown",
+        "phenotype": "Intermediate Metabolizer",
+        "reasoning": "Reconstruction gives the call but lacks provenance.",
+        "variant_evidence": "unknown",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": false,
+        "variant_evidence_cited": false,
+        "no_inference_required_outside_text": true,
+        "score_total": 3
+      },
+      "raw": {
+        "prompt_chars": 3841,
+        "fixture_key": [
+          "B",
+          "q01",
+          "gemini"
+        ]
+      }
+    },
+    {
+      "id": "B-q01-gemini-1",
+      "format": "B",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "gemini",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 1,
+      "temperature": 0.7,
+      "seed": 20260510,
+      "prompt_chars": 3841,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"unknown\",\n  \"phenotype\": \"Intermediate Metabolizer\",\n  \"reasoning\": \"Reconstruction gives the call but lacks provenance.\",\n  \"variant_evidence\": \"unknown\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "unknown",
+        "phenotype": "Intermediate Metabolizer",
+        "reasoning": "Reconstruction gives the call but lacks provenance.",
+        "variant_evidence": "unknown",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": false,
+        "variant_evidence_cited": false,
+        "no_inference_required_outside_text": true,
+        "score_total": 3
+      },
+      "raw": {
+        "prompt_chars": 3841,
+        "fixture_key": [
+          "B",
+          "q01",
+          "gemini"
+        ]
+      }
+    },
+    {
+      "id": "B-q01-gemini-2",
+      "format": "B",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "gemini",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 2,
+      "temperature": 0.7,
+      "seed": 20260511,
+      "prompt_chars": 3841,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"unknown\",\n  \"phenotype\": \"Intermediate Metabolizer\",\n  \"reasoning\": \"Reconstruction gives the call but lacks provenance.\",\n  \"variant_evidence\": \"unknown\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "unknown",
+        "phenotype": "Intermediate Metabolizer",
+        "reasoning": "Reconstruction gives the call but lacks provenance.",
+        "variant_evidence": "unknown",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": false,
+        "variant_evidence_cited": false,
+        "no_inference_required_outside_text": true,
+        "score_total": 3
+      },
+      "raw": {
+        "prompt_chars": 3841,
+        "fixture_key": [
+          "B",
+          "q01",
+          "gemini"
+        ]
+      }
+    },
+    {
+      "id": "C-q01-claude-0",
+      "format": "C",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "claude",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 0,
+      "temperature": 0.7,
+      "seed": 20260509,
+      "prompt_chars": 4160,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"CPIC@2022\",\n  \"phenotype\": \"CYP2C19 Intermediate Metabolizer\",\n  \"reasoning\": \".bio view states phenotype + guideline + fact hashes.\",\n  \"variant_evidence\": \"fact_hash sha256:abc... (rsID resolvable via facts/)\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "CPIC@2022",
+        "phenotype": "CYP2C19 Intermediate Metabolizer",
+        "reasoning": ".bio view states phenotype + guideline + fact hashes.",
+        "variant_evidence": "fact_hash sha256:abc... (rsID resolvable via facts/)",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": true,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": true,
+        "score_total": 5
+      },
+      "raw": {
+        "prompt_chars": 4160,
+        "fixture_key": [
+          "C",
+          "q01",
+          "claude"
+        ]
+      }
+    },
+    {
+      "id": "C-q01-claude-1",
+      "format": "C",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "claude",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 1,
+      "temperature": 0.7,
+      "seed": 20260510,
+      "prompt_chars": 4160,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"CPIC@2022\",\n  \"phenotype\": \"CYP2C19 Intermediate Metabolizer\",\n  \"reasoning\": \".bio view states phenotype + guideline + fact hashes.\",\n  \"variant_evidence\": \"fact_hash sha256:abc... (rsID resolvable via facts/)\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "CPIC@2022",
+        "phenotype": "CYP2C19 Intermediate Metabolizer",
+        "reasoning": ".bio view states phenotype + guideline + fact hashes.",
+        "variant_evidence": "fact_hash sha256:abc... (rsID resolvable via facts/)",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": true,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": true,
+        "score_total": 5
+      },
+      "raw": {
+        "prompt_chars": 4160,
+        "fixture_key": [
+          "C",
+          "q01",
+          "claude"
+        ]
+      }
+    },
+    {
+      "id": "C-q01-claude-2",
+      "format": "C",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "claude",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 2,
+      "temperature": 0.7,
+      "seed": 20260511,
+      "prompt_chars": 4160,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"CPIC@2022\",\n  \"phenotype\": \"CYP2C19 Intermediate Metabolizer\",\n  \"reasoning\": \".bio view states phenotype + guideline + fact hashes.\",\n  \"variant_evidence\": \"fact_hash sha256:abc... (rsID resolvable via facts/)\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "CPIC@2022",
+        "phenotype": "CYP2C19 Intermediate Metabolizer",
+        "reasoning": ".bio view states phenotype + guideline + fact hashes.",
+        "variant_evidence": "fact_hash sha256:abc... (rsID resolvable via facts/)",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": true,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": true,
+        "score_total": 5
+      },
+      "raw": {
+        "prompt_chars": 4160,
+        "fixture_key": [
+          "C",
+          "q01",
+          "claude"
+        ]
+      }
+    },
+    {
+      "id": "C-q01-openai-0",
+      "format": "C",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "openai",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 0,
+      "temperature": 0.7,
+      "seed": 20260509,
+      "prompt_chars": 4160,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"CPIC@2022\",\n  \"phenotype\": \"Intermediate Metabolizer\",\n  \"reasoning\": \"Bundle view contains all fields needed.\",\n  \"variant_evidence\": \"fact hash referenced\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "CPIC@2022",
+        "phenotype": "Intermediate Metabolizer",
+        "reasoning": "Bundle view contains all fields needed.",
+        "variant_evidence": "fact hash referenced",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": true,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": true,
+        "score_total": 5
+      },
+      "raw": {
+        "prompt_chars": 4160,
+        "fixture_key": [
+          "C",
+          "q01",
+          "openai"
+        ]
+      }
+    },
+    {
+      "id": "C-q01-openai-1",
+      "format": "C",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "openai",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 1,
+      "temperature": 0.7,
+      "seed": 20260510,
+      "prompt_chars": 4160,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"CPIC@2022\",\n  \"phenotype\": \"Intermediate Metabolizer\",\n  \"reasoning\": \"Bundle view contains all fields needed.\",\n  \"variant_evidence\": \"fact hash referenced\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "CPIC@2022",
+        "phenotype": "Intermediate Metabolizer",
+        "reasoning": "Bundle view contains all fields needed.",
+        "variant_evidence": "fact hash referenced",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": true,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": true,
+        "score_total": 5
+      },
+      "raw": {
+        "prompt_chars": 4160,
+        "fixture_key": [
+          "C",
+          "q01",
+          "openai"
+        ]
+      }
+    },
+    {
+      "id": "C-q01-openai-2",
+      "format": "C",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "openai",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 2,
+      "temperature": 0.7,
+      "seed": 20260511,
+      "prompt_chars": 4160,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"CPIC@2022\",\n  \"phenotype\": \"Intermediate Metabolizer\",\n  \"reasoning\": \"Bundle view contains all fields needed.\",\n  \"variant_evidence\": \"fact hash referenced\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "CPIC@2022",
+        "phenotype": "Intermediate Metabolizer",
+        "reasoning": "Bundle view contains all fields needed.",
+        "variant_evidence": "fact hash referenced",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": true,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": true,
+        "score_total": 5
+      },
+      "raw": {
+        "prompt_chars": 4160,
+        "fixture_key": [
+          "C",
+          "q01",
+          "openai"
+        ]
+      }
+    },
+    {
+      "id": "C-q01-gemini-0",
+      "format": "C",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "gemini",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 0,
+      "temperature": 0.7,
+      "seed": 20260509,
+      "prompt_chars": 4160,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"CPIC@2022\",\n  \"phenotype\": \"CYP2C19 IM (*1/*2)\",\n  \"reasoning\": \"View text gives phenotype + guideline + provenance.\",\n  \"variant_evidence\": \"sha256 fact hash present\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "CPIC@2022",
+        "phenotype": "CYP2C19 IM (*1/*2)",
+        "reasoning": "View text gives phenotype + guideline + provenance.",
+        "variant_evidence": "sha256 fact hash present",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": true,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": true,
+        "score_total": 5
+      },
+      "raw": {
+        "prompt_chars": 4160,
+        "fixture_key": [
+          "C",
+          "q01",
+          "gemini"
+        ]
+      }
+    },
+    {
+      "id": "C-q01-gemini-1",
+      "format": "C",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "gemini",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 1,
+      "temperature": 0.7,
+      "seed": 20260510,
+      "prompt_chars": 4160,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"CPIC@2022\",\n  \"phenotype\": \"CYP2C19 IM (*1/*2)\",\n  \"reasoning\": \"View text gives phenotype + guideline + provenance.\",\n  \"variant_evidence\": \"sha256 fact hash present\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "CPIC@2022",
+        "phenotype": "CYP2C19 IM (*1/*2)",
+        "reasoning": "View text gives phenotype + guideline + provenance.",
+        "variant_evidence": "sha256 fact hash present",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": true,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": true,
+        "score_total": 5
+      },
+      "raw": {
+        "prompt_chars": 4160,
+        "fixture_key": [
+          "C",
+          "q01",
+          "gemini"
+        ]
+      }
+    },
+    {
+      "id": "C-q01-gemini-2",
+      "format": "C",
+      "question_id": "q01",
+      "model": "mock-fixture-v1",
+      "model_family": "gemini",
+      "client": "mock",
+      "is_mock": true,
+      "replicate_idx": 2,
+      "temperature": 0.7,
+      "seed": 20260511,
+      "prompt_chars": 4160,
+      "response_text": "{\n  \"anything_inferred_not_in_text\": \"none\",\n  \"confidence\": \"high\",\n  \"diplotype\": \"*1/*2\",\n  \"guideline_cited\": \"CPIC@2022\",\n  \"phenotype\": \"CYP2C19 IM (*1/*2)\",\n  \"reasoning\": \"View text gives phenotype + guideline + provenance.\",\n  \"variant_evidence\": \"sha256 fact hash present\",\n  \"verdict\": \"depends\"\n}",
+      "response": {
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high",
+        "diplotype": "*1/*2",
+        "guideline_cited": "CPIC@2022",
+        "phenotype": "CYP2C19 IM (*1/*2)",
+        "reasoning": "View text gives phenotype + guideline + provenance.",
+        "variant_evidence": "sha256 fact hash present",
+        "verdict": "depends"
+      },
+      "scoring": {
+        "parse_ok": true,
+        "verdict_correct": true,
+        "phenotype_correct": true,
+        "guideline_cited_with_version": true,
+        "variant_evidence_cited": true,
+        "no_inference_required_outside_text": true,
+        "score_total": 5
+      },
+      "raw": {
+        "prompt_chars": 4160,
+        "fixture_key": [
+          "C",
+          "q01",
+          "gemini"
+        ]
+      }
+    }
+  ]
+}

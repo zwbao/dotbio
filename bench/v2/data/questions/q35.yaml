@@ -1,0 +1,16 @@
+id: q35
+domain: hereditary_risk
+question: "A 35-year-old woman with a confirmed germline PALB2 pathogenic variant has no personal cancer history. Both her mother and maternal aunt had breast cancer in their 50s. What breast-cancer screening does NCCN recommend, and when should it begin?"
+required_inputs:
+  - gene: PALB2
+  - variant: "germline pathogenic"
+  - clinical_context: "asymptomatic adult woman, family history of breast cancer in 50s"
+gold_answer:
+  verdict: "annual breast MRI with contrast starting at age 30 years and annual mammography (with consideration of tomosynthesis) starting at age 30-35; risk-reducing mastectomy can be discussed but is not routinely recommended (lower penetrance than BRCA1/2); discuss based on family history and personal preference"
+  cited_guideline: "NCCN Genetic/Familial High-Risk Assessment: Breast, Ovarian, and Pancreatic v3.2024"
+  rationale: "PALB2 confers a high (40-60% lifetime) breast-cancer risk approaching BRCA2. NCCN aligns surveillance with BRCA management: annual breast MRI starting age 30, with mammography added at 30-35. PALB2 also confers ovarian (~5%) and pancreatic cancer risk that may warrant additional surveillance based on family history."
+scoring_rubric:
+  verdict_correct: 'recommends annual breast MRI starting age 30 AND annual mammography starting age 30-35'
+  guideline_cited_with_version: 'includes "NCCN" with version/year'
+  variant_evidence_cited: 'mentions PALB2'
+primary_reference_url: https://www.nccn.org/guidelines/guidelines-detail?category=2&id=1545

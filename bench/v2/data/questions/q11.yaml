@@ -1,0 +1,17 @@
+id: q11
+domain: oncology_somatic
+question: "A 64-year-old non-smoker has newly diagnosed metastatic non-squamous NSCLC. Tumor genotyping reveals an EGFR exon 19 deletion. PD-L1 TPS is 30%. What is the preferred first-line systemic therapy?"
+required_inputs:
+  - gene: EGFR
+  - variant: "exon 19 deletion (somatic)"
+  - clinical_context: "treatment-naive metastatic non-squamous NSCLC"
+gold_answer:
+  verdict: "osimertinib (single agent) is the preferred first-line systemic therapy (Category 1); osimertinib + platinum-pemetrexed is a Category 1 alternative based on FLAURA2"
+  cited_guideline: "NCCN NSCLC Guidelines v3.2024 (Category 1); FDA label for osimertinib (Tagrisso); FLAURA / FLAURA2 trials"
+  rationale: "EGFR exon 19 deletion is a sensitizing mutation. The FLAURA trial established osimertinib superiority over earlier-generation EGFR TKIs in PFS and OS, making it the NCCN preferred first-line regimen. PD-L1 status does not change the recommendation in driver-positive NSCLC; first-line single-agent immunotherapy is not preferred over osimertinib."
+scoring_rubric:
+  verdict_correct: 'names "osimertinib" as preferred first-line therapy'
+  guideline_cited_with_version: 'includes "NCCN" with version/year OR "FDA label" for osimertinib'
+  variant_evidence_cited: 'mentions EGFR exon 19 deletion'
+  no_inference_required_outside_text: "answer derivable from EGFR exon 19 deletion + NSCLC context"
+primary_reference_url: https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-osimertinib-locally-advanced-unresectable-stage-iii-non-small-cell-lung-cancer

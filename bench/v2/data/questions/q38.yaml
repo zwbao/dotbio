@@ -1,0 +1,17 @@
+id: q38
+domain: hereditary_risk
+question: "A 40-year-old man with hypertrophic cardiomyopathy (max LV wall thickness 28 mm), unexplained recent syncope, family history of sudden cardiac death in his father at age 45, and left ventricular apical aneurysm on cardiac MRI. He is found to have a pathogenic MYH7 missense variant. Per AHA/ACC HCM guidelines, is primary-prevention ICD indicated?"
+required_inputs:
+  - gene: MYH7
+  - variant: "pathogenic missense"
+  - clinical_features: "max LVWT 28 mm; recent unexplained syncope; LV apical aneurysm; family history SCD age 45"
+  - clinical_context: "primary prevention ICD decision"
+gold_answer:
+  verdict: "yes — primary-prevention ICD is reasonable (Class IIa recommendation) given multiple major risk markers (massive LVH ≥30 mm or close to it, recent unexplained syncope, family history of SCD, and LV apical aneurysm)"
+  cited_guideline: "2020 AHA/ACC HCM Guideline (Ommen et al., Circulation 2020;142:e558); 2024 AHA/ACC HCM Guideline update (Ommen et al., Circulation 2024;149:e1239)"
+  rationale: "The 2020 (and 2024 update) AHA/ACC HCM guidelines list as major SCD risk markers: family history of SCD, massive LVH (≥30 mm, with 28 mm borderline), unexplained syncope, LV apical aneurysm, extensive LGE, and reduced LVEF (<50%). Patients with at least one major marker may be considered for primary-prevention ICD (Class IIa); this patient has multiple."
+scoring_rubric:
+  verdict_correct: 'states "yes" / "ICD reasonable" / "primary-prevention ICD indicated" with rationale'
+  guideline_cited_with_version: 'includes "AHA/ACC HCM 2020" OR "2024"'
+  variant_evidence_cited: 'mentions MYH7 / sarcomeric variant; major risk markers listed'
+primary_reference_url: https://www.ahajournals.org/doi/10.1161/CIR.0000000000000937

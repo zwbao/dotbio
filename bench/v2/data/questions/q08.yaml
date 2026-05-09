@@ -1,0 +1,18 @@
+id: q08
+domain: pgx
+question: "An immunocompromised adult with invasive aspergillosis is started on voriconazole. Pre-treatment CYP2C19 genotype is *17/*17 (rapid/ultra-rapid metabolizer). What does CPIC recommend?"
+required_inputs:
+  - gene: CYP2C19
+  - diplotype: "*17/*17"
+  - clinical_context: "invasive aspergillosis, voriconazole-naive adult"
+gold_answer:
+  verdict: "select an alternative antifungal not metabolized by CYP2C19 (e.g., isavuconazole, posaconazole, or amphotericin B); standard voriconazole dosing is likely subtherapeutic"
+  phenotype: "CYP2C19 Ultra-rapid Metabolizer"
+  cited_guideline: "CPIC@2017 (Moriyama et al., Clin Pharmacol Ther 2017;102:45-51, PMID 27981572)"
+  rationale: "CYP2C19 UMs achieve subtherapeutic voriconazole troughs and treatment failure on standard dosing. CPIC recommends an alternative antifungal not dependent on CYP2C19 metabolism rather than dose escalation."
+scoring_rubric:
+  verdict_correct: 'recommends alternative antifungal (isavuconazole, posaconazole, or amphotericin B) OR avoidance of voriconazole'
+  phenotype_correct: 'mentions Ultra-rapid Metabolizer or UM'
+  guideline_cited_with_version: 'includes "CPIC" AND ("2017" OR "Moriyama")'
+  variant_evidence_cited: 'mentions CYP2C19 *17 or rs12248560'
+primary_reference_url: https://cpicpgx.org/guidelines/guideline-for-voriconazole-and-cyp2c19/

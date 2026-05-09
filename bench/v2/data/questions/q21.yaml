@@ -1,0 +1,17 @@
+id: q21
+domain: carrier_screening
+question: "A 30-year-old woman of Northern European ancestry presents for preconception carrier screening. Her CFTR sequencing returns p.Phe508del (F508del) heterozygote (one copy). Her partner has not yet been tested. What is the appropriate next step per ACMG?"
+required_inputs:
+  - gene: CFTR
+  - variant: "F508del (c.1521_1523delCTT, p.Phe508del)"
+  - zygosity: "heterozygous (carrier)"
+  - clinical_context: "preconception, partner untested"
+gold_answer:
+  verdict: "she is a CF carrier; offer partner CFTR carrier screening (with the ACMG-recommended ≥100-variant minimum panel) and provide genetic counseling about reproductive options if both partners carry pathogenic variants"
+  cited_guideline: "ACMG Updated CFTR Carrier Screening Recommendations 2023 (Deignan et al., Genet Med 2023;25(8):100867); ACOG Committee Opinion 690/691"
+  rationale: "F508del is a well-established CF-causing variant. ACMG (2023) recommends a minimum CFTR variant set of 100 variants for carrier screening, replacing the older 23-variant panel; if one member of a couple is a carrier, partner testing is essential to estimate reproductive risk and inform options including PGT-M and prenatal diagnosis."
+scoring_rubric:
+  verdict_correct: 'recommends partner CFTR carrier screening AND identifies the woman as a CF carrier'
+  guideline_cited_with_version: 'includes "ACMG" AND ("2023" OR "100 variants") OR "ACOG"'
+  variant_evidence_cited: 'mentions F508del or p.Phe508del'
+primary_reference_url: https://www.gimjournal.org/article/S1098-3600(23)00880-8/fulltext

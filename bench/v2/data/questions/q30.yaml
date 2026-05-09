@@ -1,0 +1,16 @@
+id: q30
+domain: carrier_screening
+question: "A 27-year-old woman whose maternal nephew was diagnosed with Duchenne muscular dystrophy presents for carrier testing prior to pregnancy. She has a confirmed DMD exon 45-50 deletion (heterozygous). What is the per-pregnancy risk for her future male and female offspring, and what reproductive options apply?"
+required_inputs:
+  - gene: DMD
+  - mother_status: "heterozygous DMD exon 45-50 deletion (obligate carrier)"
+  - clinical_context: "preconception, X-linked recessive inheritance"
+gold_answer:
+  verdict: "X-linked recessive: each son has a 50% risk of being affected (DMD), each daughter has a 50% risk of being a carrier; offer genetic counseling, PGT-M, prenatal diagnostic options including chorionic villus sampling for fetal sex with reflex DMD molecular testing, and counseling about her own DMD-carrier cardiac surveillance recommendations"
+  cited_guideline: "ACMG Practice Resource 2021 (Gregg et al., Genet Med 2021;23:1793; DMD is a Tier-3 X-linked gene); AAP/ACMG cardiac surveillance recommendations for DMD carriers"
+  rationale: "DMD is X-linked recessive. A heterozygous-carrier mother transmits the variant to 50% of offspring of each sex; affected only sons, carriers only daughters (typically). Female DMD carriers have a small but real lifetime risk of dilated cardiomyopathy; periodic cardiac surveillance is recommended."
+scoring_rubric:
+  verdict_correct: 'states 50% affected sons AND 50% carrier daughters AND recommends counseling/options including cardiac surveillance for the carrier mother'
+  guideline_cited_with_version: 'includes "ACMG 2021" OR cardiac surveillance reference (AAP/AHA)'
+  variant_evidence_cited: 'mentions DMD deletion and X-linked inheritance'
+primary_reference_url: https://www.gimjournal.org/article/S1098-3600(21)03558-9/fulltext

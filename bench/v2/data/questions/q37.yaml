@@ -1,0 +1,16 @@
+id: q37
+domain: hereditary_risk
+question: "A 24-year-old asymptomatic woman is identified as a carrier of a heterozygous KCNQ1 pathogenic missense variant (LQT1) on cascade testing after her brother's syncope and documented Torsade de Pointes. Her resting QTc is 470 ms. What is the recommended first-line therapy?"
+required_inputs:
+  - gene: KCNQ1
+  - variant: "heterozygous pathogenic missense (LQT1)"
+  - clinical_context: "asymptomatic genotype-positive LQT1, QTc 470 ms, family history of TdP"
+gold_answer:
+  verdict: "non-selective beta-blocker therapy — preferably nadolol (or propranolol); avoid QT-prolonging drugs and exercise-triggered situations; counsel about adrenergic-trigger avoidance (especially swimming/diving for LQT1)"
+  cited_guideline: "2022 ESC Guidelines for the Management of Patients with Ventricular Arrhythmias and the Prevention of Sudden Cardiac Death; HRS/EHRA/APHRS 2013 Expert Consensus on Inherited Primary Arrhythmia Syndromes; AHA/ACC/HRS 2017 Guideline"
+  rationale: "Beta-blockers are highly effective in LQT1, blunting the dominant adrenergic trigger of cardiac events. Nadolol is preferred for both LQT1 and LQT2; metoprolol is inferior. ICD is generally not first-line for asymptomatic LQT1 with QTc <500 ms, but is considered for QTc >500, symptomatic (syncope/aborted SCA), or LQT2/LQT3 with high-risk features."
+scoring_rubric:
+  verdict_correct: 'recommends beta-blocker (nadolol or propranolol preferred) as first-line; not ICD'
+  guideline_cited_with_version: 'includes "ESC 2022" OR "HRS/EHRA/APHRS 2013" OR "AHA/ACC/HRS 2017"'
+  variant_evidence_cited: 'mentions KCNQ1 / LQT1'
+primary_reference_url: https://www.escardio.org/Guidelines/Clinical-Practice-Guidelines/Ventricular-Arrhythmias-and-the-Prevention-of-Sudden-Cardiac-Death-Guidelines

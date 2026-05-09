@@ -1,0 +1,17 @@
+id: q29
+domain: carrier_screening
+question: "A 34-year-old pregnant woman is found on prenatal screening to be a carrier of an alpha-thalassemia 2-gene cis deletion (--SEA/αα; alpha-thalassemia trait). Her partner is of Southeast Asian ancestry and has the same --SEA/αα genotype. What is the per-pregnancy risk of Hb Bart hydrops fetalis, and what is the appropriate management?"
+required_inputs:
+  - gene: HBA1/HBA2
+  - mother_genotype: "--SEA/αα"
+  - father_genotype: "--SEA/αα"
+  - clinical_context: "second-trimester pregnancy, both partners alpha-thal-trait carriers (cis deletion)"
+gold_answer:
+  verdict: "1-in-4 (25%) per-pregnancy risk of Hb Bart hydrops fetalis (--SEA/--SEA, four-gene deletion), which is typically fatal in utero or shortly after birth without intrauterine transfusion / postnatal stem-cell-transplant strategies; offer genetic counseling and prenatal diagnostic testing (CVS or amniocentesis with α-globin gene deletion analysis); discuss reproductive options"
+  cited_guideline: "ACOG Practice Bulletin 78 / Practice Advisory on Hemoglobinopathies in Pregnancy 2022; ACMG Practice Resource 2021"
+  rationale: "Both parents are cis (--SEA) carriers. By Mendelian inheritance, 25% of conceptuses have --/-- (Hb Bart hydrops fetalis), 50% are carriers like the parents, 25% are unaffected. Hb Bart hydrops is almost universally lethal without aggressive intrauterine therapy. SEA-type deletion carriers are common in Southeast Asian populations and the recurrence risk is independent of ancestry once carrier status is established."
+scoring_rubric:
+  verdict_correct: 'states 25% risk of Hb Bart hydrops fetalis AND recommends prenatal diagnostic testing / counseling'
+  guideline_cited_with_version: 'includes "ACOG hemoglobinopathy" or "ACMG" with year'
+  variant_evidence_cited: 'mentions --SEA / cis alpha-globin deletion / Hb Bart'
+primary_reference_url: https://www.acog.org/clinical/clinical-guidance/practice-advisory/articles/2022/08/hemoglobinopathies-in-pregnancy

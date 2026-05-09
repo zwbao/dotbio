@@ -1,0 +1,19 @@
+id: q04
+domain: pgx
+question: "A patient of Han Chinese ancestry with newly diagnosed focal epilepsy is being considered for carbamazepine. Pre-treatment HLA-B*15:02 testing is positive. Is carbamazepine appropriate?"
+required_inputs:
+  - gene: HLA-B
+  - allele: "*15:02"
+  - zygosity: positive (carrier)
+  - clinical_context: "carbamazepine-naive, new focal epilepsy"
+gold_answer:
+  verdict: "no — avoid carbamazepine (and oxcarbazepine); use an alternative anticonvulsant"
+  phenotype: "HLA-B*15:02 positive (high SJS/TEN risk)"
+  cited_guideline: "CPIC@2018 (Phillips et al., Clin Pharmacol Ther 2018;103:574-581, PMID 29392710)"
+  rationale: "HLA-B*15:02 confers a markedly elevated risk of carbamazepine- and oxcarbazepine-induced Stevens-Johnson syndrome / toxic epidermal necrolysis in carbamazepine-naive patients; CPIC strongly recommends avoidance and selection of an alternative anticonvulsant."
+scoring_rubric:
+  verdict_correct: 'matches "no", "avoid", "contraindicated", or "use alternative"'
+  phenotype_correct: 'mentions SJS/TEN risk OR HLA-B*15:02 positive'
+  guideline_cited_with_version: 'includes "CPIC" AND ("2018" OR "2017" OR "Phillips")'
+  variant_evidence_cited: 'mentions HLA-B*15:02'
+primary_reference_url: https://cpicpgx.org/guidelines/guideline-for-carbamazepine-and-hla-b/

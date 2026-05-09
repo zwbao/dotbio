@@ -1,0 +1,16 @@
+id: q31
+domain: hereditary_risk
+question: "A 38-year-old asymptomatic woman has a germline BRCA1 pathogenic variant (c.5266dupC, p.Q1756Pfs*74) identified on multi-gene panel testing. She has completed childbearing. What is the NCCN-recommended risk-reducing surgery for ovarian/tubal cancer, and at what age?"
+required_inputs:
+  - gene: BRCA1
+  - variant: "c.5266dupC, p.Q1756Pfs*74 (pathogenic)"
+  - clinical_context: "asymptomatic adult woman, completed childbearing"
+gold_answer:
+  verdict: "risk-reducing salpingo-oophorectomy (RRSO) recommended typically between ages 35-40 years (after completion of childbearing); risk-reducing mastectomy can also be discussed for breast cancer risk"
+  cited_guideline: "NCCN Genetic/Familial High-Risk Assessment: Breast, Ovarian, and Pancreatic v3.2024"
+  rationale: "BRCA1 carriers face ~40-60% lifetime risk of ovarian/tubal/peritoneal cancer with onset typically in the 40s. NCCN recommends RRSO at 35-40 years for BRCA1 (vs. 40-45 for BRCA2), as data show major mortality benefit. RRSO removes ovaries and fallopian tubes; salpingectomy alone is not a recommended substitute."
+scoring_rubric:
+  verdict_correct: 'recommends RRSO (risk-reducing salpingo-oophorectomy) at age 35-40 years for BRCA1'
+  guideline_cited_with_version: 'includes "NCCN" with version/year'
+  variant_evidence_cited: 'mentions BRCA1 pathogenic variant'
+primary_reference_url: https://www.nccn.org/guidelines/guidelines-detail?category=2&id=1545

@@ -1,0 +1,16 @@
+id: q47
+domain: dose_adjustment
+question: "A patient receiving moderate-emetic-risk chemotherapy is to be premedicated for CINV. CYP2D6 genotype is ultra-rapid metabolizer. Per CPIC, is ondansetron the optimal antiemetic, and if not, what alternative is recommended?"
+required_inputs:
+  - gene: CYP2D6
+  - phenotype: "Ultra-rapid Metabolizer"
+  - drug: "ondansetron OR tropisetron (CINV prophylaxis)"
+gold_answer:
+  verdict: "no — avoid ondansetron and tropisetron in CYP2D6 UMs because of reduced antiemetic efficacy (UMs had 45% vomiting incidence vs 15% in NMs); select a 5-HT3 antagonist not metabolized by CYP2D6 (e.g., granisetron) or use a non-5-HT3 agent"
+  cited_guideline: "CPIC@2017 ondansetron/tropisetron and CYP2D6 (Bell et al., Clin Pharmacol Ther 2017;102:213-218, PMID 28002639)"
+  rationale: "Ondansetron and tropisetron are extensively metabolized by CYP2D6; UMs have lower drug exposure and decreased efficacy. CPIC recommends granisetron (or another 5-HT3 antagonist not predominantly metabolized by CYP2D6) for UMs."
+scoring_rubric:
+  verdict_correct: 'recommends alternative 5-HT3 antagonist (granisetron preferred) and avoidance of ondansetron/tropisetron'
+  guideline_cited_with_version: 'includes "CPIC" AND ("2017" OR "Bell")'
+  variant_evidence_cited: 'mentions CYP2D6 UM'
+primary_reference_url: https://cpicpgx.org/guidelines/guideline-for-ondansetron-and-tropisetron-and-cyp2d6-genotype/

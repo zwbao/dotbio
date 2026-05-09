@@ -1,0 +1,15 @@
+id: q15
+domain: oncology_somatic
+question: "A patient with metastatic endometrial carcinoma has previously progressed on a platinum-based regimen. Tumor testing shows mismatch-repair deficient (dMMR) / microsatellite instability-high (MSI-H) status by IHC and PCR. Is pembrolizumab an FDA-approved option, and what was the original tumor-agnostic basis?"
+required_inputs:
+  - biomarker: "MSI-H / dMMR (somatic)"
+  - clinical_context: "metastatic endometrial cancer post-platinum"
+gold_answer:
+  verdict: "yes — pembrolizumab is FDA-approved for unresectable or metastatic MSI-H/dMMR solid tumors that have progressed on prior therapy; this was the first tumor-agnostic FDA approval (23 May 2017)"
+  cited_guideline: "FDA accelerated approval 23 May 2017 (converted to full approval 2023) — pembrolizumab for MSI-H/dMMR solid tumors; KEYNOTE-016, -164, -012, -028, -158"
+  rationale: "MSI-H/dMMR tumors carry high mutational load and are highly responsive to PD-1 blockade across tissue origins. The KEYNOTE basket trials supported a tissue-agnostic approval — a regulatory first."
+scoring_rubric:
+  verdict_correct: 'matches "yes" / "approved" AND identifies pembrolizumab is approved for MSI-H/dMMR tumors'
+  guideline_cited_with_version: 'includes "FDA" with year (2017 or 2023) OR "tumor-agnostic" / "tissue-agnostic" approval'
+  variant_evidence_cited: 'mentions MSI-H or dMMR'
+primary_reference_url: https://www.fda.gov/drugs/resources-information-approved-drugs/fda-grants-accelerated-approval-pembrolizumab-first-tissuesite-agnostic-indication

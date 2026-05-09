@@ -1,0 +1,16 @@
+id: q33
+domain: hereditary_risk
+question: "A 22-year-old asymptomatic man with a germline MSH2 pathogenic variant (Lynch syndrome) is referred for surveillance. When and how often should he begin colonoscopy?"
+required_inputs:
+  - gene: MSH2
+  - variant: "germline pathogenic"
+  - clinical_context: "asymptomatic adult, no personal cancer history, no early-onset cancer in family before age 25"
+gold_answer:
+  verdict: "begin colonoscopy at age 20-25 years (or 2-5 years younger than the youngest affected relative if before 25), repeated every 1-2 years"
+  cited_guideline: "NCCN Genetic/Familial High-Risk Assessment: Colorectal, Endometrial, and Gastric v3.2024 (Idos & Valle, JNCCN 2024)"
+  rationale: "MSH2 carriers are at high risk of Lynch syndrome-related colorectal cancer with onset commonly in 30s-40s. NCCN and the InSiGHT/multi-society guidelines recommend colonoscopy starting age 20-25 with 1-2 year intervals (later starting age — 30 — for MSH6 and 35 for PMS2 carriers given lower penetrance and later onset)."
+scoring_rubric:
+  verdict_correct: 'recommends colonoscopy at age 20-25 (or 2-5 years before youngest family case) AND every 1-2 years'
+  guideline_cited_with_version: 'includes "NCCN" with version/year for Colorectal/Endometrial/Gastric'
+  variant_evidence_cited: 'mentions MSH2 / Lynch syndrome'
+primary_reference_url: https://www.nccn.org/guidelines/guidelines-detail?category=2&id=1544

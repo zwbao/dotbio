@@ -1,0 +1,16 @@
+id: q20
+domain: oncology_somatic
+question: "A 56-year-old man presents with persistent erythrocytosis (Hb 19.0 g/dL) and splenomegaly. Bone-marrow biopsy is consistent with myeloproliferative neoplasm. Molecular testing reveals JAK2 V617F (variant allele fraction 28%); EPO is suppressed. Per WHO 2022 / ICC criteria, what is the diagnosis?"
+required_inputs:
+  - gene: JAK2
+  - variant: "p.V617F (somatic)"
+  - clinical_context: "Hb 19.0 g/dL, suppressed EPO, splenomegaly, bone-marrow MPN-pattern"
+gold_answer:
+  verdict: "polycythemia vera (PV)"
+  cited_guideline: "WHO Classification of Haematolymphoid Tumours, 5th edition (2022) and International Consensus Classification (ICC, 2022)"
+  rationale: "WHO/ICC 2022 PV major criteria are: (1) Hb >16.5 g/dL (men) / 16.0 g/dL (women) or hematocrit >49%/48% — met; (2) bone marrow trilineage proliferation (panmyelosis) with pleomorphic megakaryocytes — met; (3) JAK2 V617F or exon 12 mutation — met. Minor criterion: subnormal serum EPO — met. Three major criteria (or first two majors plus the minor) confirm PV."
+scoring_rubric:
+  verdict_correct: 'matches "polycythemia vera" or "PV"'
+  guideline_cited_with_version: 'includes "WHO 2022" OR "ICC 2022" OR equivalent classification reference'
+  variant_evidence_cited: 'mentions JAK2 V617F'
+primary_reference_url: https://onlinelibrary.wiley.com/doi/10.1002/ajh.27002

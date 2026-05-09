@@ -1,0 +1,18 @@
+id: q50
+domain: dose_adjustment
+question: "A 55-year-old patient with cystic fibrosis has a CFTR genotype G551D/F508del. Should ivacaftor (Kalydeco) be used as monotherapy, or is a combination CFTR modulator preferred?"
+required_inputs:
+  - gene: CFTR
+  - genotype: "G551D / F508del"
+  - drug_decision: "ivacaftor monotherapy vs CFTR-modulator combination"
+  - clinical_context: "adult with CF, modulator-naive"
+gold_answer:
+  verdict: "depends on age and indication — ivacaftor monotherapy is FDA-approved for CF patients ≥4 months with at least one ivacaftor-responsive variant (including G551D), but for eligible patients ≥6 years with at least one F508del allele, the standard of care has shifted to elexacaftor/tezacaftor/ivacaftor (ETI; Trikafta), which is more effective on F508del-bearing CFTR. So this G551D/F508del adult is FDA-eligible for both ivacaftor monotherapy and Trikafta; current CF Foundation guidance favors Trikafta (ETI) due to greater FEV1 and sweat-chloride benefit."
+  cited_guideline: "FDA labels: Kalydeco (ivacaftor); Trikafta (elexacaftor/tezacaftor/ivacaftor); CFTR2 mutation database; CF Foundation Pulmonary Clinical Practice Guidelines (Mogayzel et al.)"
+  rationale: "G551D is an ivacaftor-responsive gating mutation (the original Kalydeco indication, NEJM 2011 STRIVE trial). F508del responds to ETI (Trikafta). With one allele of each, ETI captures both CFTR mechanisms and is the modern standard. Single-agent ivacaftor is still pharmacologically active for the G551D allele but is no longer the preferred regimen when F508del is also present and ETI is available. This is one of the deliberately context-dependent questions."
+scoring_rubric:
+  verdict_correct: 'identifies that the patient is eligible for both ivacaftor and ETI/Trikafta AND that current standard-of-care favors Trikafta'
+  guideline_cited_with_version: 'includes FDA Trikafta label OR Kalydeco label OR CF Foundation guidelines'
+  variant_evidence_cited: 'mentions G551D as gating mutation AND F508del'
+context_dependent: true
+primary_reference_url: https://www.cff.org/managing-cf/cftr-modulator-therapies

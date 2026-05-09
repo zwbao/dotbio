@@ -1,0 +1,18 @@
+id: q09
+domain: pgx
+question: "A premenopausal woman with ER-positive early breast cancer is being considered for adjuvant endocrine therapy. CYP2D6 genotype is *4/*4 (poor metabolizer). Is tamoxifen monotherapy appropriate, or should an alternative be used?"
+required_inputs:
+  - gene: CYP2D6
+  - diplotype: "*4/*4"
+  - clinical_context: "premenopausal ER+ early breast cancer, adjuvant endocrine therapy decision"
+gold_answer:
+  verdict: "use an alternative — aromatase inhibitor plus ovarian function suppression (premenopausal) or aromatase inhibitor (postmenopausal); avoid standard-dose tamoxifen"
+  phenotype: "CYP2D6 Poor Metabolizer"
+  cited_guideline: "CPIC@2018 (Goetz et al., Clin Pharmacol Ther 2018;103:770-777, PMID 29385237)"
+  rationale: "CYP2D6 PMs generate substantially less endoxifen (the active metabolite) and have inferior recurrence-free outcomes on standard tamoxifen. CPIC recommends an aromatase inhibitor (with OFS in premenopausal women); higher-dose tamoxifen (40 mg/day) is a non-preferred fallback if AI is contraindicated."
+scoring_rubric:
+  verdict_correct: 'recommends aromatase inhibitor (AI) ± ovarian suppression OR equivalent alternative; not standard-dose tamoxifen'
+  phenotype_correct: 'mentions Poor Metabolizer or PM'
+  guideline_cited_with_version: 'includes "CPIC" AND ("2018" OR "Goetz")'
+  variant_evidence_cited: 'mentions CYP2D6 *4 or no-function alleles'
+primary_reference_url: https://cpicpgx.org/guidelines/cpic-guideline-for-tamoxifen-based-on-cyp2d6-genotype/

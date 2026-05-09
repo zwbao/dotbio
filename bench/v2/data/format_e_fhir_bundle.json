@@ -1,0 +1,2167 @@
+{
+  "resourceType": "Bundle",
+  "id": "bundle-na12878-pgx",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomics-report-bundle"
+    ],
+    "tag": [
+      {
+        "system": "https://github.com/zwbao/dotbio",
+        "code": "dotbio-bench-v2-format-e",
+        "display": "dotbio NM-grade benchmark v2 \u2014 comparator format E (FHIR Genomics IG)"
+      }
+    ]
+  },
+  "type": "collection",
+  "timestamp": "2026-05-09T00:00:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:93451120-921c-43cf-88a8-879f69434b50",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-na12878",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/StructureDefinition/Patient"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://www.coriell.org/0/Sections/Search/Sample_Detail.aspx",
+            "value": "NA12878"
+          }
+        ],
+        "active": true,
+        "gender": "female",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+            "valueString": "HapMap CEU (public benchmark cell line)"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3dedda52-2ea5-4858-a8de-f9bb67882063",
+      "resource": {
+        "resourceType": "Specimen",
+        "id": "specimen-na12878-genomic-dna",
+        "subject": {
+          "reference": "Patient/patient-na12878"
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0487",
+              "code": "BLD",
+              "display": "Whole blood"
+            }
+          ],
+          "text": "Lymphoblastoid cell line gDNA (1000 Genomes 30x panel)"
+        },
+        "collection": {
+          "method": {
+            "text": "Public reference benchmark sample (1000G phase 3 30x release)"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:1fec64dc-3811-4423-8d6f-de986d8ca35d",
+      "resource": {
+        "resourceType": "MolecularSequence",
+        "id": "moleseq-na12878-pgx-panel",
+        "type": "dna",
+        "coordinateSystem": 1,
+        "patient": {
+          "reference": "Patient/patient-na12878"
+        },
+        "specimen": {
+          "reference": "Specimen/specimen-na12878-genomic-dna"
+        },
+        "referenceSeq": {
+          "genomeBuild": "GRCh38",
+          "orientation": "sense",
+          "strand": "watson"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:32375dcb-64e1-4580-9d31-ae10be1703b0",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-variant-rs1801133",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/variant"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "69548-6",
+              "display": "Genetic variant assessment"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "81252-9",
+              "display": "Discrete genetic variant"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "53037-8",
+              "display": "Genetic variation's clinical significance [Imp]"
+            }
+          ],
+          "text": "MTHFR rs1801133 discrete genetic variant"
+        },
+        "subject": {
+          "reference": "Patient/patient-na12878"
+        },
+        "specimen": {
+          "reference": "Specimen/specimen-na12878-genomic-dna"
+        },
+        "derivedFrom": [
+          {
+            "reference": "MolecularSequence/moleseq-na12878-pgx-panel"
+          }
+        ],
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+              "code": "POS",
+              "display": "Positive"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "LA6576-8",
+              "display": "Present"
+            }
+          ],
+          "text": "MTHFR rs1801133 A|G (Heterozygous) \u2014 Positive"
+        },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                "code": "POS",
+                "display": "Positive"
+              }
+            ],
+            "text": "Positive"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6",
+                  "display": "Gene studied [ID]"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.genenames.org/geneId",
+                  "code": "HGNC:7436",
+                  "display": "MTHFR"
+                }
+              ],
+              "text": "MTHFR"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48013-7",
+                  "display": "Genomic reference sequence ID"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.ncbi.nlm.nih.gov/refseq",
+                  "code": "NC_000001.11",
+                  "display": "NC_000001.11"
+                }
+              ],
+              "text": "chr1 (NC_000001.11)"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "69547-8",
+                  "display": "Genomic ref allele [ID]"
+                }
+              ]
+            },
+            "valueString": "G"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "69551-0",
+                  "display": "Genomic alt allele [ID]"
+                }
+              ]
+            },
+            "valueString": "A"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "81254-5",
+                  "display": "Genomic allele start-end"
+                }
+              ]
+            },
+            "valueRange": {
+              "low": {
+                "value": 11796321
+              },
+              "high": {
+                "value": 11796321
+              }
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "62374-4",
+                  "display": "Human reference sequence assembly version"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "LA14029-5",
+                  "display": "GRCh38"
+                }
+              ],
+              "text": "GRCh38"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "53034-5",
+                  "display": "Allelic state"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "LA6706-8",
+                  "display": "Heterozygous"
+                }
+              ],
+              "text": "A|G (heterozygous)"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "81255-2",
+                  "display": "dbSNP variant ID"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.ncbi.nlm.nih.gov/projects/SNP",
+                  "code": "rs1801133",
+                  "display": "rs1801133"
+                }
+              ],
+              "text": "rs1801133"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "92822-6",
+                  "display": "Genomic source class [Type]"
+                }
+              ],
+              "text": "Population allele frequency (1000G 30x panel)"
+            },
+            "valueQuantity": {
+              "value": 0.246252,
+              "system": "http://unitsofmeasure.org",
+              "code": "1",
+              "unit": "fraction"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:1a46c663-d80b-4551-8444-7a0ca741a740",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-variant-rs3918290",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/variant"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "69548-6",
+              "display": "Genetic variant assessment"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "81252-9",
+              "display": "Discrete genetic variant"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "53037-8",
+              "display": "Genetic variation's clinical significance [Imp]"
+            }
+          ],
+          "text": "DPYD rs3918290 discrete genetic variant"
+        },
+        "subject": {
+          "reference": "Patient/patient-na12878"
+        },
+        "specimen": {
+          "reference": "Specimen/specimen-na12878-genomic-dna"
+        },
+        "derivedFrom": [
+          {
+            "reference": "MolecularSequence/moleseq-na12878-pgx-panel"
+          }
+        ],
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+              "code": "ND",
+              "display": "No call / reference"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "LA6577-6",
+              "display": "Absent"
+            }
+          ],
+          "text": "DPYD rs3918290 C|C (Homozygous reference) \u2014 No call / reference"
+        },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                "code": "ND",
+                "display": "No call / reference"
+              }
+            ],
+            "text": "No call / reference"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6",
+                  "display": "Gene studied [ID]"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.genenames.org/geneId",
+                  "code": "HGNC:3012",
+                  "display": "DPYD"
+                }
+              ],
+              "text": "DPYD"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48013-7",
+                  "display": "Genomic reference sequence ID"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.ncbi.nlm.nih.gov/refseq",
+                  "code": "NC_000001.11",
+                  "display": "NC_000001.11"
+                }
+              ],
+              "text": "chr1 (NC_000001.11)"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "69547-8",
+                  "display": "Genomic ref allele [ID]"
+                }
+              ]
+            },
+            "valueString": "C"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "69551-0",
+                  "display": "Genomic alt allele [ID]"
+                }
+              ]
+            },
+            "valueString": "T"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "81254-5",
+                  "display": "Genomic allele start-end"
+                }
+              ]
+            },
+            "valueRange": {
+              "low": {
+                "value": 97450058
+              },
+              "high": {
+                "value": 97450058
+              }
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "62374-4",
+                  "display": "Human reference sequence assembly version"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "LA14029-5",
+                  "display": "GRCh38"
+                }
+              ],
+              "text": "GRCh38"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "53034-5",
+                  "display": "Allelic state"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "LA6704-3",
+                  "display": "Homozygous reference"
+                }
+              ],
+              "text": "C|C (homozygous reference)"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "81255-2",
+                  "display": "dbSNP variant ID"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.ncbi.nlm.nih.gov/projects/SNP",
+                  "code": "rs3918290",
+                  "display": "rs3918290"
+                }
+              ],
+              "text": "rs3918290"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "92822-6",
+                  "display": "Genomic source class [Type]"
+                }
+              ],
+              "text": "Population allele frequency (1000G 30x panel)"
+            },
+            "valueQuantity": {
+              "value": 0.00265459,
+              "system": "http://unitsofmeasure.org",
+              "code": "1",
+              "unit": "fraction"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:cdc131b1-1c67-4c88-b4b1-3c96ad564bc4",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-variant-rs6025",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/variant"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "69548-6",
+              "display": "Genetic variant assessment"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "81252-9",
+              "display": "Discrete genetic variant"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "53037-8",
+              "display": "Genetic variation's clinical significance [Imp]"
+            }
+          ],
+          "text": "F5 rs6025 discrete genetic variant"
+        },
+        "subject": {
+          "reference": "Patient/patient-na12878"
+        },
+        "specimen": {
+          "reference": "Specimen/specimen-na12878-genomic-dna"
+        },
+        "derivedFrom": [
+          {
+            "reference": "MolecularSequence/moleseq-na12878-pgx-panel"
+          }
+        ],
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+              "code": "ND",
+              "display": "No call / reference"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "LA6577-6",
+              "display": "Absent"
+            }
+          ],
+          "text": "F5 rs6025 C|C (Homozygous reference) \u2014 No call / reference"
+        },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                "code": "ND",
+                "display": "No call / reference"
+              }
+            ],
+            "text": "No call / reference"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6",
+                  "display": "Gene studied [ID]"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.genenames.org/geneId",
+                  "code": "HGNC:3542",
+                  "display": "F5"
+                }
+              ],
+              "text": "F5"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48013-7",
+                  "display": "Genomic reference sequence ID"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.ncbi.nlm.nih.gov/refseq",
+                  "code": "NC_000001.11",
+                  "display": "NC_000001.11"
+                }
+              ],
+              "text": "chr1 (NC_000001.11)"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "69547-8",
+                  "display": "Genomic ref allele [ID]"
+                }
+              ]
+            },
+            "valueString": "C"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "69551-0",
+                  "display": "Genomic alt allele [ID]"
+                }
+              ]
+            },
+            "valueString": "T"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "81254-5",
+                  "display": "Genomic allele start-end"
+                }
+              ]
+            },
+            "valueRange": {
+              "low": {
+                "value": 169549811
+              },
+              "high": {
+                "value": 169549811
+              }
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "62374-4",
+                  "display": "Human reference sequence assembly version"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "LA14029-5",
+                  "display": "GRCh38"
+                }
+              ],
+              "text": "GRCh38"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "53034-5",
+                  "display": "Allelic state"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "LA6704-3",
+                  "display": "Homozygous reference"
+                }
+              ],
+              "text": "C|C (homozygous reference)"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "81255-2",
+                  "display": "dbSNP variant ID"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.ncbi.nlm.nih.gov/projects/SNP",
+                  "code": "rs6025",
+                  "display": "rs6025"
+                }
+              ],
+              "text": "rs6025"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "92822-6",
+                  "display": "Genomic source class [Type]"
+                }
+              ],
+              "text": "Population allele frequency (1000G 30x panel)"
+            },
+            "valueQuantity": {
+              "value": 0.00593379,
+              "system": "http://unitsofmeasure.org",
+              "code": "1",
+              "unit": "fraction"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e04dbb5f-79fc-4185-9128-3ca4fc3ffd40",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-variant-rs1800562",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/variant"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "69548-6",
+              "display": "Genetic variant assessment"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "81252-9",
+              "display": "Discrete genetic variant"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "53037-8",
+              "display": "Genetic variation's clinical significance [Imp]"
+            }
+          ],
+          "text": "HFE rs1800562 discrete genetic variant"
+        },
+        "subject": {
+          "reference": "Patient/patient-na12878"
+        },
+        "specimen": {
+          "reference": "Specimen/specimen-na12878-genomic-dna"
+        },
+        "derivedFrom": [
+          {
+            "reference": "MolecularSequence/moleseq-na12878-pgx-panel"
+          }
+        ],
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+              "code": "ND",
+              "display": "No call / reference"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "LA6577-6",
+              "display": "Absent"
+            }
+          ],
+          "text": "HFE rs1800562 G|G (Homozygous reference) \u2014 No call / reference"
+        },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                "code": "ND",
+                "display": "No call / reference"
+              }
+            ],
+            "text": "No call / reference"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6",
+                  "display": "Gene studied [ID]"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.genenames.org/geneId",
+                  "code": "HGNC:4886",
+                  "display": "HFE"
+                }
+              ],
+              "text": "HFE"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48013-7",
+                  "display": "Genomic reference sequence ID"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.ncbi.nlm.nih.gov/refseq",
+                  "code": "NC_000006.12",
+                  "display": "NC_000006.12"
+                }
+              ],
+              "text": "chr6 (NC_000006.12)"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "69547-8",
+                  "display": "Genomic ref allele [ID]"
+                }
+              ]
+            },
+            "valueString": "G"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "69551-0",
+                  "display": "Genomic alt allele [ID]"
+                }
+              ]
+            },
+            "valueString": "A"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "81254-5",
+                  "display": "Genomic allele start-end"
+                }
+              ]
+            },
+            "valueRange": {
+              "low": {
+                "value": 26092913
+              },
+              "high": {
+                "value": 26092913
+              }
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "62374-4",
+                  "display": "Human reference sequence assembly version"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "LA14029-5",
+                  "display": "GRCh38"
+                }
+              ],
+              "text": "GRCh38"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "53034-5",
+                  "display": "Allelic state"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "LA6704-3",
+                  "display": "Homozygous reference"
+                }
+              ],
+              "text": "G|G (homozygous reference)"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "81255-2",
+                  "display": "dbSNP variant ID"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.ncbi.nlm.nih.gov/projects/SNP",
+                  "code": "rs1800562",
+                  "display": "rs1800562"
+                }
+              ],
+              "text": "rs1800562"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "92822-6",
+                  "display": "Genomic source class [Type]"
+                }
+              ],
+              "text": "Population allele frequency (1000G 30x panel)"
+            },
+            "valueQuantity": {
+              "value": 0.0121799,
+              "system": "http://unitsofmeasure.org",
+              "code": "1",
+              "unit": "fraction"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ec6f0f27-3f4b-498c-945c-1131ce53afd9",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-variant-rs113993960",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/variant"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "69548-6",
+              "display": "Genetic variant assessment"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "81252-9",
+              "display": "Discrete genetic variant"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "53037-8",
+              "display": "Genetic variation's clinical significance [Imp]"
+            }
+          ],
+          "text": "CFTR rs113993960 discrete genetic variant"
+        },
+        "subject": {
+          "reference": "Patient/patient-na12878"
+        },
+        "specimen": {
+          "reference": "Specimen/specimen-na12878-genomic-dna"
+        },
+        "derivedFrom": [
+          {
+            "reference": "MolecularSequence/moleseq-na12878-pgx-panel"
+          }
+        ],
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+              "code": "ND",
+              "display": "No call / reference"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "LA6577-6",
+              "display": "Absent"
+            }
+          ],
+          "text": "CFTR rs113993960 ATCT|ATCT (Homozygous reference) \u2014 No call / reference"
+        },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                "code": "ND",
+                "display": "No call / reference"
+              }
+            ],
+            "text": "No call / reference"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6",
+                  "display": "Gene studied [ID]"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.genenames.org/geneId",
+                  "code": "HGNC:1884",
+                  "display": "CFTR"
+                }
+              ],
+              "text": "CFTR"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48013-7",
+                  "display": "Genomic reference sequence ID"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.ncbi.nlm.nih.gov/refseq",
+                  "code": "NC_000007.14",
+                  "display": "NC_000007.14"
+                }
+              ],
+              "text": "chr7 (NC_000007.14)"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "69547-8",
+                  "display": "Genomic ref allele [ID]"
+                }
+              ]
+            },
+            "valueString": "ATCT"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "69551-0",
+                  "display": "Genomic alt allele [ID]"
+                }
+              ]
+            },
+            "valueString": "A"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "81254-5",
+                  "display": "Genomic allele start-end"
+                }
+              ]
+            },
+            "valueRange": {
+              "low": {
+                "value": 117559590
+              },
+              "high": {
+                "value": 117559593
+              }
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "62374-4",
+                  "display": "Human reference sequence assembly version"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "LA14029-5",
+                  "display": "GRCh38"
+                }
+              ],
+              "text": "GRCh38"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "53034-5",
+                  "display": "Allelic state"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "LA6704-3",
+                  "display": "Homozygous reference"
+                }
+              ],
+              "text": "ATCT|ATCT (homozygous reference)"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "81255-2",
+                  "display": "dbSNP variant ID"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.ncbi.nlm.nih.gov/projects/SNP",
+                  "code": "rs113993960",
+                  "display": "rs113993960"
+                }
+              ],
+              "text": "rs113993960"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "92822-6",
+                  "display": "Genomic source class [Type]"
+                }
+              ],
+              "text": "Population allele frequency (1000G 30x panel)"
+            },
+            "valueQuantity": {
+              "value": 0.00390381,
+              "system": "http://unitsofmeasure.org",
+              "code": "1",
+              "unit": "fraction"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:24b5f044-578f-4df7-8c16-6efd84dcde10",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-variant-rs12248560",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/variant"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "69548-6",
+              "display": "Genetic variant assessment"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "81252-9",
+              "display": "Discrete genetic variant"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "53037-8",
+              "display": "Genetic variation's clinical significance [Imp]"
+            }
+          ],
+          "text": "CYP2C19 rs12248560 discrete genetic variant"
+        },
+        "subject": {
+          "reference": "Patient/patient-na12878"
+        },
+        "specimen": {
+          "reference": "Specimen/specimen-na12878-genomic-dna"
+        },
+        "derivedFrom": [
+          {
+            "reference": "MolecularSequence/moleseq-na12878-pgx-panel"
+          }
+        ],
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+              "code": "ND",
+              "display": "No call / reference"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "LA6577-6",
+              "display": "Absent"
+            }
+          ],
+          "text": "CYP2C19 rs12248560 C|C (Homozygous reference) \u2014 No call / reference"
+        },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                "code": "ND",
+                "display": "No call / reference"
+              }
+            ],
+            "text": "No call / reference"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6",
+                  "display": "Gene studied [ID]"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.genenames.org/geneId",
+                  "code": "HGNC:2621",
+                  "display": "CYP2C19"
+                }
+              ],
+              "text": "CYP2C19"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48013-7",
+                  "display": "Genomic reference sequence ID"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.ncbi.nlm.nih.gov/refseq",
+                  "code": "NC_000010.11",
+                  "display": "NC_000010.11"
+                }
+              ],
+              "text": "chr10 (NC_000010.11)"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "69547-8",
+                  "display": "Genomic ref allele [ID]"
+                }
+              ]
+            },
+            "valueString": "C"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "69551-0",
+                  "display": "Genomic alt allele [ID]"
+                }
+              ]
+            },
+            "valueString": "T"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "81254-5",
+                  "display": "Genomic allele start-end"
+                }
+              ]
+            },
+            "valueRange": {
+              "low": {
+                "value": 94761900
+              },
+              "high": {
+                "value": 94761900
+              }
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "62374-4",
+                  "display": "Human reference sequence assembly version"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "LA14029-5",
+                  "display": "GRCh38"
+                }
+              ],
+              "text": "GRCh38"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "53034-5",
+                  "display": "Allelic state"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "LA6704-3",
+                  "display": "Homozygous reference"
+                }
+              ],
+              "text": "C|C (homozygous reference)"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "81255-2",
+                  "display": "dbSNP variant ID"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.ncbi.nlm.nih.gov/projects/SNP",
+                  "code": "rs12248560",
+                  "display": "rs12248560"
+                }
+              ],
+              "text": "rs12248560"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "92822-6",
+                  "display": "Genomic source class [Type]"
+                }
+              ],
+              "text": "Population allele frequency (1000G 30x panel)"
+            },
+            "valueQuantity": {
+              "value": 0.159275,
+              "system": "http://unitsofmeasure.org",
+              "code": "1",
+              "unit": "fraction"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7bfea750-ac46-4814-91cf-daf71f777de9",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-variant-rs4244285",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/variant"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "69548-6",
+              "display": "Genetic variant assessment"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "81252-9",
+              "display": "Discrete genetic variant"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "53037-8",
+              "display": "Genetic variation's clinical significance [Imp]"
+            }
+          ],
+          "text": "CYP2C19 rs4244285 discrete genetic variant"
+        },
+        "subject": {
+          "reference": "Patient/patient-na12878"
+        },
+        "specimen": {
+          "reference": "Specimen/specimen-na12878-genomic-dna"
+        },
+        "derivedFrom": [
+          {
+            "reference": "MolecularSequence/moleseq-na12878-pgx-panel"
+          }
+        ],
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+              "code": "POS",
+              "display": "Positive"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "LA6576-8",
+              "display": "Present"
+            }
+          ],
+          "text": "CYP2C19 rs4244285 A|G (Heterozygous) \u2014 Positive"
+        },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                "code": "POS",
+                "display": "Positive"
+              }
+            ],
+            "text": "Positive"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6",
+                  "display": "Gene studied [ID]"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.genenames.org/geneId",
+                  "code": "HGNC:2621",
+                  "display": "CYP2C19"
+                }
+              ],
+              "text": "CYP2C19"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48013-7",
+                  "display": "Genomic reference sequence ID"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.ncbi.nlm.nih.gov/refseq",
+                  "code": "NC_000010.11",
+                  "display": "NC_000010.11"
+                }
+              ],
+              "text": "chr10 (NC_000010.11)"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "69547-8",
+                  "display": "Genomic ref allele [ID]"
+                }
+              ]
+            },
+            "valueString": "G"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "69551-0",
+                  "display": "Genomic alt allele [ID]"
+                }
+              ]
+            },
+            "valueString": "A"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "81254-5",
+                  "display": "Genomic allele start-end"
+                }
+              ]
+            },
+            "valueRange": {
+              "low": {
+                "value": 94781859
+              },
+              "high": {
+                "value": 94781859
+              }
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "62374-4",
+                  "display": "Human reference sequence assembly version"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "LA14029-5",
+                  "display": "GRCh38"
+                }
+              ],
+              "text": "GRCh38"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "53034-5",
+                  "display": "Allelic state"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "LA6706-8",
+                  "display": "Heterozygous"
+                }
+              ],
+              "text": "A|G (heterozygous)"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "81255-2",
+                  "display": "dbSNP variant ID"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.ncbi.nlm.nih.gov/projects/SNP",
+                  "code": "rs4244285",
+                  "display": "rs4244285"
+                }
+              ],
+              "text": "rs4244285"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "92822-6",
+                  "display": "Genomic source class [Type]"
+                }
+              ],
+              "text": "Population allele frequency (1000G 30x panel)"
+            },
+            "valueQuantity": {
+              "value": 0.21549,
+              "system": "http://unitsofmeasure.org",
+              "code": "1",
+              "unit": "fraction"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f75ae21b-a8bd-4e76-8314-d397056da380",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-variant-rs429358",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/variant"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "69548-6",
+              "display": "Genetic variant assessment"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "81252-9",
+              "display": "Discrete genetic variant"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "53037-8",
+              "display": "Genetic variation's clinical significance [Imp]"
+            }
+          ],
+          "text": "APOE rs429358 discrete genetic variant"
+        },
+        "subject": {
+          "reference": "Patient/patient-na12878"
+        },
+        "specimen": {
+          "reference": "Specimen/specimen-na12878-genomic-dna"
+        },
+        "derivedFrom": [
+          {
+            "reference": "MolecularSequence/moleseq-na12878-pgx-panel"
+          }
+        ],
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+              "code": "ND",
+              "display": "No call / reference"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "LA6577-6",
+              "display": "Absent"
+            }
+          ],
+          "text": "APOE rs429358 T|T (Homozygous reference) \u2014 No call / reference"
+        },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                "code": "ND",
+                "display": "No call / reference"
+              }
+            ],
+            "text": "No call / reference"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6",
+                  "display": "Gene studied [ID]"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.genenames.org/geneId",
+                  "code": "HGNC:613",
+                  "display": "APOE"
+                }
+              ],
+              "text": "APOE"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48013-7",
+                  "display": "Genomic reference sequence ID"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.ncbi.nlm.nih.gov/refseq",
+                  "code": "NC_000019.10",
+                  "display": "NC_000019.10"
+                }
+              ],
+              "text": "chr19 (NC_000019.10)"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "69547-8",
+                  "display": "Genomic ref allele [ID]"
+                }
+              ]
+            },
+            "valueString": "T"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "69551-0",
+                  "display": "Genomic alt allele [ID]"
+                }
+              ]
+            },
+            "valueString": "C"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "81254-5",
+                  "display": "Genomic allele start-end"
+                }
+              ]
+            },
+            "valueRange": {
+              "low": {
+                "value": 44908684
+              },
+              "high": {
+                "value": 44908684
+              }
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "62374-4",
+                  "display": "Human reference sequence assembly version"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "LA14029-5",
+                  "display": "GRCh38"
+                }
+              ],
+              "text": "GRCh38"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "53034-5",
+                  "display": "Allelic state"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "LA6704-3",
+                  "display": "Homozygous reference"
+                }
+              ],
+              "text": "T|T (homozygous reference)"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "81255-2",
+                  "display": "dbSNP variant ID"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.ncbi.nlm.nih.gov/projects/SNP",
+                  "code": "rs429358",
+                  "display": "rs429358"
+                }
+              ],
+              "text": "rs429358"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "92822-6",
+                  "display": "Genomic source class [Type]"
+                }
+              ],
+              "text": "Population allele frequency (1000G 30x panel)"
+            },
+            "valueQuantity": {
+              "value": 0.151156,
+              "system": "http://unitsofmeasure.org",
+              "code": "1",
+              "unit": "fraction"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:027ae879-0f5d-4768-8da4-6854003d075b",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "diagreport-na12878-pgx",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomics-report"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE",
+                "display": "Genetics"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "81247-9",
+              "display": "Master HL7 genetic variant reporting panel"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "53041-0",
+              "display": "DNA analysis discrete sequence variation panel"
+            }
+          ],
+          "text": "PGx panel \u2014 8 loci (NA12878 benchmark)"
+        },
+        "subject": {
+          "reference": "Patient/patient-na12878"
+        },
+        "specimen": [
+          {
+            "reference": "Specimen/specimen-na12878-genomic-dna"
+          }
+        ],
+        "issued": "2026-05-09T00:00:00Z",
+        "effectiveDateTime": "2026-05-09T00:00:00Z",
+        "result": [
+          {
+            "reference": "Observation/obs-variant-rs1801133"
+          },
+          {
+            "reference": "Observation/obs-variant-rs3918290"
+          },
+          {
+            "reference": "Observation/obs-variant-rs6025"
+          },
+          {
+            "reference": "Observation/obs-variant-rs1800562"
+          },
+          {
+            "reference": "Observation/obs-variant-rs113993960"
+          },
+          {
+            "reference": "Observation/obs-variant-rs12248560"
+          },
+          {
+            "reference": "Observation/obs-variant-rs4244285"
+          },
+          {
+            "reference": "Observation/obs-variant-rs429358"
+          }
+        ],
+        "conclusion": "Eight PGx loci genotyped on GRCh38; ALT alleles observed at rs1801133 (MTHFR) and rs4244285 (CYP2C19). Other 6 loci called homozygous reference. This is a benchmark output and is not a clinical report."
+      }
+    }
+  ]
+}

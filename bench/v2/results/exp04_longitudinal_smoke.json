@@ -1,0 +1,368 @@
+{
+  "experiment": "exp04_longitudinal",
+  "spec_section": "SPEC.md §3.4",
+  "wall_clock_seconds": 18.112022876739502,
+  "archive": {
+    "mode": "synthetic",
+    "start": "2024-01",
+    "n_months": 24,
+    "seed": 42,
+    "rate_scale": 8.0,
+    "n_snapshots": 24,
+    "n_reclassifications_total": 56,
+    "n_actionable_total": 49,
+    "transition_matrix_source": "Landrum 2018 Nucleic Acids Res 46(D1):D1062 + Harrison & Rehm 2019 Genet Med — see clinvar_archive.py"
+  },
+  "cohort": [
+    {
+      "id": "P001",
+      "include_brca": true
+    },
+    {
+      "id": "P002",
+      "include_brca": false
+    },
+    {
+      "id": "P003",
+      "include_brca": true
+    },
+    {
+      "id": "P004",
+      "include_brca": false
+    },
+    {
+      "id": "P005",
+      "include_brca": true
+    }
+  ],
+  "summary": {
+    "arm_soc": {
+      "n_actionable_truth_total": 47,
+      "n_captured_total": 20,
+      "fnr": 0.574468085106383,
+      "mean_latency_months_weighted": 1.05,
+      "cumulative_tokens_total": 5374,
+      "n_patients": 5
+    },
+    "arm_bio": {
+      "n_actionable_truth_total": 47,
+      "n_captured_total": 47,
+      "fnr": 0.0,
+      "mean_latency_months_weighted": 0.0,
+      "cumulative_tokens_total": 12754,
+      "n_patients": 5
+    }
+  },
+  "per_patient_endpoints": {
+    "arm_soc": [
+      {
+        "n_actionable_truth": 5,
+        "n_captured": 3,
+        "fnr": 0.4,
+        "mean_latency_months": 1.0,
+        "cumulative_tokens": 988,
+        "missed": [
+          {
+            "gene": "BRCA1",
+            "rsid": "rs80357906",
+            "from": "likely_pathogenic",
+            "to": "pathogenic",
+            "released": "2024-02-01"
+          },
+          {
+            "gene": "BRCA1",
+            "rsid": "rs80357906",
+            "from": "pathogenic",
+            "to": "likely_pathogenic",
+            "released": "2025-01-01"
+          }
+        ],
+        "patient": "P001"
+      },
+      {
+        "n_actionable_truth": 6,
+        "n_captured": 2,
+        "fnr": 0.6666666666666666,
+        "mean_latency_months": 1.0,
+        "cumulative_tokens": 728,
+        "missed": [
+          {
+            "gene": "APOE",
+            "rsid": "rs429358",
+            "from": "risk_factor",
+            "to": "likely_pathogenic",
+            "released": "2024-02-01"
+          },
+          {
+            "gene": "APOE",
+            "rsid": "rs429358",
+            "from": "pathogenic",
+            "to": "likely_pathogenic",
+            "released": "2024-08-01"
+          },
+          {
+            "gene": "APOE",
+            "rsid": "rs429358",
+            "from": "likely_pathogenic",
+            "to": "pathogenic",
+            "released": "2024-09-01"
+          },
+          {
+            "gene": "APOE",
+            "rsid": "rs429358",
+            "from": "pathogenic",
+            "to": "likely_pathogenic",
+            "released": "2024-10-01"
+          }
+        ],
+        "patient": "P002"
+      },
+      {
+        "n_actionable_truth": 18,
+        "n_captured": 8,
+        "fnr": 0.5555555555555556,
+        "mean_latency_months": 1.0,
+        "cumulative_tokens": 1576,
+        "missed": [
+          {
+            "gene": "APOE",
+            "rsid": "rs429358",
+            "from": "risk_factor",
+            "to": "likely_pathogenic",
+            "released": "2024-02-01"
+          },
+          {
+            "gene": "BRCA1",
+            "rsid": "rs80357906",
+            "from": "likely_pathogenic",
+            "to": "pathogenic",
+            "released": "2024-02-01"
+          },
+          {
+            "gene": "APOE",
+            "rsid": "rs429358",
+            "from": "pathogenic",
+            "to": "likely_pathogenic",
+            "released": "2024-08-01"
+          },
+          {
+            "gene": "MTHFR",
+            "rsid": "rs1801133",
+            "from": "likely_pathogenic",
+            "to": "pathogenic",
+            "released": "2024-08-01"
+          },
+          {
+            "gene": "APOE",
+            "rsid": "rs429358",
+            "from": "likely_pathogenic",
+            "to": "pathogenic",
+            "released": "2024-09-01"
+          },
+          {
+            "gene": "APOE",
+            "rsid": "rs429358",
+            "from": "pathogenic",
+            "to": "likely_pathogenic",
+            "released": "2024-10-01"
+          },
+          {
+            "gene": "BRCA1",
+            "rsid": "rs80357906",
+            "from": "pathogenic",
+            "to": "likely_pathogenic",
+            "released": "2025-01-01"
+          },
+          {
+            "gene": "MTHFR",
+            "rsid": "rs1801133",
+            "from": "pathogenic",
+            "to": "likely_pathogenic",
+            "released": "2025-02-01"
+          },
+          {
+            "gene": "MTHFR",
+            "rsid": "rs1801133",
+            "from": "likely_pathogenic",
+            "to": "pathogenic",
+            "released": "2025-04-01"
+          },
+          {
+            "gene": "MTHFR",
+            "rsid": "rs1801133",
+            "from": "pathogenic",
+            "to": "likely_pathogenic",
+            "released": "2025-10-01"
+          }
+        ],
+        "patient": "P003"
+      },
+      {
+        "n_actionable_truth": 7,
+        "n_captured": 2,
+        "fnr": 0.7142857142857143,
+        "mean_latency_months": 1.5,
+        "cumulative_tokens": 866,
+        "missed": [
+          {
+            "gene": "HFE",
+            "rsid": "rs1800562",
+            "from": "carrier",
+            "to": "vus",
+            "released": "2024-03-01"
+          },
+          {
+            "gene": "MTHFR",
+            "rsid": "rs1801133",
+            "from": "likely_pathogenic",
+            "to": "pathogenic",
+            "released": "2024-08-01"
+          },
+          {
+            "gene": "MTHFR",
+            "rsid": "rs1801133",
+            "from": "pathogenic",
+            "to": "likely_pathogenic",
+            "released": "2025-02-01"
+          },
+          {
+            "gene": "MTHFR",
+            "rsid": "rs1801133",
+            "from": "likely_pathogenic",
+            "to": "pathogenic",
+            "released": "2025-04-01"
+          },
+          {
+            "gene": "MTHFR",
+            "rsid": "rs1801133",
+            "from": "pathogenic",
+            "to": "likely_pathogenic",
+            "released": "2025-10-01"
+          }
+        ],
+        "patient": "P004"
+      },
+      {
+        "n_actionable_truth": 11,
+        "n_captured": 5,
+        "fnr": 0.5454545454545454,
+        "mean_latency_months": 1.0,
+        "cumulative_tokens": 1216,
+        "missed": [
+          {
+            "gene": "APOE",
+            "rsid": "rs429358",
+            "from": "risk_factor",
+            "to": "likely_pathogenic",
+            "released": "2024-02-01"
+          },
+          {
+            "gene": "BRCA1",
+            "rsid": "rs80357906",
+            "from": "likely_pathogenic",
+            "to": "pathogenic",
+            "released": "2024-02-01"
+          },
+          {
+            "gene": "APOE",
+            "rsid": "rs429358",
+            "from": "pathogenic",
+            "to": "likely_pathogenic",
+            "released": "2024-08-01"
+          },
+          {
+            "gene": "APOE",
+            "rsid": "rs429358",
+            "from": "likely_pathogenic",
+            "to": "pathogenic",
+            "released": "2024-09-01"
+          },
+          {
+            "gene": "APOE",
+            "rsid": "rs429358",
+            "from": "pathogenic",
+            "to": "likely_pathogenic",
+            "released": "2024-10-01"
+          },
+          {
+            "gene": "BRCA1",
+            "rsid": "rs80357906",
+            "from": "pathogenic",
+            "to": "likely_pathogenic",
+            "released": "2025-01-01"
+          }
+        ],
+        "patient": "P005"
+      }
+    ],
+    "arm_bio": [
+      {
+        "n_actionable_truth": 5,
+        "n_captured": 5,
+        "fnr": 0.0,
+        "mean_latency_months": 0.0,
+        "cumulative_tokens": 2298,
+        "missed": [],
+        "patient": "P001"
+      },
+      {
+        "n_actionable_truth": 6,
+        "n_captured": 6,
+        "fnr": 0.0,
+        "mean_latency_months": 0.0,
+        "cumulative_tokens": 2090,
+        "missed": [],
+        "patient": "P002"
+      },
+      {
+        "n_actionable_truth": 18,
+        "n_captured": 18,
+        "fnr": 0.0,
+        "mean_latency_months": 0.0,
+        "cumulative_tokens": 3368,
+        "missed": [],
+        "patient": "P003"
+      },
+      {
+        "n_actionable_truth": 7,
+        "n_captured": 7,
+        "fnr": 0.0,
+        "mean_latency_months": 0.0,
+        "cumulative_tokens": 2225,
+        "missed": [],
+        "patient": "P004"
+      },
+      {
+        "n_actionable_truth": 11,
+        "n_captured": 11,
+        "fnr": 0.0,
+        "mean_latency_months": 0.0,
+        "cumulative_tokens": 2773,
+        "missed": [],
+        "patient": "P005"
+      }
+    ]
+  },
+  "per_patient_truth_counts": {
+    "P001": {
+      "n_total": 7,
+      "n_actionable": 5
+    },
+    "P002": {
+      "n_total": 6,
+      "n_actionable": 6
+    },
+    "P003": {
+      "n_total": 21,
+      "n_actionable": 18
+    },
+    "P004": {
+      "n_total": 8,
+      "n_actionable": 7
+    },
+    "P005": {
+      "n_total": 13,
+      "n_actionable": 11
+    }
+  }
+}

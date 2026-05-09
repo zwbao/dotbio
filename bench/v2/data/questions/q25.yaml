@@ -1,0 +1,13 @@
+id: q25
+domain: carrier_screening
+question: "A couple of Ashkenazi Jewish ancestry are presenting for preconception carrier screening. Per ACMG 2021 (Tier-3 universal panel), should ethnicity-targeted panels (e.g., Ashkenazi Jewish-only panels) be offered, or universal expanded carrier screening?"
+required_inputs:
+  - clinical_context: "preconception couple, Ashkenazi Jewish ancestry"
+gold_answer:
+  verdict: "offer the universal ACMG Tier-3 expanded carrier-screening panel (113 genes — 97 autosomal recessive + 16 X-linked) regardless of ancestry, rather than an ancestry-restricted panel"
+  cited_guideline: "ACMG Practice Resource 2021 — Screening for autosomal recessive and X-linked conditions (Gregg et al., Genet Med 2021;23:1793, PMID 34285390)"
+  rationale: "ACMG 2021 moved away from ancestry-targeted screening to a universal Tier-3 panel of 113 genes selected by disease severity and a population carrier frequency ≥1/200; the universal panel still captures the conditions historically prioritized in Ashkenazi Jewish-targeted screening (e.g., Tay-Sachs HEXA, Canavan ASPA, familial dysautonomia IKBKAP/ELP1, Gaucher GBA1) and many additional conditions. Ancestry self-report is unreliable in admixed populations."
+scoring_rubric:
+  verdict_correct: 'recommends universal expanded carrier screening (Tier-3 / 113-gene ACMG panel) over ancestry-only panel'
+  guideline_cited_with_version: 'includes "ACMG 2021" or "Gregg" or "113 genes"'
+primary_reference_url: https://www.gimjournal.org/article/S1098-3600(21)03558-9/fulltext

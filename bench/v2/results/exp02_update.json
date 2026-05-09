@@ -1,0 +1,81 @@
+{
+  "scenario_1_initial_query": {
+    "VCF_only": {
+      "bytes": 1484,
+      "tokens": 676,
+      "note": "LLM cannot answer without external annotation knowledge"
+    },
+    "VCF_plus_pharmcat_ruleset": {
+      "bytes": 5480,
+      "tokens": 1866,
+      "note": "LLM does in-context PharmCAT-style haplotype calling"
+    },
+    "genome_full": {
+      "bytes": 2150,
+      "tokens": 663,
+      "note": "Pre-baked summary; reads everything"
+    },
+    "bio_manifest_plus_pgx_view": {
+      "bytes": 2446,
+      "tokens": 834,
+      "note": "Two-step: read manifest, then load relevant view"
+    },
+    "bio_manifest_only": {
+      "bytes": 1474,
+      "tokens": 489,
+      "note": "Manifest alone tells the LLM which view to load and current refs"
+    }
+  },
+  "scenario_2_reclassification": {
+    "VCF": {
+      "bytes_to_redetect": 5480,
+      "tokens_to_redetect": 1866,
+      "method": "re-run full annotation pipeline; manually diff outputs",
+      "time_travel_native": false
+    },
+    "genome_full_rebake": {
+      "bytes_rewritten": 2150,
+      "tokens_to_redetect": 663,
+      "method": "rebake whole file from VCF + new ruleset; user mentally diffs",
+      "time_travel_native": false
+    },
+    "bio_diff": {
+      "diff_output_bytes": 501,
+      "diff_output_tokens": 170,
+      "new_commit_bytes_on_disk": 9077,
+      "new_commit_tokens_if_read": 3258,
+      "method": "bio diff stable HEAD \u2014 reads only substantive changes",
+      "time_travel_native": true
+    }
+  },
+  "scenario_3_audit_density": {
+    "VCF": {
+      "rsIDs": 8,
+      "ruleset_versions": 0,
+      "guideline_versions": 0,
+      "fact_hashes": 0,
+      "claim_ids": 0
+    },
+    "genome_reconstruction": {
+      "rsIDs": 5,
+      "ruleset_versions": 0,
+      "guideline_versions": 0,
+      "fact_hashes": 0,
+      "claim_ids": 0
+    },
+    "bio_view_pgx": {
+      "rsIDs": 0,
+      "ruleset_versions": 3,
+      "guideline_versions": 2,
+      "fact_hashes": 2,
+      "claim_ids": 2
+    },
+    "bio_manifest": {
+      "rsIDs": 0,
+      "ruleset_versions": 0,
+      "guideline_versions": 0,
+      "fact_hashes": 0,
+      "claim_ids": 0
+    }
+  }
+}

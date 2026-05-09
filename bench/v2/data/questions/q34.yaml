@@ -1,0 +1,16 @@
+id: q34
+domain: hereditary_risk
+question: "A 44-year-old man has a germline TP53 pathogenic missense variant identified on cascade testing after his sister was diagnosed with early-onset breast cancer. He is asymptomatic. What surveillance program is recommended for this Li-Fraumeni Syndrome carrier?"
+required_inputs:
+  - gene: TP53
+  - variant: "germline pathogenic missense"
+  - clinical_context: "asymptomatic adult LFS carrier (Chompret/cascade)"
+gold_answer:
+  verdict: "comprehensive Li-Fraumeni surveillance: annual whole-body MRI; annual brain MRI; annual breast MRI ± mammography for women starting age 20-30; annual abdominal/pelvic ultrasound; clinical examinations every 6-12 months including skin and neurological; colonoscopy every 2-5 years starting age 25; targeted blood work; counseling about cancer-syndrome-related symptoms"
+  cited_guideline: "NCCN Genetic/Familial High-Risk Assessment: Breast, Ovarian, and Pancreatic v3.2024 (LFS section); Toronto/IARC LFS surveillance protocol (Villani et al.); 'Chompret' criteria"
+  rationale: "TP53 carriers face very high cumulative cancer risk (~70% by age 30 in men, ~100% by age 70). Annual whole-body MRI plus brain MRI is the cornerstone of LFS surveillance — supported by prospective Toronto cohort data showing improved 5-year survival for screened vs unscreened individuals."
+scoring_rubric:
+  verdict_correct: 'recommends annual whole-body MRI AND annual brain MRI AND breast MRI for women AND skin/neurological exams AND colonoscopy'
+  guideline_cited_with_version: 'includes "NCCN" with version OR "Toronto protocol" or "Villani"'
+  variant_evidence_cited: 'mentions TP53 / Li-Fraumeni Syndrome'
+primary_reference_url: https://www.nccn.org/guidelines/guidelines-detail?category=2&id=1545

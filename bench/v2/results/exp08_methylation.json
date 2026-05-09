@@ -1,0 +1,42 @@
+{
+  "experiment": "Experiment 8 \u2014 multi-omics extension (methylation pilot)",
+  "spec_section": "3.8",
+  "modality": "methylation",
+  "platform": "Illumina HumanMethylation450",
+  "ruleset": {
+    "license": "CC BY 2.0 (coefficients from Additional file 3 of the open-access paper)",
+    "name": "horvath_clock",
+    "source": "Horvath S. 2013. DNA methylation age of human tissues and cell types. Genome Biology 14:R115",
+    "source_url": "https://genomebiology.biomedcentral.com/articles/10.1186/gb-2013-14-10-r115",
+    "type": "epigenetic_age_estimator",
+    "version": "2013"
+  },
+  "subject": "subject:6f28668ba845",
+  "scopes": {
+    "clock_probes_in_ruleset": 353,
+    "clock_probes_used": 353,
+    "methylation_probe_count": 353
+  },
+  "demo_age_estimate": {
+    "claim": "Predicted epigenetic age (Horvath 2013): 35.33 years for sample demo_subject_001",
+    "level": "epigenetic_age",
+    "n_probe_targets": 353,
+    "guideline": null,
+    "ruleset": "horvath_clock@2013",
+    "predicted_age_years": 35.33
+  },
+  "n_facts": 353,
+  "n_commits": 1,
+  "view_token_estimate": 319,
+  "evidence_chain_complete": true,
+  "principles_demonstrated": {
+    "multi_scale_collapsing": true,
+    "evidence_chain_first_class": true,
+    "time_as_dimension": true
+  },
+  "caveats": [
+    "Synthetic Horvath coefficients (deterministic seed=2013) used in v0; round 2 must replace with actual Horvath 2013 supplementary coefficients (CC BY 2.0).",
+    "Demo \u03b2-values are randomly generated within plausible 0-1 range; not a real patient methylation array."
+  ],
+  "round1_status": "smoke_pass"
+}

@@ -1,0 +1,17 @@
+id: q26
+domain: carrier_screening
+question: "A reproductive-age couple of Ashkenazi Jewish ancestry are both confirmed carriers of HEXA pathogenic variants (one carries c.1421+1G>C, the other c.1274_1277dup, both classical Tay-Sachs alleles). They are considering pregnancy. What is the recurrence risk and what reproductive options should be discussed?"
+required_inputs:
+  - gene: HEXA
+  - parent_1_variant: "c.1421+1G>C"
+  - parent_2_variant: "c.1274_1277dup"
+  - clinical_context: "preconception couple, both confirmed Tay-Sachs carriers"
+gold_answer:
+  verdict: "1-in-4 (25%) per-pregnancy risk of an affected child with classical infantile Tay-Sachs disease; offer genetic counseling, preimplantation genetic testing for monogenic disease (PGT-M), prenatal diagnostic testing (CVS or amniocentesis with HEXA molecular analysis), donor-gamete options, and adoption discussion"
+  cited_guideline: "ACMG Practice Resource 2021 (Gregg et al., Genet Med 2021;23:1793); ACOG Committee Opinion 691; HEXA in ACMG Tier-3 panel"
+  rationale: "Two confirmed HEXA carriers facing autosomal-recessive inheritance: 25% affected, 50% carrier, 25% noncarrier per pregnancy. Both variants listed are well-established loss-of-function classical Tay-Sachs alleles. Reproductive options enumerated above are standard genetic-counseling content."
+scoring_rubric:
+  verdict_correct: 'states 25% / 1-in-4 recurrence risk AND lists at least one reproductive option (PGT-M, prenatal diagnosis, donor gametes, etc.)'
+  guideline_cited_with_version: 'includes "ACMG" or "ACOG" with year'
+  variant_evidence_cited: 'mentions HEXA / Tay-Sachs and autosomal recessive inheritance'
+primary_reference_url: https://www.gimjournal.org/article/S1098-3600(21)03558-9/fulltext

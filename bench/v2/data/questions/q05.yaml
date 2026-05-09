@@ -1,0 +1,20 @@
+id: q05
+domain: pgx
+question: "A patient with metastatic colorectal cancer is about to start 5-fluorouracil/leucovorin. DPYD genotyping reveals heterozygous c.1905+1G>A (DPYD*2A); all other tested DPYD variants are wild-type. What starting-dose modification is indicated?"
+required_inputs:
+  - gene: DPYD
+  - variant: "c.1905+1G>A"
+  - star_allele: "*2A"
+  - zygosity: heterozygous
+  - clinical_context: "metastatic CRC, 5-FU about to start"
+gold_answer:
+  verdict: "reduce 5-FU starting dose by 50% (DPYD activity score 1)"
+  phenotype: "DPYD Intermediate Metabolizer (activity score 1)"
+  cited_guideline: "CPIC@2017 (Amstutz et al., Clin Pharmacol Ther 2018;103:210-216, PMID 29152729) with November 2018 CPIC update"
+  rationale: "DPYD*2A is a no-function variant (activity 0). A heterozygous carrier has activity score 1, conferring intermediate metabolizer status. The 2017 CPIC guideline as updated in 2018 recommends a 50% starting-dose reduction in DPYD intermediate metabolizers, then titrate by toxicity."
+scoring_rubric:
+  verdict_correct: 'recommends ~50% starting-dose reduction OR equivalent (50% of standard)'
+  phenotype_correct: 'mentions Intermediate Metabolizer OR activity score 1'
+  guideline_cited_with_version: 'includes "CPIC" AND ("2017" OR "2018" OR "Amstutz")'
+  variant_evidence_cited: 'mentions DPYD*2A or c.1905+1G>A or rs3918290'
+primary_reference_url: https://cpicpgx.org/guidelines/guideline-for-fluoropyrimidines-and-dpyd/

@@ -1,0 +1,17 @@
+id: q45
+domain: dose_adjustment
+question: "An adult with major depressive disorder has not responded to two prior SSRIs and is being switched to paroxetine. Pharmacogenomic testing returns CYP2D6 ultra-rapid metabolizer (e.g., *1/*1xN duplication, activity score >2.25). What does CPIC recommend?"
+required_inputs:
+  - gene: CYP2D6
+  - phenotype: "Ultra-rapid Metabolizer"
+  - drug: paroxetine
+  - clinical_context: "MDD, SSRI selection"
+gold_answer:
+  verdict: "select an alternative antidepressant not predominantly metabolized by CYP2D6 (e.g., escitalopram or sertraline) rather than paroxetine; paroxetine and vortioxetine are likely to give subtherapeutic exposure in CYP2D6 UMs"
+  cited_guideline: "CPIC@2023 (Bousman et al., Clin Pharmacol Ther 2023;114:51-68, PMID 37032427) — SSRI/SNRI antidepressants and CYP2D6/CYP2C19/CYP2B6/SLC6A4/HTR2A"
+  rationale: "Paroxetine is extensively metabolized by CYP2D6. UMs have low/undetectable plasma concentrations and reduced probability of clinical benefit. CPIC 2023 specifically recommends an alternative not predominantly metabolized by CYP2D6 for paroxetine and vortioxetine in UMs."
+scoring_rubric:
+  verdict_correct: 'recommends an alternative antidepressant not predominantly metabolized by CYP2D6 (e.g., escitalopram, sertraline) instead of paroxetine'
+  guideline_cited_with_version: 'includes "CPIC" AND ("2023" OR "Bousman")'
+  variant_evidence_cited: 'mentions CYP2D6 UM / activity score >2.25 / gene duplication'
+primary_reference_url: https://cpicpgx.org/guidelines/cpic-guideline-for-ssri-and-snri-antidepressants/

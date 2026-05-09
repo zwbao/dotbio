@@ -1,0 +1,16 @@
+id: q44
+domain: dose_adjustment
+question: "A 62-year-old, 75-kg woman with non-valvular AF and a CrCl of 96 mL/min is being considered for edoxaban. What does the FDA label say about edoxaban use at this CrCl, and what is the recommended dose?"
+required_inputs:
+  - drug: edoxaban
+  - CrCl: "96 mL/min"
+  - clinical_context: "non-valvular AF, stroke prevention"
+gold_answer:
+  verdict: "edoxaban is NOT recommended in non-valvular AF when CrCl > 95 mL/min because of the increased risk of ischemic stroke at the highest studied dose; choose an alternative anticoagulant (e.g., apixaban, rivaroxaban, dabigatran, or warfarin)"
+  cited_guideline: "Savaysa (edoxaban) FDA prescribing information (boxed warning regarding CrCl >95)"
+  rationale: "In ENGAGE AF-TIMI 48, edoxaban 60 mg appeared less effective for stroke prevention in patients with high CrCl. The FDA label includes a boxed warning that edoxaban should not be used for stroke prevention in non-valvular AF when CrCl > 95 mL/min."
+scoring_rubric:
+  verdict_correct: 'identifies that edoxaban should NOT be used at CrCl >95 mL/min for non-valvular AF'
+  guideline_cited_with_version: 'includes "Savaysa / edoxaban FDA label"'
+  variant_evidence_cited: 'mentions the CrCl >95 boxed warning'
+primary_reference_url: https://www.accessdata.fda.gov/drugsatfda_docs/label/2015/206316lbl.pdf

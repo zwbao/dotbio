@@ -1,0 +1,16 @@
+id: q16
+domain: oncology_somatic
+question: "A 62-year-old patient has metastatic platinum-sensitive high-grade serous ovarian carcinoma in complete response after first-line chemotherapy. Tumor testing reveals a somatic BRCA2 deleterious variant (no germline). Is olaparib appropriate as maintenance, and what is the FDA basis?"
+required_inputs:
+  - gene: BRCA2
+  - origin: somatic
+  - clinical_context: "platinum-sensitive ovarian cancer in CR after first-line chemotherapy"
+gold_answer:
+  verdict: "yes — olaparib maintenance is FDA-approved (and NCCN-preferred) for BRCA1/2-mutated (germline OR somatic) advanced ovarian cancer in complete or partial response to platinum-based first-line chemotherapy"
+  cited_guideline: "FDA approval (olaparib first-line maintenance, 2018, expanded indications 2020); SOLO-1 trial (Moore et al., NEJM 2018;379:2495); NCCN Ovarian Cancer Guidelines"
+  rationale: "BRCA1/2-deficient cells are HR-deficient and synthetically lethal with PARP inhibition. SOLO-1 demonstrated dramatic PFS benefit of olaparib maintenance in BRCA-mutated advanced ovarian cancer. Both germline and somatic BRCA1/2 mutations qualify for the indication."
+scoring_rubric:
+  verdict_correct: 'matches "yes" / "approved" / "appropriate" for olaparib maintenance'
+  guideline_cited_with_version: 'includes FDA approval OR NCCN Ovarian OR cites SOLO-1'
+  variant_evidence_cited: 'mentions BRCA2 (somatic) OR HRD/HRR'
+primary_reference_url: https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-olaparib-first-line-maintenance-brca-mutated-advanced-ovarian-cancer

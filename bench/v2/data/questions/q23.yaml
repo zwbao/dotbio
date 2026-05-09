@@ -1,0 +1,17 @@
+id: q23
+domain: carrier_screening
+question: "A 28-year-old woman is found to have a HBB c.20A>T (p.Glu7Val, HbS) heterozygote on hemoglobinopathy carrier screening. Her partner reports African ancestry but has not been screened. What is the appropriate next step per ACOG?"
+required_inputs:
+  - gene: HBB
+  - variant: "c.20A>T (p.Glu7Val, HbS)"
+  - zygosity: heterozygous (sickle cell trait)
+  - clinical_context: "preconception/early-prenatal, partner of African ancestry untested"
+gold_answer:
+  verdict: "she has sickle cell trait (carrier); offer the partner hemoglobinopathy carrier screening — at minimum CBC with red-cell indices and hemoglobin electrophoresis (with reflex molecular testing as needed) — and provide genetic counseling for reproductive options if he is also a carrier"
+  cited_guideline: "ACOG Practice Bulletin 78 / Practice Advisory on Hemoglobinopathies in Pregnancy 2022; ACMG carrier screening guidance (Gregg et al., Genet Med 2021)"
+  rationale: "HbS in trans with HbS, HbC, beta-thalassemia, or other beta-chain variants causes sickle cell disease or compound heterozygous disease. ACOG recommends universal hemoglobinopathy carrier screening (electrophoresis is preferred over solubility-only testing). Partner testing converts a carrier finding into actionable reproductive risk information."
+scoring_rubric:
+  verdict_correct: 'identifies woman as sickle cell trait carrier AND recommends partner hemoglobinopathy carrier screening (electrophoresis or molecular)'
+  guideline_cited_with_version: 'includes "ACOG" hemoglobinopathy guidance OR "ACMG" with year'
+  variant_evidence_cited: 'mentions HbS or HBB c.20A>T or p.Glu6Val/Glu7Val'
+primary_reference_url: https://www.acog.org/clinical/clinical-guidance/practice-advisory/articles/2022/08/hemoglobinopathies-in-pregnancy

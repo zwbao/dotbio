@@ -1,0 +1,44 @@
+{
+  "tokenizers": {
+    "claude": "Xenova/claude-tokenizer",
+    "gpt2": "gpt2"
+  },
+  "inputs": {
+    "A_vcf": {
+      "path": "bench/data/format_a_vcf.txt",
+      "bytes": 1484,
+      "tokens": {
+        "claude": 676,
+        "gpt2": 716
+      },
+      "ratio_to_B_genome": {
+        "claude": 1.02,
+        "gpt2": 0.99
+      }
+    },
+    "B_genome": {
+      "path": "bench/data/format_b_genome_reconstructed.md",
+      "bytes": 2150,
+      "tokens": {
+        "claude": 663,
+        "gpt2": 723
+      },
+      "ratio_to_B_genome": {
+        "claude": 1.0,
+        "gpt2": 1.0
+      }
+    },
+    "C_bio_view": {
+      "path": "bench/data/format_c_bio_view.md",
+      "bytes": 2446,
+      "tokens": {
+        "claude": 834,
+        "gpt2": 873
+      },
+      "ratio_to_B_genome": {
+        "claude": 1.26,
+        "gpt2": 1.21
+      }
+    }
+  }
+}

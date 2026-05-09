@@ -1,0 +1,15 @@
+id: q48
+domain: dose_adjustment
+question: "A 65-year-old, 80 kg adult requires vancomycin for MRSA bacteremia. CrCl is 90 mL/min. What does the 2020 ASHP/IDSA/PIDS/SIDP consensus guideline recommend for therapeutic monitoring (not just initial dosing)?"
+required_inputs:
+  - drug: vancomycin
+  - clinical_context: "serious MRSA bacteremia in an adult"
+gold_answer:
+  verdict: "use AUC-guided monitoring (Bayesian estimation or two-level pharmacokinetic equation) targeting an AUC₂₄ of 400-600 mg·h/L (assuming MIC = 1 mg/L); abandon trough-only monitoring; achieve target within 24-48 hours"
+  cited_guideline: "ASHP/IDSA/PIDS/SIDP Revised Consensus Guideline for Vancomycin Therapeutic Monitoring 2020 (Rybak et al., Am J Health Syst Pharm 2020;77:835)"
+  rationale: "The 2009 trough-based approach (15-20 mg/L troughs) was associated with higher nephrotoxicity and inconsistent attainment of efficacious AUC. The 2020 consensus guidelines move to AUC₂₄/MIC of 400-600 (with MIC assumed to be 1 mg/L). Bayesian estimation with one or two levels is preferred."
+scoring_rubric:
+  verdict_correct: 'recommends AUC-guided monitoring AND target AUC₂₄ 400-600 mg·h/L (not trough-only 15-20)'
+  guideline_cited_with_version: 'includes "2020 ASHP/IDSA" or "Rybak 2020"'
+  variant_evidence_cited: 'mentions AUC/MIC and abandonment of trough-only monitoring'
+primary_reference_url: https://www.idsociety.org/practice-guideline/vancomycin/

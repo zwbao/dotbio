@@ -1,0 +1,19 @@
+id: q07
+domain: pgx
+question: "A patient is starting simvastatin 40 mg/day for primary prevention. SLCO1B1 genotyping shows rs4149056 T/C (heterozygous *1/*5, decreased function). What does CPIC recommend?"
+required_inputs:
+  - gene: SLCO1B1
+  - variant: "rs4149056"
+  - genotype: "T/C (heterozygous c.521T>C, *1/*5)"
+  - drug: "simvastatin 40 mg/day"
+gold_answer:
+  verdict: "avoid simvastatin doses >20 mg/day; either reduce simvastatin to ≤20 mg/day or switch to an alternative statin (e.g., rosuvastatin or pravastatin) at an appropriate dose"
+  phenotype: "SLCO1B1 Decreased Function (intermediate transporter activity)"
+  cited_guideline: "CPIC@2022 (Cooper-DeHoff et al., Clin Pharmacol Ther 2022;111:1007-1021, PMID 35152405)"
+  rationale: "rs4149056 c.521T>C reduces hepatic uptake of simvastatin acid, increasing systemic exposure and the risk of statin-associated muscle symptoms (SAMS) and rhabdomyolysis. The 2022 CPIC update recommends avoiding simvastatin doses >20 mg/day or switching agents in carriers of one or two decreased/poor-function SLCO1B1 alleles."
+scoring_rubric:
+  verdict_correct: 'recommends avoiding simvastatin >20 mg/day OR switching statin OR dose reduction'
+  phenotype_correct: 'mentions decreased function OR intermediate function transporter'
+  guideline_cited_with_version: 'includes "CPIC" AND "2022"'
+  variant_evidence_cited: 'mentions SLCO1B1, rs4149056, or c.521T>C'
+primary_reference_url: https://cpicpgx.org/guidelines/cpic-guideline-for-statins/

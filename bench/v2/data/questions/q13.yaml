@@ -1,0 +1,16 @@
+id: q13
+domain: oncology_somatic
+question: "A 70-year-old with metastatic non-squamous NSCLC has progressed on first-line carboplatin/pemetrexed/pembrolizumab. Tumor sequencing identifies KRAS p.G12C. What FDA-approved targeted therapy options exist for second-line treatment?"
+required_inputs:
+  - gene: KRAS
+  - variant: "p.G12C (somatic)"
+  - clinical_context: "metastatic NSCLC after at least one prior systemic therapy"
+gold_answer:
+  verdict: "sotorasib (Lumakras) or adagrasib (Krazati) — both FDA-approved KRAS G12C inhibitors for adults with KRAS G12C-mutated locally advanced/metastatic NSCLC after at least one prior systemic therapy"
+  cited_guideline: "FDA accelerated approval — sotorasib (28 May 2021); adagrasib (12 December 2022); NCCN NSCLC v3.2024 second-line options"
+  rationale: "Sotorasib was the first FDA-approved KRAS G12C inhibitor (CodeBreaK 100). Adagrasib followed (KRYSTAL-1, ORR 43%). Both are indicated only for KRAS G12C — other KRAS mutations (e.g., G12D, G12V) do not respond. Both are second-line indications."
+scoring_rubric:
+  verdict_correct: 'names "sotorasib" OR "adagrasib" (or both)'
+  guideline_cited_with_version: 'includes "FDA" with year OR "NCCN NSCLC"'
+  variant_evidence_cited: 'mentions KRAS G12C specifically'
+primary_reference_url: https://www.fda.gov/drugs/resources-information-approved-drugs/fda-grants-accelerated-approval-sotorasib-kras-g12c-mutated-nsclc

@@ -1,0 +1,483 @@
+{
+  "experiment": "exp07_adversarial",
+  "spec_section": "3.7",
+  "task": "Task 9 — Adversarial robustness suite",
+  "generated": "2026-05-09T02:20:48+00:00",
+  "elapsed_sec": 2.628,
+  "summary": {
+    "total": 29,
+    "pass": 29,
+    "fail": 0,
+    "unexpected": 0,
+    "by_module": {
+      "vcf": {
+        "total": 11,
+        "pass": 11,
+        "fail": 0,
+        "unexpected": 0
+      },
+      "rulesets": {
+        "total": 7,
+        "pass": 7,
+        "fail": 0,
+        "unexpected": 0
+      },
+      "schema": {
+        "total": 7,
+        "pass": 7,
+        "fail": 0,
+        "unexpected": 0
+      },
+      "hashes": {
+        "total": 4,
+        "pass": 4,
+        "fail": 0,
+        "unexpected": 0
+      }
+    }
+  },
+  "cases": [
+    {
+      "case_id": "vcf01",
+      "module": "vcf",
+      "title": "empty file",
+      "rationale": "An empty VCF should not crash the parser.",
+      "expected_behavior": "successful_handling",
+      "expected_exit_codes": [
+        0
+      ],
+      "actual_exit": 0,
+      "status": "PASS",
+      "elapsed_sec": 0.071,
+      "notes": "Empty file: parser yields zero records; dotbio compiles an empty bundle (documented data loss for empty-input edge).",
+      "stdout_head": "wrote bundle: /var/folders/yd/vfxfbt556793017wjysx2wrr0000gp/T/dotbio_fuzz_vcf01_t1pj4cza/out.bio\n  facts:   0\n  claims:  0\n  views:   4  (pgx, germline-clinical, carrier, somatic)\n  ref HEAD = 2026-05-09T02:20:45.841Z\n"
+    },
+    {
+      "case_id": "vcf02",
+      "module": "vcf",
+      "title": "header-only VCF",
+      "rationale": "Header without records produces an empty bundle.",
+      "expected_behavior": "successful_handling",
+      "expected_exit_codes": [
+        0
+      ],
+      "actual_exit": 0,
+      "status": "PASS",
+      "elapsed_sec": 0.066,
+      "notes": "Header-only VCF: zero data lines, zero facts, zero claims.",
+      "stdout_head": "wrote bundle: /var/folders/yd/vfxfbt556793017wjysx2wrr0000gp/T/dotbio_fuzz_vcf02_qz8qc2ff/out.bio\n  facts:   0\n  claims:  0\n  views:   4  (pgx, germline-clinical, carrier, somatic)\n  ref HEAD = 2026-05-09T02:20:45.906Z\n"
+    },
+    {
+      "case_id": "vcf03",
+      "module": "vcf",
+      "title": "missing REF allele (REF='.')",
+      "rationale": "Spec-legal '.' REF must not crash; lookup is just a miss.",
+      "expected_behavior": "successful_handling",
+      "expected_exit_codes": [
+        0
+      ],
+      "actual_exit": 0,
+      "status": "PASS",
+      "elapsed_sec": 0.07,
+      "notes": "REF='.' is technically valid VCF; dotbio writes a fact with ref='.', no clinical claim is produced (no rsID/genotype match).",
+      "stdout_head": "wrote bundle: /var/folders/yd/vfxfbt556793017wjysx2wrr0000gp/T/dotbio_fuzz_vcf03_ys3wio10/out.bio\n  facts:   1\n  claims:  0\n  views:   4  (pgx, germline-clinical, carrier, somatic)\n  ref HEAD = 2026-05-09T02:20:45.976Z\n"
+    },
+    {
+      "case_id": "vcf04",
+      "module": "vcf",
+      "title": "invalid genotype tokens",
+      "rationale": "Non-{0,1} alleles must not crash the genotype normalizer.",
+      "expected_behavior": "successful_handling",
+      "expected_exit_codes": [
+        0
+      ],
+      "actual_exit": 0,
+      "status": "PASS",
+      "elapsed_sec": 0.068,
+      "notes": "GT='X/Y' is not '0' or '1'; vcfio passes the literal through; ruleset lookup misses; no crash.",
+      "stdout_head": "wrote bundle: /var/folders/yd/vfxfbt556793017wjysx2wrr0000gp/T/dotbio_fuzz_vcf04_4a0_gmxb/out.bio\n  facts:   1\n  claims:  1\n  views:   4  (pgx, germline-clinical, carrier, somatic)\n  ref HEAD = 2026-05-09T02:20:46.043Z\n"
+    },
+    {
+      "case_id": "vcf05",
+      "module": "vcf",
+      "title": "mixed chromosome naming (no 'chr' prefix)",
+      "rationale": "Chrom strings vary in the wild; rsID-keyed lookup tolerates this.",
+      "expected_behavior": "successful_handling",
+      "expected_exit_codes": [
+        0
+      ],
+      "actual_exit": 0,
+      "status": "PASS",
+      "elapsed_sec": 0.068,
+      "notes": "Chromosome '1' (no chr prefix) compiles; rsID lookup still works because rulesets key on rsid, not on chrom string.",
+      "stdout_head": "wrote bundle: /var/folders/yd/vfxfbt556793017wjysx2wrr0000gp/T/dotbio_fuzz_vcf05_259nt73c/out.bio\n  facts:   1\n  claims:  1\n  views:   4  (pgx, germline-clinical, carrier, somatic)\n  ref HEAD = 2026-05-09T02:20:46.111Z\n"
+    },
+    {
+      "case_id": "vcf06",
+      "module": "vcf",
+      "title": "truncated record (<8 columns)",
+      "rationale": "Malformed line shorter than required; vcfio drops it (documented).",
+      "expected_behavior": "documented_data_loss",
+      "expected_exit_codes": [
+        0
+      ],
+      "actual_exit": 0,
+      "status": "PASS",
+      "elapsed_sec": 0.065,
+      "notes": "Truncated line (<8 cols): vcfio drops the record silently. DOCUMENTED DATA LOSS.",
+      "stdout_head": "wrote bundle: /var/folders/yd/vfxfbt556793017wjysx2wrr0000gp/T/dotbio_fuzz_vcf06_34sqx6tq/out.bio\n  facts:   0\n  claims:  0\n  views:   4  (pgx, germline-clinical, carrier, somatic)\n  ref HEAD = 2026-05-09T02:20:46.178Z\n"
+    },
+    {
+      "case_id": "vcf07",
+      "module": "vcf",
+      "title": "non-ASCII sample name",
+      "rationale": "Unicode in the sample column should round-trip cleanly.",
+      "expected_behavior": "successful_handling",
+      "expected_exit_codes": [
+        0
+      ],
+      "actual_exit": 0,
+      "status": "PASS",
+      "elapsed_sec": 0.066,
+      "notes": "Non-ASCII sample name: header parses; record processed normally.",
+      "stdout_head": "wrote bundle: /var/folders/yd/vfxfbt556793017wjysx2wrr0000gp/T/dotbio_fuzz_vcf07_ydm4341w/out.bio\n  facts:   1\n  claims:  1\n  views:   4  (pgx, germline-clinical, carrier, somatic)\n  ref HEAD = 2026-05-09T02:20:46.244Z\n"
+    },
+    {
+      "case_id": "vcf08",
+      "module": "vcf",
+      "title": "5 kb ALT allele",
+      "rationale": "Pathological large ALT allele must not OOM or crash.",
+      "expected_behavior": "successful_handling",
+      "expected_exit_codes": [
+        0
+      ],
+      "actual_exit": 0,
+      "status": "PASS",
+      "elapsed_sec": 0.065,
+      "notes": "5 kb ALT allele: stored verbatim; lookup misses (genotype string is large but rulesets don't match) — robust to size.",
+      "stdout_head": "wrote bundle: /var/folders/yd/vfxfbt556793017wjysx2wrr0000gp/T/dotbio_fuzz_vcf08_j83yyt6u/out.bio\n  facts:   1\n  claims:  0\n  views:   4  (pgx, germline-clinical, carrier, somatic)\n  ref HEAD = 2026-05-09T02:20:46.309Z\n"
+    },
+    {
+      "case_id": "vcf09",
+      "module": "vcf",
+      "title": "negative POS",
+      "rationale": "Out-of-range POS today is accepted; flagged for v1 strict mode.",
+      "expected_behavior": "documented_data_loss",
+      "expected_exit_codes": [
+        0
+      ],
+      "actual_exit": 0,
+      "status": "PASS",
+      "elapsed_sec": 0.067,
+      "notes": "Negative POS is illegal per VCF spec; dotbio v0 does not validate range — record is accepted. Acceptable today; future v1 should reject.",
+      "stdout_head": "wrote bundle: /var/folders/yd/vfxfbt556793017wjysx2wrr0000gp/T/dotbio_fuzz_vcf09_6xsdj92c/out.bio\n  facts:   1\n  claims:  1\n  views:   4  (pgx, germline-clinical, carrier, somatic)\n  ref HEAD = 2026-05-09T02:20:46.376Z\n"
+    },
+    {
+      "case_id": "vcf10",
+      "module": "vcf",
+      "title": "duplicate records (CAS dedup)",
+      "rationale": "Two identical VCF lines must produce exactly one fact.",
+      "expected_behavior": "successful_handling",
+      "expected_exit_codes": [
+        0
+      ],
+      "actual_exit": 0,
+      "status": "PASS",
+      "elapsed_sec": 0.065,
+      "notes": "Duplicate VCF lines hash to the same fact (CAS deduplication). Bundle contains exactly one fact for both lines.",
+      "stdout_head": "wrote bundle: /var/folders/yd/vfxfbt556793017wjysx2wrr0000gp/T/dotbio_fuzz_vcf10_trhz63o5/out.bio\n  facts:   2\n  claims:  2\n  views:   4  (pgx, germline-clinical, carrier, somatic)\n  ref HEAD = 2026-05-09T02:20:46.441Z\n"
+    },
+    {
+      "case_id": "vcf11",
+      "module": "vcf",
+      "title": "nonexistent input file path",
+      "rationale": "Missing input file: graceful failure with non-zero exit.",
+      "expected_behavior": "graceful_failure",
+      "expected_exit_codes": [
+        1,
+        2
+      ],
+      "actual_exit": 1,
+      "status": "PASS",
+      "elapsed_sec": 0.06,
+      "notes": "Nonexistent input: argparse-level path is fine; FileNotFoundError propagates with non-zero exit. Graceful failure expected.",
+      "stderr_head": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/__main__.py\", line 4, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/cli.py\", line 497, in main\n    return args.func(args)\n           ^^^^^^^^^^^^^^^\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/cli.py\", line 110, in cmd_compile\n    facts = _vcf_to_facts(vcf, build=args.build)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"
+    },
+    {
+      "case_id": "rs01",
+      "module": "rulesets",
+      "title": "compile with unknown ruleset name",
+      "rationale": "Loader is package-resource-backed; unknown names must fail closed.",
+      "expected_behavior": "graceful_failure",
+      "expected_exit_codes": [
+        1,
+        2
+      ],
+      "actual_exit": 1,
+      "status": "PASS",
+      "elapsed_sec": 0.067,
+      "notes": "Unknown ruleset name: load_ruleset reads from package resources; missing file raises and the CLI exits non-zero.",
+      "stderr_head": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/__main__.py\", line 4, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/cli.py\", line 497, in main\n    return args.func(args)\n           ^^^^^^^^^^^^^^^\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/cli.py\", line 129, in cmd_compile\n    rs = load_ruleset(rs_id)\n         ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/baozhiwei/projects/dotbio"
+    },
+    {
+      "case_id": "rs02",
+      "module": "rulesets",
+      "title": "update with unknown ruleset version",
+      "rationale": "bio update on an unknown ruleset version must abort cleanly.",
+      "expected_behavior": "graceful_failure",
+      "expected_exit_codes": [
+        1,
+        2
+      ],
+      "actual_exit": 1,
+      "status": "PASS",
+      "elapsed_sec": 0.131,
+      "notes": "Update with unknown ruleset version: graceful failure (FileNotFoundError from the package-resources loader).",
+      "stderr_head": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/__main__.py\", line 4, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/cli.py\", line 497, in main\n    return args.func(args)\n           ^^^^^^^^^^^^^^^\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/cli.py\", line 224, in cmd_update\n    rs = load_ruleset(args.ruleset)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/baozhiwei/pr"
+    },
+    {
+      "case_id": "rs03",
+      "module": "rulesets",
+      "title": "two real ClinVar versions disagreeing",
+      "rationale": "Canonical reclassification: 2026-05-01 vs 2026-05-08 must show in diff.",
+      "expected_behavior": "successful_handling",
+      "expected_exit_codes": [
+        0
+      ],
+      "actual_exit": 0,
+      "status": "PASS",
+      "elapsed_sec": 0.245,
+      "notes": "Two real ClinVar snapshots reclassify ≥1 variant; bio diff must surface the conflict, not hide it.",
+      "stdout_head": "# Diff  2026-05-09T02:20:46.767Z → 2026-05-09T02:20:46.829Z\n\n- 0 added\n- 0 removed\n- 0 changed (same target, new interpretation)\n"
+    },
+    {
+      "case_id": "rs04",
+      "module": "rulesets",
+      "title": "corrupt ruleset filename",
+      "rationale": "Invalid JSON or missing file: load_ruleset must raise; CLI exits non-zero.",
+      "expected_behavior": "graceful_failure",
+      "expected_exit_codes": [
+        1,
+        2
+      ],
+      "actual_exit": 1,
+      "status": "PASS",
+      "elapsed_sec": 0.067,
+      "notes": "Corrupt/missing ruleset file: load_ruleset raises before any state is written. Graceful failure.",
+      "stderr_head": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/__main__.py\", line 4, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/cli.py\", line 497, in main\n    return args.func(args)\n           ^^^^^^^^^^^^^^^\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/cli.py\", line 129, in cmd_compile\n    rs = load_ruleset(rs_id)\n         ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/baozhiwei/projects/dotbio"
+    },
+    {
+      "case_id": "rs05",
+      "module": "rulesets",
+      "title": "made-up ruleset name on update",
+      "rationale": "Update dispatcher only knows clinvar/pharmcat/oncokb; unknown -> non-zero.",
+      "expected_behavior": "graceful_failure",
+      "expected_exit_codes": [
+        1,
+        2
+      ],
+      "actual_exit": 1,
+      "status": "PASS",
+      "elapsed_sec": 0.132,
+      "notes": "Unsupported ruleset name on update: graceful non-zero exit.",
+      "stderr_head": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/__main__.py\", line 4, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/cli.py\", line 497, in main\n    return args.func(args)\n           ^^^^^^^^^^^^^^^\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/cli.py\", line 224, in cmd_update\n    rs = load_ruleset(args.ruleset)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/baozhiwei/pr"
+    },
+    {
+      "case_id": "rs06",
+      "module": "rulesets",
+      "title": "double compile without --force",
+      "rationale": "Idempotence guard: must refuse to clobber an existing bundle.",
+      "expected_behavior": "graceful_failure",
+      "expected_exit_codes": [
+        2
+      ],
+      "actual_exit": 2,
+      "status": "PASS",
+      "elapsed_sec": 0.191,
+      "notes": "Double-compile guard: second invocation refuses overwrite with rc=2; --force overrides cleanly.",
+      "stdout_head": "\n----\nwrote bundle: /var/folders/yd/vfxfbt556793017wjysx2wrr0000gp/T/dotbio_fuzz_rs06_cefwjx6f/out.bio\n  facts:   8\n  claims:  4\n  views:   4  (pgx, germline-clinical, carrier, somatic)\n  ref HEAD = 2026-05-09T02:20:47.331Z\n",
+      "stderr_head": "refusing to overwrite existing bundle at /var/folders/yd/vfxfbt556793017wjysx2wrr0000gp/T/dotbio_fuzz_rs06_cefwjx6f/out.bio (use --force)\n\n----\n"
+    },
+    {
+      "case_id": "rs07",
+      "module": "rulesets",
+      "title": "log on a bundle missing refs/HEAD",
+      "rationale": "Bundle integrity: missing HEAD ref should be a hard error.",
+      "expected_behavior": "graceful_failure",
+      "expected_exit_codes": [
+        1,
+        2
+      ],
+      "actual_exit": 1,
+      "status": "PASS",
+      "elapsed_sec": 0.125,
+      "notes": "Missing refs/HEAD: bio log fails non-zero rather than silently reporting empty history.",
+      "stderr_head": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/__main__.py\", line 4, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/cli.py\", line 497, in main\n    return args.func(args)\n           ^^^^^^^^^^^^^^^\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/cli.py\", line 403, in cmd_log\n    head = bundle.read_ref(\"HEAD\")\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/baozhiwei/project"
+    },
+    {
+      "case_id": "sc01",
+      "module": "schema",
+      "title": "manifest stamped with future schema_version",
+      "rationale": "v0 reader is permissive today; this baselines forward-compat behavior.",
+      "expected_behavior": "documented_data_loss",
+      "expected_exit_codes": [
+        0
+      ],
+      "actual_exit": 0,
+      "status": "PASS",
+      "elapsed_sec": 0.126,
+      "notes": "v0 reader is permissive: it passes the schema_version field through to the JSON dump. A v1 reader will be expected to ENFORCE that schema_version<=its own; v0 cannot. Documented data loss risk for forward-incompat fields.",
+      "stdout_head": "{\n  \"active_rulesets\": [\n    {\n      \"license\": \"public domain (NCBI)\",\n      \"name\": \"clinvar\",\n      \"source\": \"ClinVar (illustrative subset; not for clinical use)\",\n      \"source_url\": \"https://www.ncbi.nlm.nih.gov/clinvar/\",\n      \"type\": \"germline_clinical\",\n      \"version\": \"2026-05-01\"\n    },\n    {\n      \"license\": \"Mozilla Public License 2.0 (PharmCAT)\",\n      \"name\": \"pharmcat\",\n      \"so"
+    },
+    {
+      "case_id": "sc02",
+      "module": "schema",
+      "title": "unknown manifest top-level field",
+      "rationale": "Forward-compat: unknown fields must round-trip without loss.",
+      "expected_behavior": "successful_handling",
+      "expected_exit_codes": [
+        0
+      ],
+      "actual_exit": 0,
+      "status": "PASS",
+      "elapsed_sec": 0.135,
+      "notes": "Unknown manifest fields round-trip unchanged (preservation of forward-compat data).",
+      "stdout_head": "{\n  \"active_rulesets\": [\n    {\n      \"license\": \"public domain (NCBI)\",\n      \"name\": \"clinvar\",\n      \"source\": \"ClinVar (illustrative subset; not for clinical use)\",\n      \"source_url\": \"https://www.ncbi.nlm.nih.gov/clinvar/\",\n      \"type\": \"germline_clinical\",\n      \"version\": \"2026-05-01\"\n    },\n    {\n      \"license\": \"Mozilla Public License 2.0 (PharmCAT)\",\n      \"name\": \"pharmcat\",\n      \"so"
+    },
+    {
+      "case_id": "sc03",
+      "module": "schema",
+      "title": "missing active_rulesets in manifest",
+      "rationale": "Update path must tolerate optional fields being absent.",
+      "expected_behavior": "successful_handling",
+      "expected_exit_codes": [
+        0
+      ],
+      "actual_exit": 0,
+      "status": "PASS",
+      "elapsed_sec": 0.14,
+      "notes": "Missing active_rulesets: update path uses .get(default=[]) and recovers; no crash.",
+      "stdout_head": "appended commit 2026-05-09T02:20:47.857Z\n  parent: 2026-05-09T02:20:47.789Z\n  ruleset applied: clinvar@2026-05-08\n  claims: 3 carried + 1 new = 4 total\n"
+    },
+    {
+      "case_id": "sc04",
+      "module": "schema",
+      "title": "show with invalid --view name",
+      "rationale": "User-error path: must list valid choices and exit non-zero.",
+      "expected_behavior": "graceful_failure",
+      "expected_exit_codes": [
+        1,
+        2
+      ],
+      "actual_exit": 2,
+      "status": "PASS",
+      "elapsed_sec": 0.138,
+      "notes": "Unknown view name returns non-zero AND lists the available views.",
+      "stderr_head": "unknown view: no-such-view\navailable: manifest, pgx, germline-clinical, carrier, somatic\n"
+    },
+    {
+      "case_id": "sc05",
+      "module": "schema",
+      "title": "show on bundle missing manifest.json",
+      "rationale": "Bundle integrity: missing manifest is a hard error.",
+      "expected_behavior": "graceful_failure",
+      "expected_exit_codes": [
+        1,
+        2
+      ],
+      "actual_exit": 1,
+      "status": "PASS",
+      "elapsed_sec": 0.135,
+      "notes": "Missing manifest.json: hard error rather than fabricated empty manifest.",
+      "stderr_head": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/__main__.py\", line 4, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/cli.py\", line 497, in main\n    return args.func(args)\n           ^^^^^^^^^^^^^^^\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/cli.py\", line 191, in cmd_show\n    m = bundle.read_manifest()\n        ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/baozhiwei/projects/dotbi"
+    },
+    {
+      "case_id": "sc06",
+      "module": "schema",
+      "title": "expand on unknown claim id",
+      "rationale": "expand returns non-zero with explanatory message.",
+      "expected_behavior": "graceful_failure",
+      "expected_exit_codes": [
+        1,
+        2
+      ],
+      "actual_exit": 2,
+      "status": "PASS",
+      "elapsed_sec": 0.132,
+      "notes": "Unknown claim id at expand: non-zero exit with explanatory message.",
+      "stderr_head": "claim_id not found at ref HEAD: claim:does-not-exist\n"
+    },
+    {
+      "case_id": "sc07",
+      "module": "schema",
+      "title": "diff with non-existent ref",
+      "rationale": "Invalid ref name on diff: graceful failure expected.",
+      "expected_behavior": "graceful_failure",
+      "expected_exit_codes": [
+        1,
+        2
+      ],
+      "actual_exit": 1,
+      "status": "PASS",
+      "elapsed_sec": 0.13,
+      "notes": "Invalid ref name in diff: must error rather than diffing against null.",
+      "stderr_head": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/__main__.py\", line 4, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/cli.py\", line 497, in main\n    return args.func(args)\n           ^^^^^^^^^^^^^^^\n  File \"/Users/baozhiwei/projects/dotbio/src/dotbio/cli.py\", line 288, in cmd_diff\n    b = bundle.read_commit(bundle._resolve(args.ref_b))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+    },
+    {
+      "case_id": "hs01",
+      "module": "hashes",
+      "title": "full SHA-256 collision is computationally infeasible",
+      "rationale": "Quantify the birthday-bound work and confirm > age of universe.",
+      "expected_behavior": "infeasibility_proof",
+      "expected_exit_codes": [
+        0
+      ],
+      "actual_exit": 0,
+      "status": "PASS",
+      "elapsed_sec": 0.0,
+      "notes": "Birthday-bound work for SHA-256 collision: 2^128 ≈ 3.40e+38 hashes. At 1e+10 H/s that is 1.08e+21 years, ≈ 7.8e+10× the age of the universe. INFEASIBLE.\n\nReference: As of 2026-05-09, no SHA-256 collision is publicly known. The best published collision attacks against SHA-256 are reduced-round, e.g. Mendel-Nad-Schl 2013 on 28/64 rounds. Full-round collision search requires ≈ 2^128 hash evaluations by the birthday bound. At 10^10 H/s (GPU-class), that is ≈ 10^21 years — > 10^11× the age of the universe. We rely on this for content-addressing the facts/ CAS layer."
+    },
+    {
+      "case_id": "hs02",
+      "module": "hashes",
+      "title": "no public full-SHA-256 collision known (as of 2026-05-09)",
+      "rationale": "Document the reference; do not attempt an attack.",
+      "expected_behavior": "infeasibility_proof",
+      "expected_exit_codes": [
+        0
+      ],
+      "actual_exit": 0,
+      "status": "PASS",
+      "elapsed_sec": 0.0,
+      "notes": "As of 2026-05-09, no SHA-256 collision is publicly known. The best published collision attacks against SHA-256 are reduced-round, e.g. Mendel-Nad-Schl 2013 on 28/64 rounds. Full-round collision search requires ≈ 2^128 hash evaluations by the birthday bound. At 10^10 H/s (GPU-class), that is ≈ 10^21 years — > 10^11× the age of the universe. We rely on this for content-addressing the facts/ CAS layer."
+    },
+    {
+      "case_id": "hs03",
+      "module": "hashes",
+      "title": "16-bit truncation collides quickly (birthday demo)",
+      "rationale": "Illustration of why we MUST NOT truncate the content-address.",
+      "expected_behavior": "successful_handling",
+      "expected_exit_codes": [
+        0
+      ],
+      "actual_exit": 0,
+      "status": "PASS",
+      "elapsed_sec": 0.002,
+      "notes": "Found a 16-bit-truncation collision in 683 trials.\n  input A = 437292964ee48631f51b86deb43e68831d9710af77c4812c03569dceba813f07\n  input B = f9b4760eb321f1d4a23cc0e7a27613c1f77c251485244ccb99171c5d24b2dd95\n  SHA-256(A) = e8c66d251333c64307c192a0a5481b231289c4c1501505acc143a19038878acc\n  SHA-256(B) = e8c6f5ea8448b7047a23d1d86ea736f1ff0d21d57386275880a484858acd211d\n  truncated-16 = 0xe8c6 = 0xe8c6\n\nConclusion: do NOT truncate the SHA-256 fact hash for storage or lookup. dotbio v0 stores the full digest in facts/<2>/<rest>.json (2-char prefix + 62-char rest = 64 hex = full 256 bits)."
+    },
+    {
+      "case_id": "hs04",
+      "module": "hashes",
+      "title": "dotbio bundles store the full 256-bit digest",
+      "rationale": "Sanity check on the example bundle's CAS layer.",
+      "expected_behavior": "successful_handling",
+      "expected_exit_codes": [
+        0
+      ],
+      "actual_exit": 0,
+      "status": "PASS",
+      "elapsed_sec": 0.001,
+      "notes": "Sample fact digest: '613975295d5a28be1697cbbccb3d479cf3f04de3f1cb9452fd1bdcc3ea303c29' (256 bits, 64 hex chars). Full 256-bit storage = OK."
+    }
+  ]
+}

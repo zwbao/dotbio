@@ -1,0 +1,17 @@
+id: q42
+domain: dose_adjustment
+question: "A 70-year-old man, weight 80 kg, has a CrCl of 22 mL/min by Cockcroft-Gault. He has just had a DVT and needs therapeutic LMWH. What enoxaparin dose is recommended per the FDA label?"
+required_inputs:
+  - drug: enoxaparin
+  - weight: 80 kg
+  - CrCl: 22 mL/min
+  - clinical_context: "acute DVT treatment, severe renal impairment"
+gold_answer:
+  verdict: "enoxaparin 1 mg/kg subcutaneously ONCE daily (i.e., 80 mg SC daily — not the standard 1 mg/kg twice daily); consider anti-Xa monitoring; alternative is unfractionated heparin"
+  cited_guideline: "Lovenox (enoxaparin) FDA prescribing information (2021)"
+  rationale: "Enoxaparin clearance is reduced by ~44% at CrCl <30 mL/min and accumulates with repeat dosing, increasing bleeding risk ~4-fold without adjustment. The FDA label specifies 1 mg/kg once daily for therapeutic dosing in CrCl <30 mL/min (and 30 mg SC daily for prophylactic dosing)."
+scoring_rubric:
+  verdict_correct: 'recommends enoxaparin 1 mg/kg ONCE daily AND identifies CrCl <30 mL/min as the trigger'
+  guideline_cited_with_version: 'includes "Lovenox FDA label" or "enoxaparin label"'
+  variant_evidence_cited: 'mentions CrCl <30 mL/min threshold'
+primary_reference_url: https://www.accessdata.fda.gov/drugsatfda_docs/label/2021/020164s129lbl.pdf

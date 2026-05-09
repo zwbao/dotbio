@@ -1,0 +1,17 @@
+id: q22
+domain: carrier_screening
+question: "A 32-year-old woman has SMN1 carrier testing showing 1 copy of SMN1 (and 2 copies of SMN2). Her partner's SMN1 testing shows 1 copy of SMN1. What is the per-pregnancy risk of an affected child with spinal muscular atrophy, assuming standard biallelic SMN1 deletion is the cause, and what counseling/options should be offered?"
+required_inputs:
+  - gene: SMN1
+  - mother_copy_number: 1
+  - father_copy_number: 1
+  - clinical_context: "preconception couple, both confirmed SMN1 carriers"
+gold_answer:
+  verdict: "1-in-4 (25%) per-pregnancy risk of an affected child; offer genetic counseling, PGT-M, prenatal diagnostic testing (CVS or amniocentesis with SMN1 copy-number analysis), and discussion of newborn-screening implications"
+  cited_guideline: "ACMG 2008 SMA carrier-screening recommendation; ACMG 2021 carrier-screening tiered guidance (Gregg et al., Genet Med 2021;23:1793, PMID 34285390); ACOG Committee Opinion 691"
+  rationale: "Both parents have a single SMN1 copy and are carriers of the canonical biallelic SMN1 deletion. By Mendelian inheritance, each pregnancy has a 25% risk of homozygous SMN1 deletion (affected SMA). SMN2 copy number modifies severity but does not alter affected probability."
+scoring_rubric:
+  verdict_correct: 'states "1-in-4" or "25%" recurrence risk AND mentions counseling / reproductive options'
+  guideline_cited_with_version: 'includes "ACMG" AND ("2021" OR "2008") OR "ACOG"'
+  variant_evidence_cited: 'mentions SMN1 deletion or 1 SMN1 copy in both parents'
+primary_reference_url: https://www.gimjournal.org/article/S1098-3600(21)03558-9/fulltext

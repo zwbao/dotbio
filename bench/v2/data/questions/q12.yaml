@@ -1,0 +1,16 @@
+id: q12
+domain: oncology_somatic
+question: "A 47-year-old patient has unresectable metastatic cutaneous melanoma. Tumor sequencing identifies BRAF p.V600E. The patient is treatment-naive. What targeted-therapy combination is FDA-approved and NCCN-preferred for first-line use in this setting?"
+required_inputs:
+  - gene: BRAF
+  - variant: "p.V600E (somatic)"
+  - clinical_context: "treatment-naive unresectable/metastatic cutaneous melanoma"
+gold_answer:
+  verdict: "BRAF + MEK inhibitor combination — preferred regimens are dabrafenib + trametinib, encorafenib + binimetinib, or vemurafenib + cobimetinib (immune-checkpoint inhibitors are also a competing first-line option)"
+  cited_guideline: "FDA label (dabrafenib/trametinib, encorafenib/binimetinib, vemurafenib/cobimetinib); NCCN Melanoma: Cutaneous Guidelines (current version)"
+  rationale: "BRAF V600E confers sensitivity to BRAF inhibition. COMBI-v / COMBI-d demonstrated dabrafenib+trametinib superior to vemurafenib monotherapy; FDA approved the combination for unresectable/metastatic BRAF V600E/K melanoma. Single-agent BRAF inhibition is no longer preferred because of resistance and inferior OS vs combination."
+scoring_rubric:
+  verdict_correct: 'names a BRAF + MEK inhibitor combination (e.g., dabrafenib/trametinib, encorafenib/binimetinib, or vemurafenib/cobimetinib)'
+  guideline_cited_with_version: 'includes "NCCN Melanoma" or FDA label'
+  variant_evidence_cited: 'mentions BRAF V600E'
+primary_reference_url: https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-dabrafenib-plus-trametinib-adjuvant-treatment-melanoma-braf-v600e-or-v600k-mutations

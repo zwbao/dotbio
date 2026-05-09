@@ -1,0 +1,16 @@
+id: q24
+domain: carrier_screening
+question: "A 31-year-old woman with a family history of intellectual disability in a maternal uncle is referred for carrier screening. FMR1 CGG repeat sizing returns 87 repeats (premutation) in the longer allele. What is her offspring risk and what counseling is indicated?"
+required_inputs:
+  - gene: FMR1
+  - allele_size: "87 CGG repeats (premutation)"
+  - clinical_context: "preconception female, family history of intellectual disability"
+gold_answer:
+  verdict: "she is an FMR1 premutation carrier (55-200 repeats); each pregnancy has a 50% risk of inheriting the expanded allele, and the premutation has a high probability of expansion to a full mutation (>200 repeats) on maternal transmission at her repeat size; offer genetic counseling, prenatal diagnostic testing options (CVS/amniocentesis with FMR1 sizing/methylation), and counsel about FXTAS and FXPOI risks for the woman herself"
+  cited_guideline: "ACMG Standards and Guidelines for Fragile X Testing 2013 (Monaghan et al., Genet Med 2013;15:575); ACOG Committee Opinion 691"
+  rationale: "55-200 CGG repeats define the FMR1 premutation. At ~90+ repeats, the expansion-to-full-mutation rate on maternal transmission approaches ~100%. Female premutation carriers also face FMR1-associated tremor/ataxia syndrome (FXTAS) and primary ovarian insufficiency (FXPOI) risks; counseling and prenatal testing options should be offered."
+scoring_rubric:
+  verdict_correct: 'identifies premutation status AND 50% transmission risk AND high expansion risk to full mutation'
+  guideline_cited_with_version: 'includes "ACMG" fragile-X standards OR "ACOG" with year'
+  variant_evidence_cited: 'mentions FMR1 premutation or 55-200 CGG repeats'
+primary_reference_url: https://www.acmg.net/docs/ACMG_SG_For_Fragile_X_Testing_7.24.13.PDF

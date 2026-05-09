@@ -37,4 +37,4 @@ bio = "dotbio.cli:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-dotbio = ["rulesets/*.json"]
+dotbio = ["rulesets/*.json", "extensions/methylation/rulesets/*.json"]

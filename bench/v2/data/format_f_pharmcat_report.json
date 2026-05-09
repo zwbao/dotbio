@@ -1,0 +1,572 @@
+{
+  "title": "dotbio.NA12878.pharmcat-emitted",
+  "timestamp": "2026-05-08T16:20:08.605Z",
+  "pharmcatVersion": "emitted-from-dotbio (ruleset pharmcat@2025.3)",
+  "dataVersion": "2025.3",
+  "genes": {
+    "APOE": {
+      "alleleDefinitionVersion": "2025.3",
+      "alleleDefinitionSource": "dotbio (re-emitted from .bio bundle)",
+      "phenotypeVersion": "2025.3",
+      "geneSymbol": "APOE",
+      "chr": "chr19",
+      "phased": false,
+      "effectivelyPhased": false,
+      "callSource": "DOTBIO",
+      "uncalledHaplotypes": [],
+      "messages": [],
+      "relatedDrugs": [],
+      "sourceDiplotypes": [],
+      "matcherComponentHaplotypes": [],
+      "matcherHomozygousComponentHaplotypes": [],
+      "recommendationDiplotypes": [],
+      "variants": [
+        {
+          "gene": "APOE",
+          "chromosome": "chr19",
+          "position": 44908684,
+          "dbSnpId": "rs429358",
+          "call": "T/T",
+          "alleles": [],
+          "phased": false,
+          "phaseSet": null,
+          "referenceAllele": "T",
+          "hasUndocumentedVariations": false,
+          "warnings": [],
+          "_bio_fact_sha256": "bb9fdececa37a092695a7e10dd92db7e529b4840e0e678509c054851c2b9e7fe"
+        }
+      ],
+      "variantsOfInterest": [],
+      "hasUndocumentedVariations": false,
+      "treatUndocumentedVariationsAsReference": false,
+      "_pharmcat_missing": [
+        "matchScore (we don't carry the named-allele matcher score)",
+        "alleleDefinitionSource (we are not the official PharmGKB source)"
+      ]
+    },
+    "CFTR": {
+      "alleleDefinitionVersion": "2025.3",
+      "alleleDefinitionSource": "dotbio (re-emitted from .bio bundle)",
+      "phenotypeVersion": "2025.3",
+      "geneSymbol": "CFTR",
+      "chr": "chr7",
+      "phased": false,
+      "effectivelyPhased": false,
+      "callSource": "DOTBIO",
+      "uncalledHaplotypes": [],
+      "messages": [],
+      "relatedDrugs": [],
+      "sourceDiplotypes": [],
+      "matcherComponentHaplotypes": [],
+      "matcherHomozygousComponentHaplotypes": [],
+      "recommendationDiplotypes": [],
+      "variants": [
+        {
+          "gene": "CFTR",
+          "chromosome": "chr7",
+          "position": 117559590,
+          "dbSnpId": "rs113993960",
+          "call": "ATCT/ATCT",
+          "alleles": [],
+          "phased": false,
+          "phaseSet": null,
+          "referenceAllele": "ATCT",
+          "hasUndocumentedVariations": false,
+          "warnings": [],
+          "_bio_fact_sha256": "613975295d5a28be1697cbbccb3d479cf3f04de3f1cb9452fd1bdcc3ea303c29"
+        }
+      ],
+      "variantsOfInterest": [],
+      "hasUndocumentedVariations": false,
+      "treatUndocumentedVariationsAsReference": false,
+      "_pharmcat_missing": [
+        "matchScore (we don't carry the named-allele matcher score)",
+        "alleleDefinitionSource (we are not the official PharmGKB source)"
+      ]
+    },
+    "CYP2C19": {
+      "alleleDefinitionVersion": "2025.3",
+      "alleleDefinitionSource": "dotbio (re-emitted from .bio bundle)",
+      "phenotypeVersion": "2025.3",
+      "geneSymbol": "CYP2C19",
+      "chr": "chr10",
+      "phased": false,
+      "effectivelyPhased": false,
+      "callSource": "DOTBIO",
+      "uncalledHaplotypes": [],
+      "messages": [],
+      "relatedDrugs": [
+        {
+          "name": "clopidogrel",
+          "id": null,
+          "_pharmcat_missing": [
+            "id"
+          ]
+        }
+      ],
+      "sourceDiplotypes": [
+        {
+          "allele1": {
+            "gene": "CYP2C19",
+            "name": "*1",
+            "function": null,
+            "reference": true,
+            "activityValue": "n/a"
+          },
+          "allele2": {
+            "gene": "CYP2C19",
+            "name": "*2",
+            "function": null,
+            "reference": false,
+            "activityValue": "n/a"
+          },
+          "gene": "CYP2C19",
+          "matchScore": null,
+          "phenotypes": [
+            "Intermediate Metabolizer"
+          ],
+          "outsidePhenotype": false,
+          "outsidePhenotypeMismatch": null,
+          "activityScore": null,
+          "outsideActivityScore": false,
+          "outsideActivityScoreMismatch": null,
+          "variant": null,
+          "lookupKey": [
+            "Intermediate Metabolizer"
+          ],
+          "label": "*1/*2",
+          "inferred": false,
+          "inferredSourceDiplotypes": null,
+          "combination": false,
+          "diplotypeKey": {
+            "*1": 1.0,
+            "*2": 1.0
+          }
+        }
+      ],
+      "matcherComponentHaplotypes": [],
+      "matcherHomozygousComponentHaplotypes": [],
+      "recommendationDiplotypes": [
+        {
+          "allele1": {
+            "gene": "CYP2C19",
+            "name": "*1",
+            "function": null,
+            "reference": true,
+            "activityValue": "n/a"
+          },
+          "allele2": {
+            "gene": "CYP2C19",
+            "name": "*2",
+            "function": null,
+            "reference": false,
+            "activityValue": "n/a"
+          },
+          "gene": "CYP2C19",
+          "matchScore": null,
+          "phenotypes": [
+            "Intermediate Metabolizer"
+          ],
+          "outsidePhenotype": false,
+          "outsidePhenotypeMismatch": null,
+          "activityScore": null,
+          "outsideActivityScore": false,
+          "outsideActivityScoreMismatch": null,
+          "variant": null,
+          "lookupKey": [
+            "Intermediate Metabolizer"
+          ],
+          "label": "*1/*2",
+          "inferred": false,
+          "inferredSourceDiplotypes": null,
+          "combination": false,
+          "diplotypeKey": {
+            "*1": 1.0,
+            "*2": 1.0
+          }
+        }
+      ],
+      "variants": [
+        {
+          "gene": "CYP2C19",
+          "chromosome": "chr10",
+          "position": 94761900,
+          "dbSnpId": "rs12248560",
+          "call": "C/C",
+          "alleles": [],
+          "phased": false,
+          "phaseSet": null,
+          "referenceAllele": "C",
+          "hasUndocumentedVariations": false,
+          "warnings": [],
+          "_bio_fact_sha256": "3070e478c5aaf25932f8d4bd9253a60dc08cd0f8a1e6c08ed92f8f135c0186cf"
+        },
+        {
+          "gene": "CYP2C19",
+          "chromosome": "chr10",
+          "position": 94781859,
+          "dbSnpId": "rs4244285",
+          "call": "A/G",
+          "alleles": [],
+          "phased": false,
+          "phaseSet": null,
+          "referenceAllele": "G",
+          "hasUndocumentedVariations": false,
+          "warnings": [],
+          "_bio_fact_sha256": "d0de615c55d9bfc6d176c1c9fca7f184ad566aa53293403f7839645e82f16ded"
+        }
+      ],
+      "variantsOfInterest": [],
+      "hasUndocumentedVariations": false,
+      "treatUndocumentedVariationsAsReference": false,
+      "_pharmcat_missing": [
+        "matchScore (we don't carry the named-allele matcher score)",
+        "alleleDefinitionSource (we are not the official PharmGKB source)"
+      ]
+    },
+    "DPYD": {
+      "alleleDefinitionVersion": "2025.3",
+      "alleleDefinitionSource": "dotbio (re-emitted from .bio bundle)",
+      "phenotypeVersion": "2025.3",
+      "geneSymbol": "DPYD",
+      "chr": "chr1",
+      "phased": false,
+      "effectivelyPhased": false,
+      "callSource": "DOTBIO",
+      "uncalledHaplotypes": [],
+      "messages": [],
+      "relatedDrugs": [],
+      "sourceDiplotypes": [],
+      "matcherComponentHaplotypes": [],
+      "matcherHomozygousComponentHaplotypes": [],
+      "recommendationDiplotypes": [],
+      "variants": [
+        {
+          "gene": "DPYD",
+          "chromosome": "chr1",
+          "position": 97450058,
+          "dbSnpId": "rs3918290",
+          "call": "C/C",
+          "alleles": [],
+          "phased": false,
+          "phaseSet": null,
+          "referenceAllele": "C",
+          "hasUndocumentedVariations": false,
+          "warnings": [],
+          "_bio_fact_sha256": "cbb5628674d7aa735c56bf2bf6c7d866fd7c14cc5c4452f7aeab7d768ca964b3"
+        }
+      ],
+      "variantsOfInterest": [],
+      "hasUndocumentedVariations": false,
+      "treatUndocumentedVariationsAsReference": false,
+      "_pharmcat_missing": [
+        "matchScore (we don't carry the named-allele matcher score)",
+        "alleleDefinitionSource (we are not the official PharmGKB source)"
+      ]
+    },
+    "F5": {
+      "alleleDefinitionVersion": "2025.3",
+      "alleleDefinitionSource": "dotbio (re-emitted from .bio bundle)",
+      "phenotypeVersion": "2025.3",
+      "geneSymbol": "F5",
+      "chr": "chr1",
+      "phased": false,
+      "effectivelyPhased": false,
+      "callSource": "DOTBIO",
+      "uncalledHaplotypes": [],
+      "messages": [],
+      "relatedDrugs": [],
+      "sourceDiplotypes": [],
+      "matcherComponentHaplotypes": [],
+      "matcherHomozygousComponentHaplotypes": [],
+      "recommendationDiplotypes": [],
+      "variants": [
+        {
+          "gene": "F5",
+          "chromosome": "chr1",
+          "position": 169549811,
+          "dbSnpId": "rs6025",
+          "call": "C/C",
+          "alleles": [],
+          "phased": false,
+          "phaseSet": null,
+          "referenceAllele": "C",
+          "hasUndocumentedVariations": false,
+          "warnings": [],
+          "_bio_fact_sha256": "5661d5da426afd89fcb2d4846b4a55a629a9860c5f05db347dec102828c81f09"
+        }
+      ],
+      "variantsOfInterest": [],
+      "hasUndocumentedVariations": false,
+      "treatUndocumentedVariationsAsReference": false,
+      "_pharmcat_missing": [
+        "matchScore (we don't carry the named-allele matcher score)",
+        "alleleDefinitionSource (we are not the official PharmGKB source)"
+      ]
+    },
+    "HFE": {
+      "alleleDefinitionVersion": "2025.3",
+      "alleleDefinitionSource": "dotbio (re-emitted from .bio bundle)",
+      "phenotypeVersion": "2025.3",
+      "geneSymbol": "HFE",
+      "chr": "chr6",
+      "phased": false,
+      "effectivelyPhased": false,
+      "callSource": "DOTBIO",
+      "uncalledHaplotypes": [],
+      "messages": [],
+      "relatedDrugs": [],
+      "sourceDiplotypes": [],
+      "matcherComponentHaplotypes": [],
+      "matcherHomozygousComponentHaplotypes": [],
+      "recommendationDiplotypes": [],
+      "variants": [
+        {
+          "gene": "HFE",
+          "chromosome": "chr6",
+          "position": 26092913,
+          "dbSnpId": "rs1800562",
+          "call": "G/G",
+          "alleles": [],
+          "phased": false,
+          "phaseSet": null,
+          "referenceAllele": "G",
+          "hasUndocumentedVariations": false,
+          "warnings": [],
+          "_bio_fact_sha256": "629510fc5b35df0ff7223afdd20d6ab4877278cff866f069004fc50344186003"
+        }
+      ],
+      "variantsOfInterest": [],
+      "hasUndocumentedVariations": false,
+      "treatUndocumentedVariationsAsReference": false,
+      "_pharmcat_missing": [
+        "matchScore (we don't carry the named-allele matcher score)",
+        "alleleDefinitionSource (we are not the official PharmGKB source)"
+      ]
+    },
+    "MTHFR": {
+      "alleleDefinitionVersion": "2025.3",
+      "alleleDefinitionSource": "dotbio (re-emitted from .bio bundle)",
+      "phenotypeVersion": "2025.3",
+      "geneSymbol": "MTHFR",
+      "chr": "chr1",
+      "phased": false,
+      "effectivelyPhased": false,
+      "callSource": "DOTBIO",
+      "uncalledHaplotypes": [],
+      "messages": [],
+      "relatedDrugs": [],
+      "sourceDiplotypes": [],
+      "matcherComponentHaplotypes": [],
+      "matcherHomozygousComponentHaplotypes": [],
+      "recommendationDiplotypes": [],
+      "variants": [
+        {
+          "gene": "MTHFR",
+          "chromosome": "chr1",
+          "position": 11796321,
+          "dbSnpId": "rs1801133",
+          "call": "A/G",
+          "alleles": [],
+          "phased": false,
+          "phaseSet": null,
+          "referenceAllele": "G",
+          "hasUndocumentedVariations": false,
+          "warnings": [],
+          "_bio_fact_sha256": "5409b16499edeeae1ddf0db832c4cfe5f517ffc0f743e1a3f13e176b753caf64"
+        }
+      ],
+      "variantsOfInterest": [],
+      "hasUndocumentedVariations": false,
+      "treatUndocumentedVariationsAsReference": false,
+      "_pharmcat_missing": [
+        "matchScore (we don't carry the named-allele matcher score)",
+        "alleleDefinitionSource (we are not the official PharmGKB source)"
+      ]
+    }
+  },
+  "drugs": {
+    "CPIC Guideline Annotation": {
+      "clopidogrel": {
+        "name": "clopidogrel",
+        "id": null,
+        "source": "CPIC_GUIDELINE",
+        "version": "2025.3",
+        "messages": [],
+        "variants": [],
+        "urls": [],
+        "citations": [],
+        "guidelines": [
+          {
+            "id": null,
+            "name": "Annotation of CPIC Guideline for clopidogrel and CYP2C19",
+            "source": "CPIC_GUIDELINE",
+            "version": "2022",
+            "url": null,
+            "annotations": [
+              {
+                "implications": [
+                  "CYP2C19: Intermediate Metabolizer"
+                ],
+                "drugRecommendation": "clopidogrel: Consider alternative if ACS/PCI; standard dose otherwise",
+                "classification": "Strong",
+                "activityScore": {},
+                "population": "general",
+                "genotypes": [
+                  {
+                    "diplotypes": [
+                      {
+                        "allele1": {
+                          "gene": "CYP2C19",
+                          "name": "*1",
+                          "function": null,
+                          "reference": true,
+                          "activityValue": "n/a"
+                        },
+                        "allele2": {
+                          "gene": "CYP2C19",
+                          "name": "*2",
+                          "function": null,
+                          "reference": false,
+                          "activityValue": "n/a"
+                        },
+                        "gene": "CYP2C19",
+                        "matchScore": null,
+                        "phenotypes": [
+                          "Intermediate Metabolizer"
+                        ],
+                        "outsidePhenotype": false,
+                        "outsidePhenotypeMismatch": null,
+                        "activityScore": null,
+                        "outsideActivityScore": false,
+                        "outsideActivityScoreMismatch": null,
+                        "variant": null,
+                        "lookupKey": [
+                          "Intermediate Metabolizer"
+                        ],
+                        "label": "*1/*2",
+                        "inferred": false,
+                        "inferredSourceDiplotypes": null,
+                        "combination": false,
+                        "diplotypeKey": {
+                          "*1": 1.0,
+                          "*2": 1.0
+                        }
+                      }
+                    ],
+                    "phenotypes": [
+                      "Intermediate Metabolizer"
+                    ],
+                    "lookupKey": {
+                      "CYP2C19": "Intermediate Metabolizer"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "_dotbio_provenance": {
+          "claim_id": "claim:95a9dd8f6a48770b",
+          "ruleset": "pharmcat@2025.3",
+          "guideline_pin": "CPIC@2022",
+          "targets": [
+            "sha256:d0de615c55d9bfc6d176c1c9fca7f184ad566aa53293403f7839645e82f16ded"
+          ]
+        },
+        "_pharmcat_missing": [
+          "id (PharmGKB Accession ID, e.g. PA449762 \u2014 not in .bio)",
+          "urls (clinpgx.org guideline URL \u2014 not in .bio)",
+          "citations (PMID list \u2014 not in .bio)"
+        ]
+      }
+    }
+  },
+  "messages": [
+    {
+      "rule_name": "dotbio:variant",
+      "version": "clinvar@2026-05-01",
+      "matches": null,
+      "exception_type": "note",
+      "message": "MTHFR C677T (A/G) \u2014 drug_response: Folate metabolism reduced ~30%",
+      "_dotbio_claim_id": "claim:ba7820aab93ea35a"
+    },
+    {
+      "rule_name": "dotbio:haplotype",
+      "version": "pharmcat@2025.3",
+      "matches": null,
+      "exception_type": "note",
+      "message": "CYP2C19 diplotype: *1/*2",
+      "_dotbio_claim_id": "claim:5b70b6f4cdc6310b"
+    },
+    {
+      "rule_name": "dotbio:phenotype",
+      "version": "pharmcat@2025.3",
+      "matches": null,
+      "exception_type": "note",
+      "message": "CYP2C19 phenotype: Intermediate Metabolizer",
+      "_dotbio_claim_id": "claim:84517b7499ccd781"
+    },
+    {
+      "rule_name": "dotbio:clinical_decision",
+      "version": "pharmcat@2025.3",
+      "matches": null,
+      "exception_type": "note",
+      "message": "clopidogrel: Consider alternative if ACS/PCI; standard dose otherwise",
+      "_dotbio_claim_id": "claim:95a9dd8f6a48770b"
+    }
+  ],
+  "matcherMetadata": {
+    "namedAlleleMatcherVersion": null,
+    "genomeBuild": "GRCh38",
+    "inputFilename": "2026-05-08T16:20:08.605Z.commit.json",
+    "timestamp": "2026-05-08T16:20:08.605Z",
+    "topCandidatesOnly": true,
+    "findCombinations": false,
+    "callCyp2d": false,
+    "sampleId": "NA12878",
+    "sampleProps": null,
+    "_pharmcat_missing": [
+      "namedAlleleMatcherVersion (we did not run the PharmCAT matcher)"
+    ]
+  },
+  "unannotatedGeneCalls": [],
+  "_dotbio_provenance": {
+    "schema": "dotbio.v0",
+    "subject": "NA12878",
+    "build": "GRCh38",
+    "rulesets": [
+      "clinvar@2026-05-01",
+      "pharmcat@2025.3",
+      "oncokb@2026-04-15"
+    ],
+    "commit_id": "2026-05-08T16:20:08.605Z",
+    "active_rulesets": [
+      {
+        "license": "public domain (NCBI)",
+        "name": "clinvar",
+        "source": "ClinVar (illustrative subset; not for clinical use)",
+        "source_url": "https://www.ncbi.nlm.nih.gov/clinvar/",
+        "type": "germline_clinical",
+        "version": "2026-05-01"
+      },
+      {
+        "license": "Mozilla Public License 2.0 (PharmCAT)",
+        "name": "pharmcat",
+        "source": "PharmCAT-style allele tables (illustrative subset; not for clinical use)",
+        "source_url": "https://pharmcat.org/",
+        "type": "pharmacogenomic",
+        "version": "2025.3"
+      },
+      {
+        "license": "academic \u2014 see oncokb.org/terms",
+        "name": "oncokb",
+        "source": "OncoKB-style annotations (illustrative subset; not for clinical use)",
+        "source_url": "https://www.oncokb.org/",
+        "type": "somatic_oncology",
+        "version": "2026-04-15"
+      }
+    ],
+    "note": "This JSON was emitted by bio_to_pharmcat.py from a dotbio v0 bundle WITHOUT running the PharmCAT Java pipeline. Fields not derivable from the bundle are explicitly null with sibling _pharmcat_missing keys listing the gap."
+  }
+}

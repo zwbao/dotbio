@@ -1,0 +1,15 @@
+id: q18
+domain: oncology_somatic
+question: "A 4-year-old has metastatic infantile fibrosarcoma harboring an ETV6-NTRK3 fusion. The tumor has progressed on prior chemotherapy. Is there an FDA-approved targeted therapy, and on what tissue-agnostic basis?"
+required_inputs:
+  - gene_fusion: "ETV6-NTRK3"
+  - clinical_context: "pediatric metastatic NTRK-fusion-positive solid tumor, post-prior therapy"
+gold_answer:
+  verdict: "yes — larotrectinib (Vitrakvi) or entrectinib (Rozlytrek) — both FDA-approved tumor-agnostic for adult and pediatric NTRK-fusion-positive solid tumors with no satisfactory alternative"
+  cited_guideline: "FDA tumor-agnostic approvals: larotrectinib (26 November 2018, second tumor-agnostic approval); entrectinib (15 August 2019)"
+  rationale: "NTRK1/2/3 gene fusions create constitutively active TRK kinases. Larotrectinib pivotal data showed an ORR of 75% across multiple histologies, including infantile fibrosarcoma (where ETV6-NTRK3 is the canonical driver). Entrectinib added CNS-active coverage."
+scoring_rubric:
+  verdict_correct: 'names larotrectinib OR entrectinib (or both)'
+  guideline_cited_with_version: 'includes "FDA" with year (2018 or 2019) OR "tumor-agnostic"'
+  variant_evidence_cited: 'mentions NTRK fusion or ETV6-NTRK3'
+primary_reference_url: https://www.fda.gov/drugs/fda-approves-larotrectinib-solid-tumors-ntrk-gene-fusions-0

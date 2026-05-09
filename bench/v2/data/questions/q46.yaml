@@ -1,0 +1,17 @@
+id: q46
+domain: dose_adjustment
+question: "A 9-year-old boy weighing 30 kg with ADHD is being started on atomoxetine. CYP2D6 genotype is *4/*4 (poor metabolizer). What starting-dose strategy does CPIC recommend?"
+required_inputs:
+  - gene: CYP2D6
+  - diplotype: "*4/*4 (poor metabolizer)"
+  - drug: atomoxetine
+  - patient: "9-year-old, 30 kg"
+gold_answer:
+  verdict: "start at 0.5 mg/kg/day (~15 mg daily for 30 kg); maintain this lower dose for at least 4 weeks before titration to the usual 1.2 mg/kg/day target; titrate only if symptoms persist AND the lower dose is well tolerated; consider therapeutic drug monitoring to keep peak < 400 ng/mL"
+  cited_guideline: "CPIC@2019 atomoxetine and CYP2D6 (Brown et al., Clin Pharmacol Ther 2019;106:94-102); FDA atomoxetine label"
+  rationale: "CYP2D6 PMs have ~10-fold higher AUC and 5-fold higher peak atomoxetine levels at standard dosing. CPIC 2019 recommends initiating at 0.5 mg/kg/day in PMs (children ≤70 kg) and slow up-titration only if needed."
+scoring_rubric:
+  verdict_correct: 'recommends starting atomoxetine at 0.5 mg/kg/day in CYP2D6 PMs AND slow titration over ≥4 weeks'
+  guideline_cited_with_version: 'includes "CPIC" AND ("2019" OR "Brown") OR FDA atomoxetine label'
+  variant_evidence_cited: 'mentions CYP2D6 *4/*4 or PM phenotype'
+primary_reference_url: https://cpicpgx.org/guidelines/cpic-guideline-for-atomoxetine-based-on-cyp2d6-genotype/

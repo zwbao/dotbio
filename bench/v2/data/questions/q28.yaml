@@ -1,0 +1,17 @@
+id: q28
+domain: carrier_screening
+question: "A couple's preconception testing reveals that both are carriers of a pathogenic GBA1 variant (one c.1226A>G [N370S/N409S], one c.1448T>C [L444P/L483P]). What is the recurrence risk and what is the predominant clinical phenotype the couple should be counseled about?"
+required_inputs:
+  - gene: GBA1
+  - parent_1_variant: "c.1226A>G (N370S / N409S)"
+  - parent_2_variant: "c.1448T>C (L444P / L483P)"
+  - clinical_context: "preconception couple, both confirmed Gaucher carriers"
+gold_answer:
+  verdict: "25% per-pregnancy risk of biallelic GBA1 disease (Gaucher disease, typically type I given a heterozygous N370S allele); offer genetic counseling, PGT-M, and prenatal diagnostic options"
+  cited_guideline: "ACMG Practice Resource 2021 (Gregg et al., Genet Med 2021;23:1793); GBA1 is included in the ACMG Tier-3 panel"
+  rationale: "Compound heterozygosity for N370S/L444P typically results in Gaucher disease type I (non-neuronopathic, often manageable with enzyme-replacement therapy or substrate-reduction therapy). The presence of one N370S allele is generally protective against the neuronopathic phenotypes (types II/III). Recurrence risk is the standard 25% for autosomal-recessive disease with both parents heterozygous."
+scoring_rubric:
+  verdict_correct: 'states 25% recurrence risk AND identifies likely Gaucher disease type I phenotype (or at least non-neuronopathic Gaucher)'
+  guideline_cited_with_version: 'includes "ACMG" or "GeneReviews" reference'
+  variant_evidence_cited: 'mentions GBA1 / N370S / L444P'
+primary_reference_url: https://www.ncbi.nlm.nih.gov/books/NBK1269/

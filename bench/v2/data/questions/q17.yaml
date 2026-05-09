@@ -1,0 +1,16 @@
+id: q17
+domain: oncology_somatic
+question: "A 58-year-old patient has newly diagnosed AML, FLT3 internal tandem duplication (ITD) positive (allelic ratio 0.6), normal karyotype, and is fit for intensive induction chemotherapy ('7+3'). Does adding midostaurin to induction and consolidation improve outcomes, and is this FDA-approved?"
+required_inputs:
+  - gene: FLT3
+  - variant: "ITD (somatic)"
+  - clinical_context: "newly diagnosed AML, fit for intensive induction"
+gold_answer:
+  verdict: "yes — add midostaurin (Rydapt) 50 mg twice daily on days 8-21 of each induction and consolidation cycle; this is an FDA-approved indication based on the RATIFY trial showing improved OS"
+  cited_guideline: "FDA approval (28 April 2017) — midostaurin in combination with standard cytarabine/daunorubicin induction and cytarabine consolidation for newly diagnosed FLT3-mutated AML; RATIFY trial (Stone et al., NEJM 2017;377:454)"
+  rationale: "The RATIFY (CALGB 10603) phase III trial showed midostaurin + 7+3 reduced risk of death by 23% vs. 7+3 alone in adults under 60 with FLT3-mutated (ITD or TKD) AML. FDA approval covers both ITD and TKD, identified by the LeukoStrat CDx FLT3 companion diagnostic."
+scoring_rubric:
+  verdict_correct: 'recommends "yes" / "add midostaurin" with induction'
+  guideline_cited_with_version: 'includes "FDA" with year (2017) OR cites "RATIFY" trial'
+  variant_evidence_cited: 'mentions FLT3-ITD'
+primary_reference_url: https://www.fda.gov/drugs/resources-information-approved-drugs/midostaurin

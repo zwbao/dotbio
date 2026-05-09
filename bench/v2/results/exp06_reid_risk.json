@@ -1,0 +1,389 @@
+{
+  "tool": "reid_risk.py",
+  "spec_section": "bench/v2/SPEC.md \u00a73.6",
+  "task": "TASKS.md Task 8",
+  "reference": "Erlich, Y. & Narayanan, A. Routes for breaching and protecting genetic privacy. Nat Rev Genet 15, 409-421 (2014). doi:10.1038/nrg3723",
+  "threat_model": "Attacker holds a population reference panel of size N=100000 with known genotypes at all leaked loci. Loci are assumed independent (no LD); ALT-allele frequencies under Hardy-Weinberg equilibrium. The probability that a random individual in the panel matches the leaked fingerprint is the product of per-locus genotype probabilities. The probability of unique re-identification given the target is in the panel is (1 - P_match)^(N - 1).",
+  "population_size": 100000,
+  "bootstrap_iters": 1000,
+  "inputs": {
+    "vcf": "/Users/baozhiwei/projects/dotbio/examples/real-na12878/input.vcf",
+    "genome": "/Users/baozhiwei/projects/dotbio/bench/data/format_b_genome_reconstructed.md",
+    "bio": "/Users/baozhiwei/projects/dotbio/examples/real-na12878/output.bio"
+  },
+  "subject": "NA12878 (8-locus PGx VIP panel)",
+  "generated_at": "2026-05-09T02:18:45Z",
+  "scenarios": [
+    {
+      "format": "vcf_raw",
+      "description": "Full per-locus genotype, rsID and position. Worst-case attack surface for a single-sample VCF.",
+      "marker_count": 8,
+      "fingerprint_entropy_bits": 4.743648431981747,
+      "fingerprint_match_prob": 0.06083245047990872,
+      "fingerprint_log10_match_prob": -1.2158646887406408,
+      "loci": [
+        {
+          "rsid": "rs1801133",
+          "alt_freq": 0.246252,
+          "dosage": 1,
+          "gene": "MTHFR"
+        },
+        {
+          "rsid": "rs3918290",
+          "alt_freq": 0.00265459,
+          "dosage": 0,
+          "gene": "DPYD"
+        },
+        {
+          "rsid": "rs6025",
+          "alt_freq": 0.00593379,
+          "dosage": 0,
+          "gene": "F5"
+        },
+        {
+          "rsid": "rs1800562",
+          "alt_freq": 0.0121799,
+          "dosage": 0,
+          "gene": "HFE"
+        },
+        {
+          "rsid": "rs113993960",
+          "alt_freq": 0.00390381,
+          "dosage": 0,
+          "gene": "CFTR"
+        },
+        {
+          "rsid": "rs12248560",
+          "alt_freq": 0.159275,
+          "dosage": 0,
+          "gene": "CYP2C19"
+        },
+        {
+          "rsid": "rs4244285",
+          "alt_freq": 0.21549,
+          "dosage": 1,
+          "gene": "CYP2C19"
+        },
+        {
+          "rsid": "rs429358",
+          "alt_freq": 0.151156,
+          "dosage": 0,
+          "gene": "APOE"
+        }
+      ],
+      "point_reid_prob_pop_100000": 0.0,
+      "point_expected_matches_pop_100000": 6084.184215540392,
+      "bootstrap_ci_95": {
+        "entropy_bits": {
+          "mean": 4.760880639037831,
+          "ci_low": 1.7763511202125764,
+          "ci_high": 7.550633505538439
+        },
+        "match_prob": {
+          "mean": 0.11462651904363799,
+          "ci_low": 0.005959953815770141,
+          "ci_high": 0.49582931843296907
+        },
+        "reid_prob": {
+          "mean": 1.1362335465210348e-58,
+          "ci_low": 0.0,
+          "ci_high": 2.4585688780549618e-260
+        },
+        "expected_matches": {
+          "mean": 11463.537277844754,
+          "ci_low": 596.9894216231984,
+          "ci_high": 49583.43601397848
+        }
+      }
+    },
+    {
+      "format": "genome_reconstruction",
+      "description": "Markdown reconstruction with per-gene blocks. Variant blocks expose genotypes; PGx blocks expose only collapsed phenotype labels.",
+      "marker_count": 7,
+      "variant_marker_count": 5,
+      "collapsed_pgx_phenotypes": 2,
+      "fingerprint_entropy_bits": 5.620449426036089,
+      "fingerprint_match_prob": 0.07741158847798535,
+      "fingerprint_log10_match_prob": -1.111194020772933,
+      "loci": [
+        {
+          "rsid": "rs429358",
+          "alt_freq": 0.151156,
+          "dosage": 0,
+          "gene": "APOE"
+        },
+        {
+          "rsid": "rs6025",
+          "alt_freq": 0.00593379,
+          "dosage": 0,
+          "gene": "F5"
+        },
+        {
+          "rsid": "rs1801133",
+          "alt_freq": 0.246252,
+          "dosage": 1,
+          "gene": "MTHFR"
+        },
+        {
+          "rsid": "rs113993960",
+          "alt_freq": 0.00390381,
+          "dosage": 0,
+          "gene": "CFTR"
+        },
+        {
+          "rsid": "rs1800562",
+          "alt_freq": 0.0121799,
+          "dosage": 0,
+          "gene": "HFE"
+        }
+      ],
+      "notes": "PGx phenotype probs (CYP2C19 1000G EUR-ish): NM=0.55, IM=0.30, PM=0.05, RM/UM=0.10",
+      "point_reid_prob_pop_100000": 0.0,
+      "point_expected_matches_pop_100000": 7742.081436210057,
+      "bootstrap_ci_95": {
+        "entropy_bits": {
+          "mean": 5.491466590008391,
+          "ci_low": 2.1495338568394806,
+          "ci_high": 8.571741747373949
+        },
+        "match_prob": {
+          "mean": 0.10365280076879846,
+          "ci_low": 0.00904118132497684,
+          "ci_high": 0.4519317950884342
+        },
+        "reid_prob": {
+          "mean": 1.2144859069840336e-106,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "expected_matches": {
+          "mean": 10366.176424079078,
+          "ci_low": 905.109091316359,
+          "ci_high": 45193.72757704833
+        }
+      }
+    },
+    {
+      "format": "bio_facts_with_public_ruleset",
+      "description": "Realistic .bio attack: facts/ leaked AND attacker holds the public ruleset. Brute-force recovery of per-locus dosage by enumerating the small JSON space.",
+      "marker_count": 8,
+      "fingerprint_entropy_bits": 4.743648431981747,
+      "fingerprint_match_prob": 0.060832450479908734,
+      "fingerprint_log10_match_prob": -1.2158646887406408,
+      "loci": [
+        {
+          "rsid": "rs12248560",
+          "alt_freq": 0.159275,
+          "dosage": 0,
+          "gene": "CYP2C19"
+        },
+        {
+          "rsid": "rs1801133",
+          "alt_freq": 0.246252,
+          "dosage": 1,
+          "gene": "MTHFR"
+        },
+        {
+          "rsid": "rs6025",
+          "alt_freq": 0.00593379,
+          "dosage": 0,
+          "gene": "F5"
+        },
+        {
+          "rsid": "rs113993960",
+          "alt_freq": 0.00390381,
+          "dosage": 0,
+          "gene": "CFTR"
+        },
+        {
+          "rsid": "rs1800562",
+          "alt_freq": 0.0121799,
+          "dosage": 0,
+          "gene": "HFE"
+        },
+        {
+          "rsid": "rs429358",
+          "alt_freq": 0.151156,
+          "dosage": 0,
+          "gene": "APOE"
+        },
+        {
+          "rsid": "rs3918290",
+          "alt_freq": 0.00265459,
+          "dosage": 0,
+          "gene": "DPYD"
+        },
+        {
+          "rsid": "rs4244285",
+          "alt_freq": 0.21549,
+          "dosage": 1,
+          "gene": "CYP2C19"
+        }
+      ],
+      "point_reid_prob_pop_100000": 0.0,
+      "point_expected_matches_pop_100000": 6084.184215540394,
+      "bootstrap_ci_95": {
+        "entropy_bits": {
+          "mean": 4.767432013742415,
+          "ci_low": 1.8810514912484577,
+          "ci_high": 7.427649610350109
+        },
+        "match_prob": {
+          "mean": 0.10358422384946166,
+          "ci_low": 0.005039994570134326,
+          "ci_high": 0.47116604600438994
+        },
+        "reid_prob": {
+          "mean": 5.470136818909811e-63,
+          "ci_low": 0.0,
+          "ci_high": 3.669132539259634e-220
+        },
+        "expected_matches": {
+          "mean": 10359.318800722316,
+          "ci_low": 504.99441701886246,
+          "ci_high": 47117.13343439299
+        }
+      }
+    },
+    {
+      "format": "bio_facts_hash_only",
+      "description": "Hash-only attack (attacker lacks ruleset). SHA-256 pre-image resistance dominates; no per-locus information is recoverable.",
+      "marker_count": 0,
+      "fingerprint_entropy_bits": 0.0,
+      "fingerprint_match_prob": 1.0,
+      "fingerprint_log10_match_prob": 0.0,
+      "loci": [],
+      "point_reid_prob_pop_100000": 0.0,
+      "point_expected_matches_pop_100000": 100000.0,
+      "bootstrap_ci_95": {
+        "entropy_bits": {
+          "mean": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "match_prob": {
+          "mean": 1.0,
+          "ci_low": 1.0,
+          "ci_high": 1.0
+        },
+        "reid_prob": {
+          "mean": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "expected_matches": {
+          "mean": 100000.0,
+          "ci_low": 100000.0,
+          "ci_high": 100000.0
+        }
+      }
+    },
+    {
+      "format": "bio_views_only",
+      "description": "Minimum-leak scenario: only the rendered views/*.md files are exposed; facts/ kept private. PGx claims collapse to coarse phenotype labels.",
+      "marker_count": 2,
+      "phenotype_claims": 1,
+      "drug_claims_dependent_on_phenotypes": 1,
+      "germline_clinical_claims": 1,
+      "fingerprint_entropy_bits": 1.5915384410018703,
+      "fingerprint_match_prob": 0.5470838267664375,
+      "fingerprint_log10_match_prob": -0.26194612391730837,
+      "notes": "PGx phenotype probs (CYP2C19 1000G EUR-ish): NM=0.55, IM=0.30, PM=0.05, RM/UM=0.10. Drug-guidance claims are a deterministic function of phenotype claims and contribute no independent entropy.",
+      "point_reid_prob_pop_100000": 0.0,
+      "point_expected_matches_pop_100000": 54708.835592816984,
+      "bootstrap_ci_95": {
+        "entropy_bits": {
+          "mean": 1.5,
+          "ci_low": 1.5,
+          "ci_high": 1.5
+        },
+        "match_prob": {
+          "mean": 0.5,
+          "ci_low": 0.5,
+          "ci_high": 0.5
+        },
+        "reid_prob": {
+          "mean": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        "expected_matches": {
+          "mean": 50000.5,
+          "ci_low": 50000.5,
+          "ci_high": 50000.5
+        }
+      }
+    }
+  ],
+  "summary": {
+    "ranking_low_to_high_risk": [
+      "vcf_raw",
+      "genome_reconstruction",
+      "bio_facts_with_public_ruleset",
+      "bio_facts_hash_only",
+      "bio_views_only"
+    ],
+    "rows": [
+      {
+        "format": "vcf_raw",
+        "marker_count": 8,
+        "fingerprint_entropy_bits": 4.744,
+        "fingerprint_log10_match_prob": -1.216,
+        "point_reid_prob": 0.0,
+        "expected_matches": 6084.184,
+        "ci95_reid_prob": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "format": "genome_reconstruction",
+        "marker_count": 7,
+        "fingerprint_entropy_bits": 5.62,
+        "fingerprint_log10_match_prob": -1.111,
+        "point_reid_prob": 0.0,
+        "expected_matches": 7742.081,
+        "ci95_reid_prob": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "format": "bio_facts_with_public_ruleset",
+        "marker_count": 8,
+        "fingerprint_entropy_bits": 4.744,
+        "fingerprint_log10_match_prob": -1.216,
+        "point_reid_prob": 0.0,
+        "expected_matches": 6084.184,
+        "ci95_reid_prob": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "format": "bio_facts_hash_only",
+        "marker_count": 0,
+        "fingerprint_entropy_bits": 0.0,
+        "fingerprint_log10_match_prob": 0.0,
+        "point_reid_prob": 0.0,
+        "expected_matches": 100000.0,
+        "ci95_reid_prob": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "format": "bio_views_only",
+        "marker_count": 2,
+        "fingerprint_entropy_bits": 1.592,
+        "fingerprint_log10_match_prob": -0.262,
+        "point_reid_prob": 0.0,
+        "expected_matches": 54708.836,
+        "ci95_reid_prob": [
+          0.0,
+          0.0
+        ]
+      }
+    ]
+  }
+}

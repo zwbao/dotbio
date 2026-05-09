@@ -1,0 +1,20 @@
+id: q02
+domain: pgx
+question: "A pediatric ALL patient is about to start 6-mercaptopurine maintenance at 75 mg/m^2/day. TPMT genotype is *3A/*3A and NUDT15 is *1/*1. What dosing adjustment is recommended?"
+required_inputs:
+  - gene: TPMT
+  - diplotype: "*3A/*3A"
+  - gene_2: NUDT15
+  - diplotype_2: "*1/*1"
+  - clinical_context: "ALL maintenance, standard 6-MP starting dose 75 mg/m^2/day"
+gold_answer:
+  verdict: "drastically reduce starting dose — use ~10% of the standard dose (e.g., 10 mg/m^2/day three times per week) or select a non-thiopurine; do NOT use standard 75 mg/m^2/day"
+  phenotype: "TPMT Poor Metabolizer; NUDT15 Normal Metabolizer"
+  cited_guideline: "CPIC@2018 (Relling et al., Clin Pharmacol Ther 2019;105:1095-1105, PMID 30447069)"
+  rationale: "TPMT poor metabolizers have ~10-fold higher active thiopurine nucleotide exposure and life-threatening myelosuppression at standard doses; the 2018 CPIC guideline recommends starting at 10% of the standard dose (or alternative agent) and 3-times-weekly dosing rather than daily."
+scoring_rubric:
+  verdict_correct: 'recommends "drastic" or "substantial" dose reduction (~90% reduction OR ~10% of standard) OR alternative non-thiopurine'
+  phenotype_correct: 'includes "Poor Metabolizer", "PM", or "TPMT-deficient"'
+  guideline_cited_with_version: 'includes "CPIC" AND ("2018" OR "2019" OR "Relling")'
+  variant_evidence_cited: 'mentions TPMT *3A or rs1800460/rs1142345'
+primary_reference_url: https://cpicpgx.org/guidelines/guideline-for-thiopurines-and-tpmt/

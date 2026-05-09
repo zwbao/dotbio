@@ -1,0 +1,16 @@
+id: q39
+domain: hereditary_risk
+question: "A 50-year-old man with a strong family history of melanoma (father, paternal aunt, paternal grandfather) is found to have a germline CDKN2A pathogenic variant (p16INK4A-affecting). What surveillance does CAPS / NCCN recommend, beyond standard skin examination?"
+required_inputs:
+  - gene: CDKN2A
+  - variant: "germline pathogenic affecting p16INK4A"
+  - clinical_context: "asymptomatic adult, strong familial melanoma history"
+gold_answer:
+  verdict: "annual full-body skin examination by a dermatologist plus monthly self-skin examinations; annual pancreatic-cancer surveillance with alternating endoscopic ultrasound (EUS) and magnetic resonance cholangiopancreatography (MRCP) starting age 40 (or 10 years younger than the youngest pancreatic-cancer diagnosis in the family, whichever is earlier); strict UV protection; smoking cessation counseling"
+  cited_guideline: "International CAPS Consortium Consensus 2020 (Goggins et al., Gut 2020;69:7); NCCN Pancreatic Cancer Guidelines (high-risk surveillance section); GeneReviews CDKN2A Cancer Predisposition (2024)"
+  rationale: "CDKN2A confers ~30-70% lifetime melanoma risk and ~5-24% pancreatic-cancer risk. Pancreatic-cancer surveillance with alternating EUS/MRCP is supported by CAPS Consortium and is included in NCCN high-risk surveillance recommendations."
+scoring_rubric:
+  verdict_correct: 'recommends annual dermatologic exam AND annual alternating EUS/MRCP for pancreatic surveillance starting age 40'
+  guideline_cited_with_version: 'includes "CAPS Consortium" OR "NCCN" with version OR "GeneReviews CDKN2A"'
+  variant_evidence_cited: 'mentions CDKN2A / familial melanoma-pancreatic syndrome'
+primary_reference_url: https://www.ncbi.nlm.nih.gov/books/NBK616232/

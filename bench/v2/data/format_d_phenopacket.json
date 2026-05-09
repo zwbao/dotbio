@@ -1,0 +1,522 @@
+{
+  "id": "phenopacket.NA12878.20260509",
+  "subject": {
+    "id": "NA12878",
+    "timeAtLastEncounter": {
+      "age": {
+        "iso8601duration": "P0Y"
+      }
+    },
+    "karyotypicSex": "UNKNOWN_KARYOTYPE"
+  },
+  "interpretations": [
+    {
+      "id": "interpretation.01.rs1801133",
+      "progressStatus": "SOLVED",
+      "diagnosis": {
+        "disease": {
+          "id": "MONDO:0700096",
+          "label": "Folate metabolism reduced ~30%"
+        },
+        "genomicInterpretations": [
+          {
+            "subjectOrBiosampleId": "NA12878",
+            "interpretationStatus": "CONTRIBUTORY",
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "NOT_PROVIDED",
+              "therapeuticActionability": "UNKNOWN_ACTIONABILITY",
+              "variationDescriptor": {
+                "id": "var.rs1801133.G>A",
+                "moleculeContext": "genomic",
+                "vcfRecord": {
+                  "genomeAssembly": "GRCh38",
+                  "chrom": "chr1",
+                  "pos": "11796321",
+                  "ref": "G",
+                  "alt": "A"
+                },
+                "allelicState": {
+                  "id": "GENO:0000135",
+                  "label": "heterozygous"
+                },
+                "label": "MTHFR:rs1801133 G>A",
+                "xrefs": [
+                  "dbSNP:rs1801133"
+                ],
+                "geneContext": {
+                  "valueId": "HGNC:?:MTHFR",
+                  "symbol": "MTHFR"
+                },
+                "extensions": [
+                  {
+                    "name": "clinvarSignificance",
+                    "value": "drug_response"
+                  },
+                  {
+                    "name": "clinvarCondition",
+                    "value": "Folate metabolism reduced ~30%"
+                  },
+                  {
+                    "name": "clinvarEvidence",
+                    "value": "Heterozygous: ~30% reduced enzyme activity; minimal clinical impact for most"
+                  },
+                  {
+                    "name": "clinvarReviewStatus",
+                    "value": "criteria provided, single submitter"
+                  },
+                  {
+                    "name": "molecularConsequence",
+                    "value": "missense_variant (p.Ala222Val)"
+                  },
+                  {
+                    "name": "alleleFrequency1000G",
+                    "value": "0.246252"
+                  },
+                  {
+                    "name": "alleleCount1000G",
+                    "value": "1"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "interpretation.02.rs3918290",
+      "progressStatus": "IN_PROGRESS",
+      "diagnosis": {
+        "disease": {
+          "id": "MONDO:0700096",
+          "label": "Phenotype, not specified"
+        },
+        "genomicInterpretations": [
+          {
+            "subjectOrBiosampleId": "NA12878",
+            "interpretationStatus": "REJECTED",
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "NOT_PROVIDED",
+              "therapeuticActionability": "UNKNOWN_ACTIONABILITY",
+              "variationDescriptor": {
+                "id": "var.rs3918290.C>T",
+                "moleculeContext": "genomic",
+                "vcfRecord": {
+                  "genomeAssembly": "GRCh38",
+                  "chrom": "chr1",
+                  "pos": "97450058",
+                  "ref": "C",
+                  "alt": "T"
+                },
+                "allelicState": {
+                  "id": "GENO:0000036",
+                  "label": "homozygous reference"
+                },
+                "label": "DPYD:rs3918290 C>T",
+                "xrefs": [
+                  "dbSNP:rs3918290"
+                ],
+                "geneContext": {
+                  "valueId": "HGNC:?:DPYD",
+                  "symbol": "DPYD"
+                },
+                "extensions": [
+                  {
+                    "name": "alleleFrequency1000G",
+                    "value": "0.00265459"
+                  },
+                  {
+                    "name": "alleleCount1000G",
+                    "value": "0"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "interpretation.03.rs6025",
+      "progressStatus": "IN_PROGRESS",
+      "diagnosis": {
+        "disease": {
+          "id": "MONDO:0700096",
+          "label": "Phenotype, not specified"
+        },
+        "genomicInterpretations": [
+          {
+            "subjectOrBiosampleId": "NA12878",
+            "interpretationStatus": "REJECTED",
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "NOT_PROVIDED",
+              "therapeuticActionability": "UNKNOWN_ACTIONABILITY",
+              "variationDescriptor": {
+                "id": "var.rs6025.C>T",
+                "moleculeContext": "genomic",
+                "vcfRecord": {
+                  "genomeAssembly": "GRCh38",
+                  "chrom": "chr1",
+                  "pos": "169549811",
+                  "ref": "C",
+                  "alt": "T"
+                },
+                "allelicState": {
+                  "id": "GENO:0000036",
+                  "label": "homozygous reference"
+                },
+                "label": "F5:rs6025 C>T",
+                "xrefs": [
+                  "dbSNP:rs6025"
+                ],
+                "geneContext": {
+                  "valueId": "HGNC:?:F5",
+                  "symbol": "F5"
+                },
+                "extensions": [
+                  {
+                    "name": "alleleFrequency1000G",
+                    "value": "0.00593379"
+                  },
+                  {
+                    "name": "alleleCount1000G",
+                    "value": "0"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "interpretation.04.rs1800562",
+      "progressStatus": "IN_PROGRESS",
+      "diagnosis": {
+        "disease": {
+          "id": "MONDO:0700096",
+          "label": "Phenotype, not specified"
+        },
+        "genomicInterpretations": [
+          {
+            "subjectOrBiosampleId": "NA12878",
+            "interpretationStatus": "REJECTED",
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "NOT_PROVIDED",
+              "therapeuticActionability": "UNKNOWN_ACTIONABILITY",
+              "variationDescriptor": {
+                "id": "var.rs1800562.G>A",
+                "moleculeContext": "genomic",
+                "vcfRecord": {
+                  "genomeAssembly": "GRCh38",
+                  "chrom": "chr6",
+                  "pos": "26092913",
+                  "ref": "G",
+                  "alt": "A"
+                },
+                "allelicState": {
+                  "id": "GENO:0000036",
+                  "label": "homozygous reference"
+                },
+                "label": "HFE:rs1800562 G>A",
+                "xrefs": [
+                  "dbSNP:rs1800562"
+                ],
+                "geneContext": {
+                  "valueId": "HGNC:?:HFE",
+                  "symbol": "HFE"
+                },
+                "extensions": [
+                  {
+                    "name": "alleleFrequency1000G",
+                    "value": "0.0121799"
+                  },
+                  {
+                    "name": "alleleCount1000G",
+                    "value": "0"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "interpretation.05.rs113993960",
+      "progressStatus": "IN_PROGRESS",
+      "diagnosis": {
+        "disease": {
+          "id": "MONDO:0700096",
+          "label": "Phenotype, not specified"
+        },
+        "genomicInterpretations": [
+          {
+            "subjectOrBiosampleId": "NA12878",
+            "interpretationStatus": "REJECTED",
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "NOT_PROVIDED",
+              "therapeuticActionability": "UNKNOWN_ACTIONABILITY",
+              "variationDescriptor": {
+                "id": "var.rs113993960.ATCT>A",
+                "moleculeContext": "genomic",
+                "vcfRecord": {
+                  "genomeAssembly": "GRCh38",
+                  "chrom": "chr7",
+                  "pos": "117559590",
+                  "ref": "ATCT",
+                  "alt": "A"
+                },
+                "allelicState": {
+                  "id": "GENO:0000036",
+                  "label": "homozygous reference"
+                },
+                "label": "CFTR:rs113993960 ATCT>A",
+                "xrefs": [
+                  "dbSNP:rs113993960"
+                ],
+                "geneContext": {
+                  "valueId": "HGNC:?:CFTR",
+                  "symbol": "CFTR"
+                },
+                "extensions": [
+                  {
+                    "name": "alleleFrequency1000G",
+                    "value": "0.00390381"
+                  },
+                  {
+                    "name": "alleleCount1000G",
+                    "value": "0"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "interpretation.06.rs12248560",
+      "progressStatus": "IN_PROGRESS",
+      "diagnosis": {
+        "disease": {
+          "id": "MONDO:0700096",
+          "label": "Phenotype, not specified"
+        },
+        "genomicInterpretations": [
+          {
+            "subjectOrBiosampleId": "NA12878",
+            "interpretationStatus": "REJECTED",
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "NOT_PROVIDED",
+              "therapeuticActionability": "UNKNOWN_ACTIONABILITY",
+              "variationDescriptor": {
+                "id": "var.rs12248560.C>T",
+                "moleculeContext": "genomic",
+                "vcfRecord": {
+                  "genomeAssembly": "GRCh38",
+                  "chrom": "chr10",
+                  "pos": "94761900",
+                  "ref": "C",
+                  "alt": "T"
+                },
+                "allelicState": {
+                  "id": "GENO:0000036",
+                  "label": "homozygous reference"
+                },
+                "label": "CYP2C19:rs12248560 C>T",
+                "xrefs": [
+                  "dbSNP:rs12248560"
+                ],
+                "geneContext": {
+                  "valueId": "HGNC:?:CYP2C19",
+                  "symbol": "CYP2C19"
+                },
+                "extensions": [
+                  {
+                    "name": "alleleFrequency1000G",
+                    "value": "0.159275"
+                  },
+                  {
+                    "name": "alleleCount1000G",
+                    "value": "0"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "interpretation.07.rs4244285",
+      "progressStatus": "IN_PROGRESS",
+      "diagnosis": {
+        "disease": {
+          "id": "MONDO:0700096",
+          "label": "Phenotype, not specified"
+        },
+        "genomicInterpretations": [
+          {
+            "subjectOrBiosampleId": "NA12878",
+            "interpretationStatus": "REJECTED",
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "NOT_PROVIDED",
+              "therapeuticActionability": "UNKNOWN_ACTIONABILITY",
+              "variationDescriptor": {
+                "id": "var.rs4244285.G>A",
+                "moleculeContext": "genomic",
+                "vcfRecord": {
+                  "genomeAssembly": "GRCh38",
+                  "chrom": "chr10",
+                  "pos": "94781859",
+                  "ref": "G",
+                  "alt": "A"
+                },
+                "allelicState": {
+                  "id": "GENO:0000135",
+                  "label": "heterozygous"
+                },
+                "label": "CYP2C19:rs4244285 G>A",
+                "xrefs": [
+                  "dbSNP:rs4244285"
+                ],
+                "geneContext": {
+                  "valueId": "HGNC:?:CYP2C19",
+                  "symbol": "CYP2C19"
+                },
+                "extensions": [
+                  {
+                    "name": "alleleFrequency1000G",
+                    "value": "0.21549"
+                  },
+                  {
+                    "name": "alleleCount1000G",
+                    "value": "1"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "interpretation.08.rs429358",
+      "progressStatus": "IN_PROGRESS",
+      "diagnosis": {
+        "disease": {
+          "id": "MONDO:0700096",
+          "label": "Phenotype, not specified"
+        },
+        "genomicInterpretations": [
+          {
+            "subjectOrBiosampleId": "NA12878",
+            "interpretationStatus": "REJECTED",
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "NOT_PROVIDED",
+              "therapeuticActionability": "UNKNOWN_ACTIONABILITY",
+              "variationDescriptor": {
+                "id": "var.rs429358.T>C",
+                "moleculeContext": "genomic",
+                "vcfRecord": {
+                  "genomeAssembly": "GRCh38",
+                  "chrom": "chr19",
+                  "pos": "44908684",
+                  "ref": "T",
+                  "alt": "C"
+                },
+                "allelicState": {
+                  "id": "GENO:0000036",
+                  "label": "homozygous reference"
+                },
+                "label": "APOE:rs429358 T>C",
+                "xrefs": [
+                  "dbSNP:rs429358"
+                ],
+                "geneContext": {
+                  "valueId": "HGNC:?:APOE",
+                  "symbol": "APOE"
+                },
+                "extensions": [
+                  {
+                    "name": "alleleFrequency1000G",
+                    "value": "0.151156"
+                  },
+                  {
+                    "name": "alleleCount1000G",
+                    "value": "0"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "files": [
+    {
+      "uri": "file:///Users/baozhiwei/projects/dotbio/examples/real-na12878/input.vcf",
+      "fileAttributes": {
+        "fileFormat": "VCF",
+        "genomeAssembly": "GRCh38",
+        "sampleName": "NA12878"
+      }
+    }
+  ],
+  "metaData": {
+    "created": "2026-05-09T02:16:42Z",
+    "createdBy": "dotbio-bench-v2/vcf_to_phenopacket.py",
+    "submittedBy": "dotbio NM-grade benchmark",
+    "phenopacketSchemaVersion": "2.0",
+    "resources": [
+      {
+        "id": "geno",
+        "name": "Genotype Ontology",
+        "namespacePrefix": "GENO",
+        "url": "http://purl.obolibrary.org/obo/geno.owl",
+        "version": "2023-10-08",
+        "iriPrefix": "http://purl.obolibrary.org/obo/GENO_"
+      },
+      {
+        "id": "mondo",
+        "name": "Mondo Disease Ontology",
+        "namespacePrefix": "MONDO",
+        "url": "http://purl.obolibrary.org/obo/mondo.owl",
+        "version": "2024-09-03",
+        "iriPrefix": "http://purl.obolibrary.org/obo/MONDO_"
+      },
+      {
+        "id": "dbsnp",
+        "name": "dbSNP",
+        "namespacePrefix": "dbSNP",
+        "url": "https://www.ncbi.nlm.nih.gov/snp",
+        "version": "build_156",
+        "iriPrefix": "https://www.ncbi.nlm.nih.gov/snp/"
+      },
+      {
+        "id": "clinvar-dotbio",
+        "name": "dotbio ClinVar ruleset (illustrative subset) 2026-05-01",
+        "namespacePrefix": "ClinVar",
+        "url": "https://www.ncbi.nlm.nih.gov/clinvar/",
+        "version": "2026-05-01",
+        "iriPrefix": "https://www.ncbi.nlm.nih.gov/clinvar/variation/"
+      }
+    ],
+    "phenopacketSchemaVersion_x_dotbio": {
+      "rulesetSource": "src/dotbio/rulesets/clinvar-2026-05-01.json",
+      "rulesetVersion": "2026-05-01",
+      "rulesetSha256": "2dd374eb13e2d1e2989c7f705c6fe1bc7f5b18f10b387586c3fe8bdf016bd3a2",
+      "vcfSource": "examples/real-na12878/input.vcf",
+      "vcfSha256": "ee8797ebb4df444cb1b0036165e409ccc57bb827565b2820009c8288568a32a3"
+    },
+    "externalReferences": [
+      {
+        "id": "GRCh38",
+        "reference": "https://www.ncbi.nlm.nih.gov/grc/human",
+        "description": "Human reference genome assembly used for coordinates"
+      }
+    ]
+  }
+}

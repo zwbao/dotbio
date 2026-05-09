@@ -1,0 +1,15 @@
+id: q19
+domain: oncology_somatic
+question: "A 52-year-old never-smoker has metastatic non-squamous NSCLC. Comprehensive genomic profiling reveals an EML4-ALK fusion. The patient is treatment-naive. What is the NCCN-preferred first-line targeted therapy?"
+required_inputs:
+  - gene_fusion: "EML4-ALK"
+  - clinical_context: "treatment-naive metastatic ALK-rearranged NSCLC"
+gold_answer:
+  verdict: "alectinib (Alecensa) is the NCCN-preferred first-line agent; brigatinib and lorlatinib are also Category 1 first-line options. Crizotinib is no longer the preferred first-line agent."
+  cited_guideline: "NCCN NSCLC Guidelines v3.2024; FDA approval of alectinib for first-line ALK+ NSCLC (6 November 2017); ALEX trial (Peters et al., NEJM 2017;377:829)"
+  rationale: "The ALEX trial demonstrated alectinib's superiority over crizotinib (median PFS 25.7 vs 10.4 months) and improved CNS protection. NCCN now lists alectinib, brigatinib, and lorlatinib as Category 1 first-line options for ALK-rearranged metastatic NSCLC."
+scoring_rubric:
+  verdict_correct: 'names alectinib (and may include brigatinib or lorlatinib) as preferred first-line'
+  guideline_cited_with_version: 'includes "NCCN" with version OR "FDA" with year (2017) OR cites "ALEX" trial'
+  variant_evidence_cited: 'mentions ALK rearrangement / fusion or EML4-ALK'
+primary_reference_url: https://www.fda.gov/drugs/resources-information-approved-drugs/fda-broadens-alectinib-indication-treatment-alk-positive-metastatic-nsclc

@@ -1,0 +1,16 @@
+id: q14
+domain: oncology_somatic
+question: "A 55-year-old woman with newly diagnosed metastatic invasive ductal breast carcinoma has IHC HER2 3+ confirmed by central review. Hormone-receptor status is ER-positive. The tumor is HER2-amplified (ERBB2). What is the NCCN-preferred first-line systemic regimen?"
+required_inputs:
+  - gene: ERBB2 (HER2)
+  - status: "IHC 3+ / amplified"
+  - clinical_context: "treatment-naive metastatic ER+/HER2+ breast cancer"
+gold_answer:
+  verdict: "taxane + trastuzumab + pertuzumab (the THP regimen) is the Category 1 NCCN-preferred first-line regimen"
+  cited_guideline: "NCCN Breast Cancer Guidelines v3.2024 (Category 1)"
+  rationale: "The CLEOPATRA trial established docetaxel + trastuzumab + pertuzumab as the new standard for first-line HER2-positive metastatic breast cancer; NCCN designates this as the Category 1 preferred regimen. Endocrine therapy can be added for ER+ disease but does not replace dual HER2 blockade."
+scoring_rubric:
+  verdict_correct: 'names trastuzumab + pertuzumab + taxane (THP) OR equivalent description'
+  guideline_cited_with_version: 'includes "NCCN" AND "Breast" with version/year'
+  variant_evidence_cited: 'mentions HER2 3+ or ERBB2 amplification'
+primary_reference_url: https://www.nccn.org/guidelines/guidelines-detail?category=1&id=1419

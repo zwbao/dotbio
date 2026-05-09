@@ -1,0 +1,16 @@
+id: q41
+domain: dose_adjustment
+question: "A 76-year-old woman with non-valvular atrial fibrillation is starting apixaban for stroke prevention. Weight 55 kg, age 80, serum creatinine 1.6 mg/dL. What is the FDA-labeled apixaban dose?"
+required_inputs:
+  - drug: apixaban
+  - clinical_features: "age 80, weight 55 kg, SCr 1.6 mg/dL (≥1.5)"
+  - clinical_context: "non-valvular atrial fibrillation, stroke prevention"
+gold_answer:
+  verdict: "apixaban 2.5 mg orally twice daily (reduced dose, because she meets ≥2 of 3 dose-reduction criteria: age ≥80, weight ≤60 kg, SCr ≥1.5 mg/dL — she meets all three)"
+  cited_guideline: "Eliquis (apixaban) FDA prescribing information; 2023 ACC/AHA/ACCP/HRS Atrial Fibrillation Guideline"
+  rationale: "FDA label specifies dose reduction to 2.5 mg BID for non-valvular AF when ≥2 of: age ≥80 years, weight ≤60 kg, or SCr ≥1.5 mg/dL. This patient meets all three; standard 5 mg BID would be a guideline violation and an over-anticoagulation risk."
+scoring_rubric:
+  verdict_correct: 'recommends apixaban 2.5 mg twice daily AND identifies that she meets ≥2 (or all 3) dose-reduction criteria'
+  guideline_cited_with_version: 'includes "Eliquis FDA label" OR "ACC/AHA AF guideline"'
+  variant_evidence_cited: 'enumerates the three dose-reduction criteria (age, weight, creatinine)'
+primary_reference_url: https://www.accessdata.fda.gov/drugsatfda_docs/label/2021/202155s029lbl.pdf

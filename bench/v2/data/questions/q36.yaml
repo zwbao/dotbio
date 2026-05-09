@@ -1,0 +1,17 @@
+id: q36
+domain: hereditary_risk
+question: "A 44-year-old asymptomatic man has a confirmed germline LDLR pathogenic variant (heterozygous). His untreated LDL-C is 245 mg/dL. What is the diagnosis, and what initial pharmacologic therapy is recommended?"
+required_inputs:
+  - gene: LDLR
+  - variant: "heterozygous germline pathogenic"
+  - LDL_C: "245 mg/dL untreated"
+  - clinical_context: "asymptomatic adult man, no prior ASCVD"
+gold_answer:
+  verdict: "heterozygous familial hypercholesterolemia (HeFH); initiate high-intensity statin therapy (e.g., rosuvastatin 20-40 mg or atorvastatin 40-80 mg) targeting at least a 50% LDL-C reduction; add ezetimibe and/or PCSK9 inhibitor if LDL-C target not reached"
+  cited_guideline: "2018 AHA/ACC/Multisociety Cholesterol Guideline (Grundy et al., Circulation 2019;139:e1082); NLA Recommendations for the Patient-Centered Management of Dyslipidemia"
+  rationale: "Genetic confirmation of an LDLR pathogenic variant + LDL-C >190 mg/dL meets HeFH diagnostic criteria. The 2018 AHA/ACC guideline and NLA recommend high-intensity statin as first-line, with add-on ezetimibe and PCSK9 inhibitor as needed to achieve ≥50% LDL-C reduction (or LDL-C <70 mg/dL if ASCVD or very high risk; <100 mg/dL otherwise)."
+scoring_rubric:
+  verdict_correct: 'identifies HeFH AND recommends high-intensity statin AND ≥50% LDL reduction goal (or specific LDL targets)'
+  guideline_cited_with_version: 'includes "AHA/ACC 2018" cholesterol guideline OR "NLA"'
+  variant_evidence_cited: 'mentions LDLR / FH'
+primary_reference_url: https://www.ahajournals.org/doi/10.1161/cir.0000000000000625

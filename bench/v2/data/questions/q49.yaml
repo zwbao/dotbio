@@ -1,0 +1,18 @@
+id: q49
+domain: dose_adjustment
+question: "A 58-year-old patient is starting warfarin for a new DVT. Pre-treatment pharmacogenomic testing returns CYP2C9 *1/*3 and VKORC1 -1639 G>A heterozygous (G/A); patient is non-African ancestry. Per CPIC, which dosing strategy is preferred over standard clinical-only dosing?"
+required_inputs:
+  - gene: CYP2C9
+  - diplotype: "*1/*3"
+  - gene_2: VKORC1
+  - genotype_2: "rs9923231 G/A"
+  - clinical_context: "warfarin-naive adult, non-African ancestry, new DVT"
+gold_answer:
+  verdict: "use a pharmacogenetics-guided dosing algorithm (e.g., IWPC or Gage/warfarindosing.org) that incorporates CYP2C9, VKORC1, and clinical factors to select the initial daily dose; expect a lower-than-typical maintenance dose given *3 (decreased function) and the A allele at VKORC1"
+  cited_guideline: "CPIC@2017 warfarin dosing update (Johnson et al., Clin Pharmacol Ther 2017;102:397-404, PMID 28198005)"
+  rationale: "CYP2C9 *3 is a decreased-function allele (reduced warfarin S-enantiomer clearance) and VKORC1 -1639 G>A reduces target enzyme expression (more sensitive to warfarin). Combined with clinical factors, these account for ~50% of dose variability. CPIC 2017 endorses pharmacogenetics-guided algorithms over clinical-only or fixed dosing in non-African ancestry; for African-ancestry patients additional rs12777823 testing and consideration is recommended."
+scoring_rubric:
+  verdict_correct: 'recommends pharmacogenetics-guided algorithmic dosing (IWPC / Gage / warfarindosing.org) AND expects lower maintenance dose'
+  guideline_cited_with_version: 'includes "CPIC" AND ("2017" OR "Johnson")'
+  variant_evidence_cited: 'mentions CYP2C9 *3 AND VKORC1 -1639G>A'
+primary_reference_url: https://cpicpgx.org/guidelines/guideline-for-warfarin-and-cyp2c9-and-vkorc1/

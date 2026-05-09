@@ -1,0 +1,18 @@
+id: q01
+domain: pgx
+question: "A 62-year-old patient with acute coronary syndrome is undergoing PCI. CYP2C19 genotyping returns *1/*2. Should standard-dose clopidogrel (75 mg/day after a 600 mg load) be used, or should an alternative P2Y12 inhibitor be selected?"
+required_inputs:
+  - gene: CYP2C19
+  - diplotype: "*1/*2"
+  - clinical_context: "ACS undergoing PCI"
+gold_answer:
+  verdict: "no — use an alternative P2Y12 inhibitor (prasugrel or ticagrelor) if no contraindication"
+  phenotype: "CYP2C19 Intermediate Metabolizer"
+  cited_guideline: "CPIC@2022 (Lee et al., Clin Pharmacol Ther 2022;112:959-967, PMID 35034351)"
+  rationale: "CYP2C19 IMs have reduced active metabolite formation, less platelet inhibition, and increased risk of MACE on clopidogrel after ACS/PCI. The 2022 CPIC update strengthened the recommendation to avoid clopidogrel in IMs in this setting."
+scoring_rubric:
+  verdict_correct: 'matches "no", "alternative", "avoid clopidogrel", or recommends prasugrel/ticagrelor'
+  phenotype_correct: 'includes "Intermediate Metabolizer" or "IM"'
+  guideline_cited_with_version: 'includes "CPIC" AND ("2022" OR "Lee")'
+  variant_evidence_cited: 'mentions CYP2C19 *2 or rs4244285 or *1/*2'
+primary_reference_url: https://cpicpgx.org/guidelines/guideline-for-clopidogrel-and-cyp2c19/

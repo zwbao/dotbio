@@ -1,0 +1,19 @@
+id: q03
+domain: pgx
+question: "A treatment-naive HIV-positive adult is being considered for an abacavir-containing regimen. HLA-B genotyping shows the patient is HLA-B*57:01 positive (heterozygous). Can abacavir be used?"
+required_inputs:
+  - gene: HLA-B
+  - allele: "*57:01"
+  - zygosity: heterozygous
+  - clinical_context: "abacavir-naive HIV+, regimen selection"
+gold_answer:
+  verdict: "no — abacavir is contraindicated; select an alternative NRTI"
+  phenotype: "HLA-B*57:01 positive (carrier)"
+  cited_guideline: "CPIC@2014 (Martin et al., Clin Pharmacol Ther 2014;95:499-500, PMID 24561393)"
+  rationale: "Carrying a single HLA-B*57:01 allele is sufficient to confer high risk of immunologically confirmed abacavir hypersensitivity reaction. CPIC and the FDA label both designate HLA-B*57:01 carriers as a contraindication for abacavir."
+scoring_rubric:
+  verdict_correct: 'matches "no", "contraindicated", "avoid", or "do not use"'
+  phenotype_correct: 'includes "HLA-B*57:01 positive" or "carrier"'
+  guideline_cited_with_version: 'includes "CPIC" AND ("2014" OR "2012") OR mentions FDA label'
+  variant_evidence_cited: 'mentions HLA-B*57:01'
+primary_reference_url: https://cpicpgx.org/guidelines/guideline-for-abacavir-and-hla-b/

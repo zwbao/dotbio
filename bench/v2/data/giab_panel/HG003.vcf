@@ -1,0 +1,22 @@
+##fileformat=VCFv4.2
+##fileDate=20260509
+##source=dotbio-task11-giab-extract
+##reference=GRCh38
+##INFO=<ID=GENE,Number=1,Type=String,Description="Gene symbol (informational)">
+##INFO=<ID=SOURCE,Number=1,Type=String,Description="Per-locus source: GIAB_HC=present in GIAB high-confidence VCF; GIAB_HOMREF_INFERRED=absent from GIAB VCF, treated as 0/0 reference">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##contig=<ID=chr1,length=248956422>
+##contig=<ID=chr6,length=170805979>
+##contig=<ID=chr7,length=159345973>
+##contig=<ID=chr10,length=133797422>
+##contig=<ID=chr19,length=58617616>
+##NOTE=<ID=Provenance,Description="Genotypes for sample HG003 extracted from NIST GIAB NISTv4.2.1 high-confidence small-variant benchmark VCF (GRCh38). GIAB benchmark VCFs only list non-reference calls inside high-confidence regions; loci absent are treated as 0/0 (homozygous reference) and tagged with SOURCE=GIAB_HOMREF_INFERRED.">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	HG003
+chr1	11796321	rs1801133	G	A	.	PASS	GENE=MTHFR;SOURCE=GIAB_HOMREF_INFERRED	GT	0/0
+chr1	97450058	rs3918290	C	T	.	PASS	GENE=DPYD;SOURCE=GIAB_HOMREF_INFERRED	GT	0/0
+chr1	169549811	rs6025	C	T	.	PASS	GENE=F5;SOURCE=GIAB_HOMREF_INFERRED	GT	0/0
+chr6	26092913	rs1800562	G	A	.	PASS	GENE=HFE;SOURCE=GIAB_HOMREF_INFERRED	GT	0/0
+chr7	117559590	rs113993960	ATCT	A	.	PASS	GENE=CFTR;SOURCE=GIAB_HOMREF_INFERRED	GT	0/0
+chr10	94761900	rs12248560	C	T	.	PASS	GENE=CYP2C19;SOURCE=GIAB_HC	GT	0/1
+chr10	94781859	rs4244285	G	A	.	PASS	GENE=CYP2C19;SOURCE=GIAB_HOMREF_INFERRED	GT	0/0
+chr19	44908684	rs429358	T	C	.	PASS	GENE=APOE;SOURCE=GIAB_HC	GT	0/1

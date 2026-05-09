@@ -1,0 +1,17 @@
+id: q40
+domain: hereditary_risk
+question: "An adult patient is found to have a pathogenic variant in HFE c.845G>A (p.Cys282Tyr, C282Y) in homozygous state on cascade testing after his brother's diagnosis. Serum ferritin is 850 µg/L; transferrin saturation is 65%; ALT is mildly elevated. What is the appropriate initial management per ACG?"
+required_inputs:
+  - gene: HFE
+  - variant: "p.Cys282Tyr (C282Y) homozygous"
+  - laboratory: "ferritin 850 µg/L; TS 65%; mild ALT elevation"
+  - clinical_context: "asymptomatic, screening-detected hemochromatosis"
+gold_answer:
+  verdict: "initiate therapeutic phlebotomy (typically weekly 500 mL until ferritin reaches ~50 µg/L, then maintenance phlebotomy to keep ferritin 50-100 µg/L); liver biopsy is NOT routinely required because ferritin <1000 µg/L predicts low risk of advanced fibrosis (consider non-invasive fibrosis assessment); counsel regarding diet (avoid iron supplements and raw shellfish) and screen first-degree relatives"
+  cited_guideline: "ACG Clinical Guideline: Hereditary Hemochromatosis 2019 (Kowdley et al., Am J Gastroenterol 2019;114:1202)"
+  rationale: "C282Y/C282Y meets the genetic diagnosis. Treatment threshold per ACG 2019 is ferritin >300 ng/mL (men) / >200 ng/mL (women) with TS ≥45%. Phlebotomy is the mainstay; liver biopsy is reserved for ferritin >1000 ng/mL, abnormal LFTs in equivocal cases, or hepatomegaly. Family screening is standard."
+scoring_rubric:
+  verdict_correct: 'recommends therapeutic phlebotomy AND target ferritin ~50 µg/L AND identifies that liver biopsy not routinely required at ferritin <1000'
+  guideline_cited_with_version: 'includes "ACG 2019" OR "Kowdley" hemochromatosis guideline'
+  variant_evidence_cited: 'mentions HFE C282Y homozygote'
+primary_reference_url: https://journals.lww.com/ajg/Fulltext/2019/08000/ACG_Clinical_Guideline__Hereditary_Hemochromatosis.11.aspx
