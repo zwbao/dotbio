@@ -1,0 +1,89 @@
+{
+  "experiment": "single-shot LLM evaluation: can NA12878 take clopidogrel safely at standard dose?",
+  "methodology": "Each condition spawned a fresh general-purpose Claude agent with explicit no-tools instruction. Each agent saw ONLY its assigned format (embedded inline in the prompt) plus the question. Responses scored on phenotype call, guideline citation, variant evidence, and self-reported inference vs document-grounded.",
+  "date": "2026-05-09",
+  "ground_truth": "NA12878 is CYP2C19 *1/*2 (Intermediate Metabolizer); CPIC@2022 says consider alternative if ACS/PCI, standard dose otherwise. Correct verdict: 'depends' on clinical indication.",
+  "conditions": [
+    {
+      "id": "A1",
+      "format": "VCF only (raw 1000G genotypes)",
+      "input_tokens_claude": 676,
+      "response": {
+        "verdict": "depends",
+        "phenotype": "unknown",
+        "diplotype": "unknown",
+        "guideline_cited": "unknown",
+        "variant_evidence": "rs4244285 G|A (heterozygous, CYP2C19); rs12248560 C|C (CYP2C19)",
+        "anything_inferred_not_in_text": "The document does not state that rs4244285 corresponds to CYP2C19*2, that rs12248560 corresponds to CYP2C19*17, that CYP2C19 metabolizer status affects clopidogrel response, or cite any CPIC/PharmGKB guideline. Linking these variants to clopidogrel dosing requires external pharmacogenomic knowledge not in the document.",
+        "confidence": "low"
+      },
+      "scoring": {
+        "phenotype_correct": false,
+        "guideline_cited_with_version": false,
+        "variant_evidence_present": true,
+        "self_reported_external_inference_required": true
+      }
+    },
+    {
+      "id": "A2",
+      "format": "VCF + PharmCAT-style ruleset (LLM does in-context haplotype calling)",
+      "input_tokens_claude": 1866,
+      "response": {
+        "verdict": "depends",
+        "phenotype": "Intermediate Metabolizer",
+        "diplotype": "*1/*2",
+        "guideline_cited": "CPIC@2022",
+        "variant_evidence": "rs4244285 G|A (heterozygous); rs12248560 C|C (absent)",
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high"
+      },
+      "scoring": {
+        "phenotype_correct": true,
+        "guideline_cited_with_version": true,
+        "variant_evidence_present": true,
+        "self_reported_external_inference_required": false
+      }
+    },
+    {
+      "id": "B",
+      "format": ".genome (faithful reconstruction, all 8 loci)",
+      "input_tokens_claude": 663,
+      "response": {
+        "verdict": "depends",
+        "phenotype": "Intermediate Metabolizer (*1/*2)",
+        "diplotype": "*1/*2",
+        "guideline_cited": "unknown",
+        "variant_evidence": "unknown",
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high"
+      },
+      "scoring": {
+        "phenotype_correct": true,
+        "guideline_cited_with_version": false,
+        "variant_evidence_present": false,
+        "self_reported_external_inference_required": false
+      }
+    },
+    {
+      "id": "C",
+      "format": ".bio bundle (manifest.json + views/pgx.md)",
+      "input_tokens_claude": 834,
+      "response": {
+        "verdict": "depends",
+        "phenotype": "CYP2C19 Intermediate Metabolizer",
+        "diplotype": "*1/*2",
+        "guideline_cited": "CPIC@2022",
+        "variant_evidence": "unknown",
+        "anything_inferred_not_in_text": "none",
+        "confidence": "high"
+      },
+      "scoring": {
+        "phenotype_correct": true,
+        "guideline_cited_with_version": true,
+        "variant_evidence_present": false,
+        "self_reported_external_inference_required": false,
+        "note_variant_evidence_recoverable_via_followup": "fact hashes (sha256:...) are present in the view; resolving them to rsIDs requires reading facts/<hash>.json (not included in this single-shot prompt)"
+      }
+    }
+  ]
+}
