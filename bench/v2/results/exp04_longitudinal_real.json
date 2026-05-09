@@ -1,0 +1,744 @@
+{
+  "experiment": "exp04_longitudinal",
+  "spec_section": "SPEC.md §3.4",
+  "wall_clock_seconds": 16.816513061523438,
+  "archive": {
+    "mode": "real",
+    "start": "2024-01",
+    "n_months": 24,
+    "seed": 20240101,
+    "rate_scale": 8.0,
+    "n_snapshots": 22,
+    "n_reclassifications_total": 5846,
+    "n_actionable_total": 5066,
+    "archive_dir": "bench/v2/data/clinvar_archive",
+    "months_actually_loaded": [
+      "2024-01-01",
+      "2024-02-01",
+      "2024-03-01",
+      "2024-04-01",
+      "2024-05-01",
+      "2024-06-01",
+      "2024-07-01",
+      "2024-08-01",
+      "2024-09-01",
+      "2024-11-01",
+      "2024-12-01",
+      "2025-01-01",
+      "2025-02-01",
+      "2025-03-01",
+      "2025-04-01",
+      "2025-05-01",
+      "2025-06-01",
+      "2025-07-01",
+      "2025-08-01",
+      "2025-09-01",
+      "2025-10-01",
+      "2025-11-01"
+    ],
+    "carrier_variants_per_patient": 120,
+    "transition_matrix_source": "REAL ClinVar VCF GRCh38 monthly archive: https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/archive_2.0/ (extracted by bench/v2/scripts/extract_clinvar_archive.py)"
+  },
+  "cohort": [
+    {
+      "id": "P001",
+      "include_brca": false
+    },
+    {
+      "id": "P002",
+      "include_brca": false
+    },
+    {
+      "id": "P003",
+      "include_brca": false
+    },
+    {
+      "id": "P004",
+      "include_brca": false
+    },
+    {
+      "id": "P005",
+      "include_brca": false
+    }
+  ],
+  "summary": {
+    "arm_soc": {
+      "n_actionable_truth_total": 203,
+      "n_captured_total": 126,
+      "fnr": 0.3793103448275862,
+      "mean_latency_months_weighted": 0.7857142857142857,
+      "cumulative_tokens_total": 75281,
+      "n_patients": 5
+    },
+    "arm_bio": {
+      "n_actionable_truth_total": 203,
+      "n_captured_total": 203,
+      "fnr": 0.0,
+      "mean_latency_months_weighted": 0.0,
+      "cumulative_tokens_total": 130640,
+      "n_patients": 5
+    }
+  },
+  "per_patient_endpoints": {
+    "arm_soc": [
+      {
+        "n_actionable_truth": 37,
+        "n_captured": 25,
+        "fnr": 0.32432432432432434,
+        "mean_latency_months": 0.8,
+        "cumulative_tokens": 10786,
+        "missed": [
+          {
+            "gene": "MYH7",
+            "rsid": "rs397516256",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-02-01"
+          },
+          {
+            "gene": "MYBPC3",
+            "rsid": "rs1218279399",
+            "from": "pathogenic",
+            "to": "vus",
+            "released": "2024-02-01"
+          },
+          {
+            "gene": "BRCA1",
+            "rsid": "rs1235706456",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-02-01"
+          },
+          {
+            "gene": "APOB",
+            "rsid": "rs192869978",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-03-01"
+          },
+          {
+            "gene": "APOB",
+            "rsid": "rs958014928",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-03-01"
+          },
+          {
+            "gene": "APOB",
+            "rsid": "rs757424322",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-03-01"
+          },
+          {
+            "gene": "BRCA1",
+            "rsid": "rs397509295",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-12-01"
+          },
+          {
+            "gene": "BRCA1",
+            "rsid": "rs1555596621",
+            "from": "pathogenic",
+            "to": "likely_benign",
+            "released": "2025-03-01"
+          },
+          {
+            "gene": "BRCA1",
+            "rsid": "rs1044086308",
+            "from": "pathogenic",
+            "to": "likely_benign",
+            "released": "2025-03-01"
+          },
+          {
+            "gene": "BRCA1",
+            "rsid": "rs398122684",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2025-03-01"
+          },
+          {
+            "gene": "MYH7",
+            "rsid": "rs781529698",
+            "from": "pathogenic",
+            "to": "likely_benign",
+            "released": "2025-03-01"
+          },
+          {
+            "gene": "MYBPC3",
+            "rsid": "rs988454775",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2025-05-01"
+          }
+        ],
+        "patient": "P001"
+      },
+      {
+        "n_actionable_truth": 39,
+        "n_captured": 22,
+        "fnr": 0.4358974358974359,
+        "mean_latency_months": 0.6363636363636364,
+        "cumulative_tokens": 18533,
+        "missed": [
+          {
+            "gene": "PCSK9",
+            "rsid": "rs376385276",
+            "from": "pathogenic",
+            "to": "likely_benign",
+            "released": "2024-02-01"
+          },
+          {
+            "gene": "CFTR",
+            "rsid": "rs773933167",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-02-01"
+          },
+          {
+            "gene": "G6PD",
+            "rsid": "rs781865768",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-02-01"
+          },
+          {
+            "gene": "BRCA1",
+            "rsid": "rs1597875858",
+            "from": "pathogenic",
+            "to": "likely_benign",
+            "released": "2024-02-01"
+          },
+          {
+            "gene": "APOB",
+            "rsid": "rs373961682",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-03-01"
+          },
+          {
+            "gene": "APOB",
+            "rsid": "rs780537483",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-03-01"
+          },
+          {
+            "gene": "APOB",
+            "rsid": "rs751629013",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-03-01"
+          },
+          {
+            "gene": "PTEN",
+            "rsid": "rs1374474745",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-03-01"
+          },
+          {
+            "gene": "TP53",
+            "rsid": "rs1057520003",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-05-01"
+          },
+          {
+            "gene": "PALB2",
+            "rsid": "rs764180110",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-05-01"
+          },
+          {
+            "gene": "PALB2",
+            "rsid": "rs864622411",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-08-01"
+          },
+          {
+            "gene": "PALB2",
+            "rsid": "rs730881881",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-08-01"
+          },
+          {
+            "gene": "LDLR",
+            "rsid": "rs140731590",
+            "from": "pathogenic",
+            "to": "vus",
+            "released": "2024-11-01"
+          },
+          {
+            "gene": "LDLR",
+            "rsid": "rs555292896",
+            "from": "pathogenic",
+            "to": "vus",
+            "released": "2024-11-01"
+          },
+          {
+            "gene": "PALB2",
+            "rsid": "rs1060502777",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2025-01-01"
+          },
+          {
+            "gene": "LDLR",
+            "rsid": "rs879254360",
+            "from": "pathogenic",
+            "to": "vus",
+            "released": "2025-02-01"
+          },
+          {
+            "gene": "STK11",
+            "rsid": "rs2080773735",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2025-07-01"
+          }
+        ],
+        "patient": "P002"
+      },
+      {
+        "n_actionable_truth": 40,
+        "n_captured": 25,
+        "fnr": 0.375,
+        "mean_latency_months": 0.8,
+        "cumulative_tokens": 14880,
+        "missed": [
+          {
+            "gene": "BRCA1",
+            "rsid": "rs1235706456",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-02-01"
+          },
+          {
+            "gene": "BRCA1",
+            "rsid": "rs80357205",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-02-01"
+          },
+          {
+            "gene": "STK11",
+            "rsid": "rs2512949109",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-03-01"
+          },
+          {
+            "gene": "STK11",
+            "rsid": "rs759473833",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-05-01"
+          },
+          {
+            "gene": "APOB",
+            "rsid": "rs780537483",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-03-01"
+          },
+          {
+            "gene": "APOB",
+            "rsid": "rs778492524",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-03-01"
+          },
+          {
+            "gene": "APOB",
+            "rsid": "rs377429190",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-03-01"
+          },
+          {
+            "gene": "APOB",
+            "rsid": "rs1251857523",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-03-01"
+          },
+          {
+            "gene": "APOB",
+            "rsid": "rs777259835",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-03-01"
+          },
+          {
+            "gene": "PALB2",
+            "rsid": "rs1567218614",
+            "from": "likely_benign",
+            "to": "pathogenic",
+            "released": "2024-03-01"
+          },
+          {
+            "gene": "TP53",
+            "rsid": "rs763746485",
+            "from": "pathogenic",
+            "to": "vus",
+            "released": "2024-05-01"
+          },
+          {
+            "gene": "PALB2",
+            "rsid": "rs180177125",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-12-01"
+          },
+          {
+            "gene": "PALB2",
+            "rsid": "rs863224788",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2025-01-01"
+          },
+          {
+            "gene": "TP53",
+            "rsid": "rs1064795860",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-12-01"
+          },
+          {
+            "gene": "STK11",
+            "rsid": "rs1555738623",
+            "from": "pathogenic",
+            "to": "likely_benign",
+            "released": "2025-05-01"
+          }
+        ],
+        "patient": "P003"
+      },
+      {
+        "n_actionable_truth": 46,
+        "n_captured": 28,
+        "fnr": 0.391304347826087,
+        "mean_latency_months": 0.8928571428571429,
+        "cumulative_tokens": 16992,
+        "missed": [
+          {
+            "gene": "CFTR",
+            "rsid": "rs760088331",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-02-01"
+          },
+          {
+            "gene": "MYBPC3",
+            "rsid": "rs371564200",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-02-01"
+          },
+          {
+            "gene": "PCSK9",
+            "rsid": "rs1644743243",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-02-01"
+          },
+          {
+            "gene": "APOB",
+            "rsid": "rs774016937",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-03-01"
+          },
+          {
+            "gene": "APOB",
+            "rsid": "rs150005693",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-03-01"
+          },
+          {
+            "gene": "APOB",
+            "rsid": "rs755025293",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-03-01"
+          },
+          {
+            "gene": "LDLR",
+            "rsid": "rs879255192",
+            "from": "pathogenic",
+            "to": "vus",
+            "released": "2024-11-01"
+          },
+          {
+            "gene": "BRCA1",
+            "rsid": "rs551078372",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-12-01"
+          },
+          {
+            "gene": "BRCA1",
+            "rsid": "rs397507241",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-12-01"
+          },
+          {
+            "gene": "BRCA1",
+            "rsid": "rs1060502331",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-12-01"
+          },
+          {
+            "gene": "BRCA1",
+            "rsid": "rs886038197",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-12-01"
+          },
+          {
+            "gene": "APOB",
+            "rsid": "rs201764222",
+            "from": "likely_benign",
+            "to": "pathogenic",
+            "released": "2025-01-01"
+          },
+          {
+            "gene": "TP53",
+            "rsid": "rs769697802",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2025-03-01"
+          },
+          {
+            "gene": "TP53",
+            "rsid": "rs769697802",
+            "from": "pathogenic",
+            "to": "likely_benign",
+            "released": "2025-05-01"
+          },
+          {
+            "gene": "TP53",
+            "rsid": "rs886039483",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2025-05-01"
+          },
+          {
+            "gene": "APOB",
+            "rsid": "rs150721027",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2025-03-01"
+          },
+          {
+            "gene": "PALB2",
+            "rsid": "rs1966855329",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2025-07-01"
+          },
+          {
+            "gene": "PALB2",
+            "rsid": "rs144944814",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2025-07-01"
+          }
+        ],
+        "patient": "P004"
+      },
+      {
+        "n_actionable_truth": 41,
+        "n_captured": 26,
+        "fnr": 0.36585365853658536,
+        "mean_latency_months": 0.7692307692307693,
+        "cumulative_tokens": 14090,
+        "missed": [
+          {
+            "gene": "CFTR",
+            "rsid": "rs121909009",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-02-01"
+          },
+          {
+            "gene": "BRCA1",
+            "rsid": "rs1346819781",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-02-01"
+          },
+          {
+            "gene": "BRCA1",
+            "rsid": "rs878854960",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-03-01"
+          },
+          {
+            "gene": "APOB",
+            "rsid": "rs763559077",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-03-01"
+          },
+          {
+            "gene": "CFTR",
+            "rsid": "rs141554123",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-05-01"
+          },
+          {
+            "gene": "MYH7",
+            "rsid": "rs1446807021",
+            "from": "likely_benign",
+            "to": "pathogenic",
+            "released": "2024-05-01"
+          },
+          {
+            "gene": "TP53",
+            "rsid": "rs967461896",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-05-01"
+          },
+          {
+            "gene": "BRCA1",
+            "rsid": "rs1247437511",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-08-01"
+          },
+          {
+            "gene": "LDLR",
+            "rsid": "rs140731590",
+            "from": "pathogenic",
+            "to": "vus",
+            "released": "2024-11-01"
+          },
+          {
+            "gene": "PTEN",
+            "rsid": "rs759852661",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2024-12-01"
+          },
+          {
+            "gene": "BRCA1",
+            "rsid": "rs80357193",
+            "from": "likely_benign",
+            "to": "pathogenic",
+            "released": "2024-12-01"
+          },
+          {
+            "gene": "PCSK9",
+            "rsid": "rs761104090",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2025-03-01"
+          },
+          {
+            "gene": "CFTR",
+            "rsid": "rs193922499",
+            "from": "pathogenic",
+            "to": "likely_benign",
+            "released": "2025-03-01"
+          },
+          {
+            "gene": "PTEN",
+            "rsid": "rs746152219",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2025-07-01"
+          },
+          {
+            "gene": "MYBPC3",
+            "rsid": "rs727503171",
+            "from": "vus",
+            "to": "pathogenic",
+            "released": "2025-07-01"
+          }
+        ],
+        "patient": "P005"
+      }
+    ],
+    "arm_bio": [
+      {
+        "n_actionable_truth": 37,
+        "n_captured": 37,
+        "fnr": 0.0,
+        "mean_latency_months": 0.0,
+        "cumulative_tokens": 18182,
+        "missed": [],
+        "patient": "P001"
+      },
+      {
+        "n_actionable_truth": 39,
+        "n_captured": 39,
+        "fnr": 0.0,
+        "mean_latency_months": 0.0,
+        "cumulative_tokens": 33973,
+        "missed": [],
+        "patient": "P002"
+      },
+      {
+        "n_actionable_truth": 40,
+        "n_captured": 40,
+        "fnr": 0.0,
+        "mean_latency_months": 0.0,
+        "cumulative_tokens": 26775,
+        "missed": [],
+        "patient": "P003"
+      },
+      {
+        "n_actionable_truth": 46,
+        "n_captured": 46,
+        "fnr": 0.0,
+        "mean_latency_months": 0.0,
+        "cumulative_tokens": 28434,
+        "missed": [],
+        "patient": "P004"
+      },
+      {
+        "n_actionable_truth": 41,
+        "n_captured": 41,
+        "fnr": 0.0,
+        "mean_latency_months": 0.0,
+        "cumulative_tokens": 23276,
+        "missed": [],
+        "patient": "P005"
+      }
+    ]
+  },
+  "per_patient_truth_counts": {
+    "P001": {
+      "n_total": 41,
+      "n_actionable": 37
+    },
+    "P002": {
+      "n_total": 48,
+      "n_actionable": 39
+    },
+    "P003": {
+      "n_total": 48,
+      "n_actionable": 40
+    },
+    "P004": {
+      "n_total": 53,
+      "n_actionable": 46
+    },
+    "P005": {
+      "n_total": 45,
+      "n_actionable": 41
+    }
+  }
+}

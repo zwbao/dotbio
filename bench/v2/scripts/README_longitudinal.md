@@ -77,15 +77,102 @@ exactly this cumulative-diff property).
 
 ## What's simulated vs. real
 
-| Component | Round 1 | Round 2+ |
-|---|---|---|
-| Monthly ClinVar snapshots | **synthetic**, generated via `clinvar_archive.synthesize_archive` | real ClinVar full-release XMLs via `clinvar_archive.load_real_archive` (stub raises with the FTP location) |
-| Patient cohort | 5 synthetic VCFs perturbed from `examples/real-na12878/input.vcf` | 100 1000G 30x individuals from Task 11 |
-| `bio update`, `bio diff` | **real** dotbio CLI subprocesses | unchanged |
-| Token accounting | ~4-chars-per-token estimate (matches the existing dotbio CLI convention) | swap in a tokenizer-precise count via `Xenova/claude-tokenizer` (matches H1/H2 experiments) |
+| Component | Round 1 | Round 2 (current) | Future |
+|---|---|---|---|
+| Monthly ClinVar snapshots | **synthetic**, generated via `clinvar_archive.synthesize_archive` | **real** monthly ClinVar VCF GRCh38 archive via `clinvar_archive.load_real_archive`, extracted by `extract_clinvar_archive.py` (24 monthly VCFs from `archive_2.0/`, gene-region-only via remote tabix) | full ClinVar XML release with submitter-level provenance |
+| Patient cohort (synthetic mode) | 5 patients perturbed from `examples/real-na12878/input.vcf` | unchanged | 100 1000G 30x individuals from Task 11 |
+| Patient cohort (real-archive mode) | n/a | per-patient VCF synthesized from the real-archive variant universe via `_synthesize_patient_vcf_real_archive` (drops 120 carrier variants per patient, 30% het / 5% homalt / 65% homref) | replace with 100 1000G 30x individuals genotyped at the same panel |
+| `bio update`, `bio diff` | **real** dotbio CLI subprocesses | unchanged | unchanged |
+| Token accounting | ~4-chars-per-token estimate | unchanged | swap in tokenizer-precise count via `Xenova/claude-tokenizer` |
 
 The simulator's `--clinvar-archive <path>` flag swaps synthetic for
 real with no other code changes.
+
+## Real-data run (Round 2)
+
+A 24-month real-ClinVar archive lives at
+`bench/v2/data/clinvar_archive/`:
+
+```
+clinvar_archive/
+  per_month/
+    clinvar_2024-01.tsv     # 24 of these, one per month
+    ...
+    clinvar_2025-12.tsv
+  clinvar_2024-01_to_2025-12.tsv  # cross-month reclassification events
+  coverage.tsv              # per-month download metadata (bytes, records, time)
+```
+
+It was produced by:
+
+```
+python bench/v2/scripts/extract_clinvar_archive.py \
+    --start 2024-01 --end 2025-12 \
+    --out-dir bench/v2/data/clinvar_archive
+```
+
+The extractor downloads the per-month ClinVar VCF GRCh38 archive's
+.tbi index (≈500 KB), then issues per-region tabix queries against
+the remote `.vcf.gz` over HTTP (≈25–35 MB per month for our 27-gene
+PGx + ACMG SF panel). Total bandwidth for 24 months is well under
+the 800 MB Round-2 budget. See `extract_clinvar_archive.py:GENE_REGIONS_GRCH38`
+for the panel definition (PharmGKB Tier 1 VIPs + ACMG SF cancer +
+cardiomyopathy genes; BRCA2 / MMR / ATM / APC are deliberately
+excluded for budget — see comments in the script).
+
+To re-run the cohort study on real data:
+
+```
+python bench/v2/scripts/longitudinal_sim.py --patients 5 --months 24 \
+    --clinvar-archive bench/v2/data/clinvar_archive \
+    --carrier-variants 120 \
+    --out bench/v2/results/exp04_longitudinal_real.json
+```
+
+The output structure matches the smoke run; the `archive` block is
+tagged `mode: "real"`, lists `months_actually_loaded`, and cites the
+NCBI FTP URL instead of the synthetic-transition-matrix references.
+
+### Headline numbers (real data, 5 patients × 22 months)
+
+The real-archive run results live in
+`bench/v2/results/exp04_longitudinal_real.json`. With the bundled
+extraction (22 of 24 months retrieved, two months — 2024-10 and
+2025-12 — failed during .tbi download with transient SSL errors and
+were skipped), the run reports:
+
+| Endpoint | arm_soc (re-annotate quarterly) | arm_bio (monthly bio update) |
+|---|---|---|
+| Actionable ground truth | 203 events across 5 patients | 203 (same) |
+| Captured | 126 / 203 | 203 / 203 |
+| **FNR** | **0.379** | **0.000** |
+| Mean detection latency (months) | 0.79 | 0.00 |
+| Cumulative tokens | 75,281 | 130,640 |
+
+bio captures every actionable transition in real ClinVar at
+≈1.74× the cumulative token cost of quarterly re-annotation. The
+quarterly-cumulative-diff effect (intermediate transitions absorbed
+into the net change) drops the SoC arm to 62% recall on the same
+cohort. These numbers are drawn from REAL ClinVar reclassifications
+between 2024-01 and 2025-11; no transitions are synthetic.
+
+**Coverage caveats**:
+- 22 of 24 monthly snapshots are present (≥18 of acceptance threshold).
+  Missing months: `2024-10`, `2025-12`. Their absence creates a 2-month
+  gap rather than a 1-month gap between adjacent snapshots, which only
+  affects the *latency* metric in arm_soc (latency rounds up by one
+  month at those boundaries) — it does NOT confound the FNR comparison
+  because both arms see the same snapshot list.
+- The 27-gene panel deliberately excludes BRCA2, MMR (MLH1/MSH2/MSH6),
+  ATM, and APC due to bandwidth budget. Reclassification volume in
+  hereditary cancer would be larger with those included; see the
+  comments in `extract_clinvar_archive.py:GENE_REGIONS_GRCH38`.
+- The 5-patient cohort is synthetic — variants are drawn from the
+  real-archive universe with realistic 30% het / 5% homalt frequencies.
+  When Task 11 lands the 100-individual 1000G cohort, the same
+  simulator runs on real genotypes with no code changes
+  (`build_cohort_real_archive` becomes redundant; replace it with the
+  real-cohort loader).
 
 ## Synthetic transition probabilities
 

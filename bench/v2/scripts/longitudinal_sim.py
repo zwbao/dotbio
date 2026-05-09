@@ -157,6 +157,150 @@ def build_cohort(n: int, work_dir: Path, seed_base: int = 7000) -> list[dict]:
     return cohort
 
 
+# ---- real-archive cohort builder -----------------------------------------
+#
+# When the simulator runs with `--clinvar-archive`, the snapshot universe
+# is hundreds of real ClinVar variants, none of which the bundled
+# 8-locus example VCF covers. To produce a meaningful intersection
+# between patient genotypes and reclassification events, we draw a
+# per-patient *carrier set* from the archive's reclassified-variant
+# universe and hand-write VCF records for each draw.
+#
+# Genotype distribution per chosen variant: 30% het, 5% hom-alt, 65% hom-ref
+# (we still emit the 0|0 record so dotbio compile doesn't choke on missing
+# entries). With ~120 variants per patient this gives ~36 het + ~6 hom
+# carriers per patient, plenty of overlap with the timeline.
+
+def _synthesize_patient_vcf_real_archive(
+    seed: int,
+    out_path: Path,
+    archive_skeleton: list[dict],
+    n_carrier_variants: int = 120,
+) -> Path:
+    """Write a patient VCF using variants drawn from the real ClinVar archive.
+
+    `archive_skeleton` is the entries list extracted from a snapshot
+    (one dict per variant with rsid, chrom, pos, ref, alt, gene fields).
+    We sample `n_carrier_variants` of them and emit one VCF record each.
+
+    The VCF is written with a minimal header dotbio's parser accepts.
+    Determinism: same seed + same skeleton -> same VCF.
+    """
+    import random as _random
+    rng = _random.Random(seed)
+
+    pool = list(archive_skeleton)
+    rng.shuffle(pool)
+    chosen = pool[: min(n_carrier_variants, len(pool))]
+
+    header = [
+        "##fileformat=VCFv4.2",
+        "##source=longitudinal_sim_real_archive",
+        '##INFO=<ID=GENE,Number=1,Type=String,Description="Affected gene">',
+        '##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">',
+        "#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\tSAMPLE",
+    ]
+
+    rows: list[str] = []
+    for v in chosen:
+        rsid = v["rsid"]
+        ref = v["ref"] or "N"
+        alt = v["alt"] or "N"
+        # Skip ill-formed entries (no allele info) defensively.
+        if not (ref and alt and ref != alt):
+            continue
+        # Genotype draw: 65% homref, 30% het, 5% homalt.
+        r = rng.random()
+        if r < 0.65:
+            gt = "0|0"
+        elif r < 0.95:
+            gt = "1|0"
+        else:
+            gt = "1|1"
+        chrom = v["chrom"] or "1"
+        pos = v["pos"] or "1"
+        gene = v.get("gene", "")
+        rows.append(
+            f"{chrom}\t{pos}\t{rsid}\t{ref}\t{alt}\t.\tPASS\tGENE={gene}\tGT\t{gt}"
+        )
+
+    out_path.write_text("\n".join(header + rows) + "\n")
+    return out_path
+
+
+def build_cohort_real_archive(
+    n: int, work_dir: Path, archive_skeleton: list[dict],
+    initial_ruleset: str,
+    seed_base: int = 7000, n_carrier_variants: int = 120,
+) -> list[dict]:
+    """Build N patient bundles using the real-archive variant universe.
+
+    Same return type as `build_cohort`; the difference is that
+    (a) the VCF is synthesized from `archive_skeleton` rather than
+    perturbed from the bundled 8-locus example, and (b) `bio compile`
+    is invoked with ``--ruleset {initial_ruleset}`` so the patient's
+    initial claims are grounded in the first month of the real archive,
+    not the dotbio-bundled `clinvar@latest`.
+    """
+    cohort: list[dict] = []
+    for i in range(n):
+        pid = f"P{i+1:03d}"
+        pdir = work_dir / pid
+        pdir.mkdir(parents=True, exist_ok=True)
+        vcf = pdir / "input.vcf"
+        _synthesize_patient_vcf_real_archive(
+            seed_base + i, vcf, archive_skeleton,
+            n_carrier_variants=n_carrier_variants,
+        )
+
+        bundle = pdir / "patient.bio"
+        compile_cmd = [
+            sys.executable, "-m", "dotbio", "compile",
+            str(vcf), "-o", str(bundle), "--force",
+            "--subject", pid,
+            "--ruleset", initial_ruleset,
+        ]
+        proc = subprocess.run(compile_cmd, capture_output=True, text=True)
+        if proc.returncode != 0:
+            raise RuntimeError(
+                f"compile failed for {pid}: rc={proc.returncode}\n"
+                f"stdout: {proc.stdout}\n"
+                f"stderr: {proc.stderr}"
+            )
+        cohort.append({
+            "id": pid,
+            "vcf": str(vcf),
+            "bundle": str(bundle),
+            "include_brca": False,  # not applicable in real-archive mode
+            "n_carrier_variants": n_carrier_variants,
+            "compile_ruleset": initial_ruleset,
+        })
+    return cohort
+
+
+def _archive_skeleton_from_snapshots(snapshots: list[dict]) -> list[dict]:
+    """Pull a flat (rsid, chrom, pos, ref, alt, gene) list out of snapshots.
+
+    We use the LAST snapshot's `entries` because by then all variants in
+    the timeline are present (real archive loader populates every entry
+    for every snapshot).
+    """
+    if not snapshots:
+        return []
+    last = snapshots[-1]["ruleset"]
+    out: list[dict] = []
+    for rsid, entry in last.get("entries", {}).items():
+        out.append({
+            "rsid": rsid,
+            "gene": entry.get("gene", ""),
+            "chrom": entry.get("_chrom", ""),
+            "pos": entry.get("_pos", ""),
+            "ref": entry.get("_ref", ""),
+            "alt": entry.get("_alt", ""),
+        })
+    return out
+
+
 # ---- patient genotype lookup (for ground-truth filtering) -----------------
 
 
@@ -520,6 +664,9 @@ def main(argv: list[str] | None = None) -> int:
                    help="see clinvar_archive.synthesize_archive")
     p.add_argument("--clinvar-archive", type=Path, default=None,
                    help="optional real ClinVar archive directory")
+    p.add_argument("--carrier-variants", type=int, default=120,
+                   help="real-archive mode only: number of variants per "
+                        "synthetic patient drawn from the archive universe")
     p.add_argument("--out", type=Path,
                    default=RESULTS_DIR / "exp04_longitudinal_smoke.json")
     p.add_argument("--keep-tmp", action="store_true")
@@ -546,7 +693,19 @@ def main(argv: list[str] | None = None) -> int:
     work_root = Path(tempfile.mkdtemp(prefix="dotbio-longitudinal-"))
     try:
         cohort_t0 = time.time()
-        cohort = build_cohort(args.patients, work_root)
+        if args.clinvar_archive:
+            skeleton = _archive_skeleton_from_snapshots(snapshots)
+            print(f"[longitudinal_sim] real-archive skeleton: "
+                  f"{len(skeleton)} variants in universe")
+            initial_ruleset = f"clinvar@{snapshots[0]['version']}"
+            cohort = build_cohort_real_archive(
+                args.patients, work_root, skeleton,
+                initial_ruleset=initial_ruleset,
+                seed_base=args.seed,
+                n_carrier_variants=args.carrier_variants,
+            )
+        else:
+            cohort = build_cohort(args.patients, work_root)
         print(f"[longitudinal_sim] cohort built in "
               f"{time.time()-cohort_t0:.1f}s ({len(cohort)} patients)")
 
@@ -615,7 +774,7 @@ def main(argv: list[str] | None = None) -> int:
         }
 
         # 7. Emit JSON.
-        archive_meta = {
+        archive_meta: dict[str, Any] = {
             "mode": "real" if args.clinvar_archive else "synthetic",
             "start": args.start,
             "n_months": args.months,
@@ -629,11 +788,21 @@ def main(argv: list[str] | None = None) -> int:
                 sum(1 for r in s["reclassifications"] if r["actionable"])
                 for s in snapshots
             ),
-            "transition_matrix_source": (
+        }
+        if args.clinvar_archive:
+            archive_meta["archive_dir"] = str(args.clinvar_archive)
+            archive_meta["months_actually_loaded"] = [s["version"] for s in snapshots]
+            archive_meta["carrier_variants_per_patient"] = args.carrier_variants
+            archive_meta["transition_matrix_source"] = (
+                "REAL ClinVar VCF GRCh38 monthly archive: "
+                "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/archive_2.0/ "
+                "(extracted by bench/v2/scripts/extract_clinvar_archive.py)"
+            )
+        else:
+            archive_meta["transition_matrix_source"] = (
                 "Landrum 2018 Nucleic Acids Res 46(D1):D1062 + "
                 "Harrison & Rehm 2019 Genet Med — see clinvar_archive.py"
-            ),
-        }
+            )
 
         result = {
             "experiment": "exp04_longitudinal",
@@ -641,7 +810,7 @@ def main(argv: list[str] | None = None) -> int:
             "wall_clock_seconds": time.time() - t0,
             "archive": archive_meta,
             "cohort": [
-                {"id": p["id"], "include_brca": p["include_brca"]}
+                {"id": p["id"], "include_brca": p.get("include_brca", False)}
                 for p in cohort
             ],
             "summary": summary,

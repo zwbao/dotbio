@@ -6,7 +6,7 @@ API key environment variable is unset, `available()` returns False and
 the harness falls back to the deterministic `mock` client.
 """
 
-from . import anthropic, gemini, mock, openai
+from . import anthropic, gemini, mock, openai, openrouter
 
 FAMILIES = {
     "claude": anthropic,
@@ -17,6 +17,10 @@ FAMILIES = {
     "google": gemini,
     "llama3": mock,  # Together AI client not implemented in v2 round-1; mock-only
     "mock": mock,
+    # Round-2: unified OpenRouter client. The router itself is provider-agnostic;
+    # the actual model is selected via the `--model` slug at call time
+    # (e.g. anthropic/claude-sonnet-4.6, openai/gpt-5-mini, google/gemini-3-flash).
+    "openrouter": openrouter,
 }
 
 
@@ -37,4 +41,4 @@ def get_client(family: str, *, force_mock: bool = False):
     return module.Client()
 
 
-__all__ = ["FAMILIES", "get_client", "anthropic", "openai", "gemini", "mock"]
+__all__ = ["FAMILIES", "get_client", "anthropic", "openai", "gemini", "mock", "openrouter"]

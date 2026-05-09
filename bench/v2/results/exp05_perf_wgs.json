@@ -1,0 +1,119 @@
+{
+  "schema": "dotbio.bench.exp05_perf.v1",
+  "spec_section": "bench/v2/SPEC.md \u00a73.5 (Experiment 5 \u2014 Performance / scalability)",
+  "task": "bench/v2/TASKS.md Task 7 \u2014 Performance benchmark runner",
+  "dotbio_version": "0.1.0",
+  "schema_version": "dotbio.v0",
+  "host": {
+    "platform": "macOS-26.3-arm64-arm-64bit",
+    "python": "3.11.4",
+    "cpu": "arm",
+    "darwin_rss_unit": "bytes_then_kb_normalized"
+  },
+  "config": {
+    "n_compile_runs": 5,
+    "n_show_runs": 100,
+    "n_update_runs": 5,
+    "quick_mode": false,
+    "wgs_n_compile_runs": 1,
+    "wgs_n_show_runs": 20,
+    "wgs_n_update_runs": 0,
+    "wgs_only": true
+  },
+  "wgs_tier_status": "ran",
+  "tiers": [
+    {
+      "name": "hg002_wgs_full",
+      "vcf_path": "/tmp/dotbio_wgs/HG002_GRCh38_1_22_v4.2.1.vcf",
+      "vcf_variant_count": 4048342,
+      "compile": {
+        "cold_seconds": [
+          1658.4419387499802
+        ],
+        "warm_seconds": [],
+        "cold_stats": {
+          "n": 1,
+          "median": 1658.4419387499802,
+          "q1": 1658.4419387499802,
+          "q3": 1658.4419387499802,
+          "iqr": 0.0,
+          "p95": 1658.4419387499802,
+          "min": 1658.4419387499802,
+          "max": 1658.4419387499802,
+          "mean": 1658.4419387499802
+        },
+        "warm_stats": {
+          "n": 0
+        },
+        "tracemalloc_enabled": false,
+        "tracemalloc_peak_bytes": {
+          "n": 1,
+          "median": 0,
+          "q1": 0,
+          "q3": 0,
+          "iqr": 0,
+          "p95": 0.0,
+          "min": 0,
+          "max": 0,
+          "mean": 0.0
+        },
+        "rss_peak_kb": {
+          "n": 1,
+          "median": 2877968,
+          "q1": 2877968,
+          "q3": 2877968,
+          "iqr": 0,
+          "p95": 2877968.0,
+          "min": 2877968,
+          "max": 2877968,
+          "mean": 2877968.0
+        }
+      },
+      "bundle_size": {
+        "uncompressed_bytes": 588759996,
+        "compressed_tar_gz_bytes": 370935080,
+        "compression_ratio": 1.5872319113091164
+      },
+      "show_pgx": {
+        "samples_seconds": [
+          0.0008290419355034828,
+          0.000429375097155571,
+          0.0004552908940240741,
+          0.00038937502540647984,
+          0.0004132920876145363,
+          0.00046204193495213985,
+          0.00038479198701679707,
+          0.00039475003723055124,
+          0.00044195796363055706,
+          0.0003720000386238098,
+          0.0005314999725669622,
+          0.0005192919634282589,
+          0.00038429105188697577,
+          0.0004227079916745424,
+          0.0003695000195875764,
+          0.0003596249734982848,
+          0.0004263329319655895,
+          0.0003537909360602498,
+          0.0003535000141710043,
+          0.00040970800910145044
+        ],
+        "stats": {
+          "n": 20,
+          "median": 0.00041150004835799336,
+          "q1": 0.0003812182985711843,
+          "q3": 0.0004452911962289363,
+          "iqr": 6.407289765775204e-05,
+          "p95": 0.0005463770707137882,
+          "min": 0.0003535000141710043,
+          "max": 0.0008290419355034828,
+          "mean": 0.0004351082432549447
+        }
+      },
+      "update_clinvar": {
+        "skipped": true,
+        "reason": "n_update=0 (WGS budget mode: skipping repeated re-compiles)"
+      }
+    }
+  ],
+  "wall_seconds_total": 3523.280203707982
+}

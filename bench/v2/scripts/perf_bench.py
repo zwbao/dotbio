@@ -15,11 +15,26 @@ The same code scales to full WGS when `HG002_WGS_VCF` is set; that
 scenario is skipped gracefully if the env var is unset (we never
 download). Smoke run on the existing examples completes in <30s.
 
+Round 2 (WGS-scale, opt-in): when `HG002_WGS_VCF` points at an
+existing VCF, an extra `hg002_wgs_full` tier runs. Because a single
+WGS compile takes minutes (millions of CAS files), the WGS tier
+defaults to a budget configuration that sidesteps the round-1
+defaults: 1 cold compile (no warm), 20 show runs, update skipped, and
+tracemalloc disabled (it imposes ~3-5x overhead at 4M+ allocations).
+Each can be overridden via env vars — see README_perf.md.
+
 Usage:
-    python bench/v2/scripts/perf_bench.py             # default
+    python bench/v2/scripts/perf_bench.py             # round-1 default
     python bench/v2/scripts/perf_bench.py --quick     # fewer runs
 
-Output: bench/v2/results/exp05_perf.json
+    # round-2 WGS (provide your own VCF; never downloaded). Writes a
+    # SEPARATE results file so round-1 numbers stay intact.
+    HG002_WGS_VCF=/tmp/HG002.vcf HG002_WGS_ONLY=1 \
+        python bench/v2/scripts/perf_bench.py \
+            --out bench/v2/results/exp05_perf_wgs.json
+
+Output (round 1): bench/v2/results/exp05_perf.json
+Output (round 2): bench/v2/results/exp05_perf_wgs.json
 """
 
 from __future__ import annotations
@@ -153,12 +168,19 @@ def _run_bio_subprocess(argv: list[str]) -> tuple[int, float]:
 # ---- measurement primitives -----------------------------------------------
 
 
-def measure_compile_runs(vcf: Path, n_runs: int, workdir: Path) -> dict:
+def measure_compile_runs(vcf: Path, n_runs: int, workdir: Path,
+                         enable_tracemalloc: bool = True) -> dict:
     """Run compile n_runs times in-process. The first run is the COLD run
     (workdir empty, ruleset cache cold); subsequent runs are WARM (rulesets
     already loaded into module cache).
 
     Returns separated cold and warm timing distributions, plus peak RSS.
+
+    ``enable_tracemalloc`` controls whether the in-process Python heap
+    profiler runs alongside compile. Tracemalloc adds ~3–5× CPU
+    overhead at WGS scale (millions of allocations) — fine for the
+    small-data tiers, prohibitive at full WGS, where the round-2
+    invocation disables it. RSS via ``getrusage`` is always recorded.
     """
     cold_seconds = []
     warm_seconds = []
@@ -173,12 +195,16 @@ def measure_compile_runs(vcf: Path, n_runs: int, workdir: Path) -> dict:
         # Reset peak RSS counter is not possible; capture deltas instead.
         rss_before = _rss_kb_self()
 
-        tracemalloc.start()
+        if enable_tracemalloc:
+            tracemalloc.start()
         t0 = time.perf_counter()
         rc = _run_bio_inprocess(["compile", str(vcf), "-o", str(out), "--force"])
         t1 = time.perf_counter()
-        _current, peak = tracemalloc.get_traced_memory()
-        tracemalloc.stop()
+        if enable_tracemalloc:
+            _current, peak = tracemalloc.get_traced_memory()
+            tracemalloc.stop()
+        else:
+            peak = 0  # tracemalloc disabled — see RSS for memory peak
 
         rss_after = _rss_kb_self()
         if rc != 0:
@@ -197,6 +223,7 @@ def measure_compile_runs(vcf: Path, n_runs: int, workdir: Path) -> dict:
         "warm_seconds": warm_seconds,
         "cold_stats": _median_iqr(cold_seconds),
         "warm_stats": _median_iqr(warm_seconds),
+        "tracemalloc_enabled": enable_tracemalloc,
         "tracemalloc_peak_bytes": _median_iqr(peak_traced_bytes),
         "rss_peak_kb": _median_iqr(peak_rss_kb),
     }
@@ -288,34 +315,71 @@ def _vcf_variant_count(vcf: Path) -> int:
 
 
 def run_tier(name: str, vcf: Path, n_compile: int, n_show: int, n_update: int,
-             workdir: Path) -> dict:
-    """Run all measurements for one input scale tier."""
+             workdir: Path, reuse_compile_for_size: bool = False,
+             enable_tracemalloc: bool = True) -> dict:
+    """Run all measurements for one input scale tier.
+
+    When ``reuse_compile_for_size`` is True, the bundle produced by the
+    cold compile run is reused for both bundle-size measurement and as
+    the input to ``measure_show_latency`` — avoiding two extra full
+    compiles. This matters at WGS scale, where a single compile may
+    take tens of minutes; the timing-relevant numbers (compile and show)
+    are unaffected because they read from the same on-disk artifact a
+    fresh compile would have produced.
+    """
     print(f"  [{name}] vcf={vcf.name}  ({_vcf_variant_count(vcf)} variants)",
           file=sys.stderr)
 
     tier_dir = workdir / name
     tier_dir.mkdir(parents=True, exist_ok=True)
 
-    print(f"    compile x{n_compile} (1 cold + {n_compile - 1} warm)...",
+    tm_label = "tracemalloc=on" if enable_tracemalloc else "tracemalloc=off"
+    print(f"    compile x{n_compile} (1 cold + {max(0, n_compile - 1)} warm, {tm_label})...",
           file=sys.stderr)
-    compile_block = measure_compile_runs(vcf, n_compile, tier_dir)
+    compile_block = measure_compile_runs(
+        vcf, n_compile, tier_dir, enable_tracemalloc=enable_tracemalloc,
+    )
 
-    print(f"    bundle size...", file=sys.stderr)
-    size_block = measure_bundle_size(vcf, tier_dir)
+    if reuse_compile_for_size:
+        # Reuse bundle_0 from the compile run as the size + show probe.
+        probe = tier_dir / "bundle_0.bio"
+        if not probe.exists():
+            raise RuntimeError(f"reuse mode: expected {probe} from compile run")
+        print(f"    bundle size (reused from compile run)...", file=sys.stderr)
+        uncompressed = _dir_uncompressed_size(probe)
+        tar_path = tier_dir / "size_probe.bio.tar.gz"
+        if tar_path.exists():
+            tar_path.unlink()
+        compressed = _make_tar_gz(probe, tar_path)
+        size_block = {
+            "uncompressed_bytes": uncompressed,
+            "compressed_tar_gz_bytes": compressed,
+            "compression_ratio": (uncompressed / compressed) if compressed else None,
+        }
+        show_bundle = probe
+    else:
+        print(f"    bundle size...", file=sys.stderr)
+        size_block = measure_bundle_size(vcf, tier_dir)
 
-    # Reuse one bundle for show timing
-    show_bundle = tier_dir / "show_probe.bio"
-    if show_bundle.exists():
-        shutil.rmtree(show_bundle)
-    rc = _run_bio_inprocess(["compile", str(vcf), "-o", str(show_bundle), "--force"])
-    if rc != 0:
-        raise RuntimeError("compile-for-show failed")
+        # Reuse one bundle for show timing
+        show_bundle = tier_dir / "show_probe.bio"
+        if show_bundle.exists():
+            shutil.rmtree(show_bundle)
+        rc = _run_bio_inprocess(["compile", str(vcf), "-o", str(show_bundle), "--force"])
+        if rc != 0:
+            raise RuntimeError("compile-for-show failed")
 
     print(f"    bio show x{n_show}...", file=sys.stderr)
     show_block = measure_show_latency(show_bundle, n_show)
 
-    print(f"    bio update x{n_update}...", file=sys.stderr)
-    update_block = measure_update_latency(vcf, n_update, tier_dir)
+    if n_update > 0:
+        print(f"    bio update x{n_update}...", file=sys.stderr)
+        update_block = measure_update_latency(vcf, n_update, tier_dir)
+    else:
+        update_block = {
+            "skipped": True,
+            "reason": "n_update=0 (WGS budget mode: skipping repeated re-compiles)",
+        }
 
     return {
         "name": name,
@@ -354,18 +418,31 @@ def main(argv: list[str] | None = None) -> int:
     n_show = 30 if args.quick else 100
     n_update = 3 if args.quick else 5
 
-    tiers: list[tuple[str, Path]] = [
-        ("synthetic_11_variants", REPO_ROOT / "examples/synthetic/input.vcf"),
-        ("real_na12878_8_variants", REPO_ROOT / "examples/real-na12878/input.vcf"),
-    ]
+    # WGS-tier override: at full HG002 scale a single compile can take
+    # tens of minutes (millions of small CAS files). The 5-runs-default
+    # would blow the 90-min budget. Defaults: cold-only compile (n=1),
+    # show=20 runs, update=skipped. Each can be overridden:
+    wgs_n_compile = int(os.environ.get("HG002_WGS_N_COMPILE", "1"))
+    wgs_n_show = int(os.environ.get("HG002_WGS_N_SHOW", "20"))
+    wgs_n_update = int(os.environ.get("HG002_WGS_N_UPDATE", "0"))
+    wgs_only = os.environ.get("HG002_WGS_ONLY", "").lower() in {"1", "true", "yes"}
+
+    tiers: list[tuple[str, Path]] = []
+    if not wgs_only:
+        tiers.extend([
+            ("synthetic_11_variants", REPO_ROOT / "examples/synthetic/input.vcf"),
+            ("real_na12878_8_variants", REPO_ROOT / "examples/real-na12878/input.vcf"),
+        ])
 
     # Optional: full HG002 WGS — opt-in via env var, never downloaded here.
     wgs_env = os.environ.get("HG002_WGS_VCF")
     wgs_skip_reason = None
+    wgs_tier_added = False
     if wgs_env:
         wgs_path = Path(wgs_env).expanduser()
         if wgs_path.exists():
             tiers.append(("hg002_wgs_full", wgs_path))
+            wgs_tier_added = True
         else:
             wgs_skip_reason = f"HG002_WGS_VCF set but path does not exist: {wgs_path}"
     else:
@@ -396,8 +473,16 @@ def main(argv: list[str] | None = None) -> int:
                 "reason": f"vcf missing: {vcf}",
             })
             continue
+        is_wgs = name == "hg002_wgs_full"
+        tier_n_compile = wgs_n_compile if is_wgs else n_compile
+        tier_n_show = wgs_n_show if is_wgs else n_show
+        tier_n_update = wgs_n_update if is_wgs else n_update
         try:
-            tier_results.append(run_tier(name, vcf, n_compile, n_show, n_update, workdir))
+            tier_results.append(run_tier(
+                name, vcf, tier_n_compile, tier_n_show, tier_n_update,
+                workdir, reuse_compile_for_size=is_wgs,
+                enable_tracemalloc=not is_wgs,
+            ))
         except Exception as e:  # noqa: BLE001 — we want to record any failure
             tier_results.append({
                 "name": name,
@@ -425,6 +510,10 @@ def main(argv: list[str] | None = None) -> int:
             "n_show_runs": n_show,
             "n_update_runs": n_update,
             "quick_mode": args.quick,
+            "wgs_n_compile_runs": wgs_n_compile if wgs_tier_added else None,
+            "wgs_n_show_runs": wgs_n_show if wgs_tier_added else None,
+            "wgs_n_update_runs": wgs_n_update if wgs_tier_added else None,
+            "wgs_only": wgs_only,
         },
         "wgs_tier_status": wgs_skip_reason or "ran",
         "tiers": tier_results,

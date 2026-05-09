@@ -1,0 +1,78 @@
+{
+  "panel": {
+    "name": "ACMG SF v3.2 + PharmGKB VIP",
+    "n_positions": 6353,
+    "subject": "NA12878",
+    "build": "GRCh38"
+  },
+  "tokenizers": {
+    "claude": "Xenova/claude-tokenizer",
+    "gpt2": "gpt2"
+  },
+  "inputs": {
+    "VCF_raw": {
+      "path": "bench/v2/data/acmg_panel/HG001_acmg_sf_vip.vcf",
+      "bytes": 1704587,
+      "tokens": {
+        "claude": 807270,
+        "gpt2": 865477
+      }
+    },
+    "genome_reconstruction": {
+      "path": "bench/v2/data/acmg_panel/HG001.genome.md",
+      "bytes": 2222754,
+      "tokens": {
+        "claude": 749348,
+        "gpt2": 888446
+      }
+    },
+    "phenopacket_v2": {
+      "path": "bench/v2/data/acmg_panel/HG001.phenopacket.json",
+      "bytes": 13552038,
+      "tokens": {
+        "claude": 3380187,
+        "gpt2": 8587404
+      }
+    },
+    "fhir_genomics_bundle": {
+      "path": "bench/v2/data/acmg_panel/HG001.fhir.json",
+      "bytes": 28338428,
+      "tokens": {
+        "claude": 6233257,
+        "gpt2": 19086820
+      }
+    },
+    "pharmcat_report": {
+      "path": "bench/v2/data/acmg_panel/HG001.pharmcat.json",
+      "bytes": 370268,
+      "tokens": {
+        "claude": 115027,
+        "gpt2": 223312
+      }
+    },
+    "bio_manifest_only": {
+      "path": "bench/v2/data/acmg_panel/HG001.bio/manifest.json",
+      "bytes": 1243,
+      "tokens": {
+        "claude": 421,
+        "gpt2": 430
+      }
+    },
+    "bio_manifest_plus_pgx_view": {
+      "path": "bench/v2/data/acmg_panel/HG001.bio/{manifest.json + views/pgx.md}",
+      "bytes": 1613,
+      "tokens": {
+        "claude": 541,
+        "gpt2": 547
+      }
+    },
+    "bio_manifest_plus_germline_view": {
+      "path": "bench/v2/data/acmg_panel/HG001.bio/{manifest.json + views/germline-clinical.md}",
+      "bytes": 1479,
+      "tokens": {
+        "claude": 489,
+        "gpt2": 497
+      }
+    }
+  }
+}

@@ -282,34 +282,250 @@ def synthesize_archive(
 # ---- real-archive loader (stub) -------------------------------------------
 
 
-def load_real_archive(archive_dir: str | Path) -> list[Snapshot]:
-    """Parse a directory of monthly ClinVar XML releases into snapshots.
+def load_real_archive(archive_dir: str | Path,
+                      gene_filter: set[str] | None = None,
+                      patient_seed: int = 20240901) -> list[Snapshot]:
+    """Load real-archive snapshots from a `clinvar_archive/` directory.
 
-    Round 1: not implemented. Real ClinVar full releases live at
-    ftp://ftp.ncbi.nlm.nih.gov/pub/clinvar/xml/clinvar_full_release/
-    and are several GB each; supplying the path is left as round-2
-    work (Task 6 is scaffold-tagged). When a future caller wants to
-    point at a real archive, this function is the integration seam.
+    Round-2 implementation. The expected layout (produced by
+    ``bench/v2/scripts/extract_clinvar_archive.py``) is::
 
-    Expected directory layout (when implemented):
         archive_dir/
-            clinvar_2024-01-01.xml.gz
-            clinvar_2024-02-01.xml.gz
-            ...
+            per_month/
+                clinvar_<YYYY-MM>.tsv      # one row per variant + CLNSIG
+                ...
+            clinvar_2024-01_to_2025-12.tsv  # cross-month diffs (ground truth)
+            coverage.tsv                    # months attempted / completed
 
-    Returns the same Snapshot list shape as `synthesize_archive`.
+    Each per-month TSV has columns:
+        chrom, pos, variation_id, ref, alt, gene, rsid,
+        significance, review_status, condition
+
+    The cross-month diff TSV has columns:
+        variation_id, gene, rsid, chrom, pos, ref, alt, month,
+        prev_month, prev_significance, new_significance, actionable
+
+    We assemble Snapshot dicts compatible with ``synthesize_archive``:
+
+        {
+          "version": "YYYY-MM-01",
+          "ruleset": <full ruleset dict for that month>,
+          "reclassifications": [<deltas vs prior month>]
+        }
+
+    The ruleset's ``entries`` are keyed by an *rsid-or-vid* string
+    (we synthesize ``rsXXXX`` if RS=… was present in the VCF, else
+    ``CV<variation_id>``). Each entry's ``by_genotype`` keys are
+    ``REF/ALT`` and ``ALT/ALT`` so that downstream patient genotype
+    matching works on either heterozygous or homozygous calls.
+
+    ``gene_filter`` restricts which genes' variants enter the snapshot;
+    when None, all genes present in the per-month TSVs are included.
+
+    The function tolerates the cross-month TSV having fewer than 24 rows
+    (some month downloads may have failed); it still emits a Snapshot
+    for every month that has a per-month TSV. Callers that need the
+    full 24-month timeline should check ``len(snapshots)`` before use.
     """
     archive_dir = Path(archive_dir)
     if not archive_dir.exists():
         raise FileNotFoundError(f"archive_dir does not exist: {archive_dir}")
-    raise NotImplementedError(
-        "Real ClinVar XML parsing is round-2 scope. Place monthly releases "
-        "in this directory (e.g. clinvar_2024-01-01.xml.gz from "
-        "ftp://ftp.ncbi.nlm.nih.gov/pub/clinvar/xml/clinvar_full_release/) "
-        "and extend load_real_archive() to extract per-VCV interpretation "
-        "histories. The simulator already accepts the Snapshot datatype "
-        "from this function unchanged."
-    )
+
+    snap_dir = archive_dir / "per_month"
+    if not snap_dir.exists():
+        raise FileNotFoundError(
+            f"per_month/ subdirectory missing in {archive_dir}; "
+            f"run bench/v2/scripts/extract_clinvar_archive.py first."
+        )
+
+    # 1. Discover months -----------------------------------------------------
+    month_tsvs = sorted(snap_dir.glob("clinvar_*.tsv"))
+    if not month_tsvs:
+        raise FileNotFoundError(
+            f"no clinvar_*.tsv files found in {snap_dir}; "
+            f"check the extraction completed."
+        )
+    months = [p.stem.replace("clinvar_", "") for p in month_tsvs]  # ['2024-01', ...]
+
+    # 2. Load per-month classification tables --------------------------------
+    # Memory: ~50–80k rows × 24 months × 10 cols ≈ 250 MB ASCII; we keep
+    # only the fields we need to materialize a ruleset entry, so the
+    # in-memory footprint is closer to 100 MB.
+    per_month: list[dict[str, dict]] = []  # idx → {variation_id: row}
+    all_vids: set[str] = set()
+    for tsv in month_tsvs:
+        table: dict[str, dict] = {}
+        with open(tsv) as fh:
+            header = fh.readline().rstrip("\n").split("\t")
+            for line in fh:
+                cells = line.rstrip("\n").split("\t")
+                if len(cells) != len(header):
+                    continue
+                row = dict(zip(header, cells))
+                if gene_filter is not None and row.get("gene") not in gene_filter:
+                    continue
+                vid = row["variation_id"]
+                table[vid] = row
+                all_vids.add(vid)
+        per_month.append(table)
+
+    # 3. Decide which variants to keep in the active ruleset universe -------
+    # We need a non-trivial set so that patient cohort genotypes
+    # intersect plenty of reclassifications. Keep every variant that
+    # changed significance at least once across the timeline.
+    changed_vids: set[str] = set()
+    for i in range(1, len(per_month)):
+        prev, curr = per_month[i - 1], per_month[i]
+        for vid, c in curr.items():
+            p = prev.get(vid)
+            if p is None:
+                continue
+            if p["significance"] != c["significance"]:
+                changed_vids.add(vid)
+
+    # If the timeline has too few changers, fall back to a capped sample
+    # of every variant so the simulator has *something* to work with.
+    # When we have plenty of changers we still cap the universe at
+    # ``MAX_UNIVERSE`` to keep installed ruleset JSON files small enough
+    # that `bio update` per month stays under a few hundred ms (each
+    # ruleset is rewritten every test run, so this multiplies by the
+    # ~24 monthly snapshots).
+    MAX_UNIVERSE = 3000
+    rng = random.Random(patient_seed)
+    if len(changed_vids) >= 50:
+        if len(changed_vids) > MAX_UNIVERSE:
+            sorted_changed = sorted(changed_vids)
+            rng.shuffle(sorted_changed)
+            universe = set(sorted_changed[:MAX_UNIVERSE])
+        else:
+            universe = changed_vids
+    else:
+        sample = sorted(all_vids)
+        rng.shuffle(sample)
+        universe = set(sample[: min(2000, len(sample))])
+
+    # 4. Build a stable rsid->entry skeleton ---------------------------------
+    # Pull the latest-month row for each vid as the canonical metadata.
+    skeleton: dict[str, dict] = {}
+    for vid in universe:
+        row = None
+        for i in range(len(per_month) - 1, -1, -1):
+            if vid in per_month[i]:
+                row = per_month[i][vid]
+                break
+        if row is None:
+            continue
+        rsid = row.get("rsid") or f"CV{vid}"
+        ref, alt = row.get("ref", ""), row.get("alt", "")
+        het = f"{ref}/{alt}" if ref and alt else "REF/ALT"
+        hom = f"{alt}/{alt}" if alt else "ALT/ALT"
+        skeleton[rsid] = {
+            "_vid": vid,
+            "gene": row.get("gene", ""),
+            "_chrom": row.get("chrom", ""),
+            "_pos": row.get("pos", ""),
+            "_ref": ref,
+            "_alt": alt,
+            "_genotypes": (het, hom),
+        }
+
+    # 5. Emit per-month snapshots --------------------------------------------
+    snapshots: list[Snapshot] = []
+    prev_table: dict[str, dict] | None = None
+
+    for idx, ym in enumerate(months):
+        version = f"{ym}-01"
+        curr_table = per_month[idx]
+
+        entries: dict[str, dict] = {}
+        for rsid, sk in skeleton.items():
+            vid = sk["_vid"]
+            row = curr_table.get(vid)
+            if row is None:
+                sig = "vus"
+                review = "absent_in_this_release"
+                cond = ""
+            else:
+                sig = row["significance"]
+                review = row.get("review_status", "")
+                cond = row.get("condition", "")
+            het, hom = sk["_genotypes"]
+            entries[rsid] = {
+                "gene": sk["gene"],
+                "_chrom": sk["_chrom"],
+                "_pos": sk["_pos"],
+                "_ref": sk["_ref"],
+                "_alt": sk["_alt"],
+                "_variation_id": vid,
+                "by_genotype": {
+                    het: {
+                        "significance": sig,
+                        "condition": cond,
+                        "evidence": f"ClinVar VCV{vid} as of {ym} (review_status={review})",
+                        "review_status": review,
+                    },
+                    hom: {
+                        "significance": sig,
+                        "condition": cond,
+                        "evidence": f"ClinVar VCV{vid} as of {ym} (review_status={review})",
+                        "review_status": review,
+                    },
+                },
+            }
+
+        ruleset = {
+            "name": "clinvar",
+            "version": version,
+            "type": "germline_clinical",
+            "source": "ClinVar VCF GRCh38 monthly archive",
+            "url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/archive_2.0/",
+            "license": "public domain (NCBI)",
+            "_real_archive": True,
+            "_archive_dir": str(archive_dir),
+            "_archive_month": ym,
+            "entries": entries,
+        }
+
+        # Build per-month reclassification deltas
+        deltas: list[Reclassification] = []
+        if prev_table is not None:
+            for rsid, sk in skeleton.items():
+                vid = sk["_vid"]
+                pr = prev_table.get(vid)
+                cu = curr_table.get(vid)
+                if pr is None or cu is None:
+                    continue
+                if pr["significance"] == cu["significance"]:
+                    continue
+                het, hom = sk["_genotypes"]
+                from_sig = pr["significance"]
+                to_sig = cu["significance"]
+                actionable = is_actionable(from_sig, to_sig)
+                for gt in (het, hom):
+                    deltas.append({
+                        "rsid": rsid,
+                        "gene": sk["gene"],
+                        "genotype": gt,
+                        "from": from_sig,
+                        "to": to_sig,
+                        "actionable": actionable,
+                        "released": version,
+                        "_variation_id": vid,
+                    })
+
+        snapshots.append({
+            "version": version,
+            "ruleset": ruleset,
+            "reclassifications": deltas,
+        })
+        prev_table = curr_table
+
+    # Tag the loader's seed for reproducibility downstream.
+    if snapshots:
+        snapshots[0]["ruleset"]["_loader_patient_seed"] = patient_seed
+        snapshots[0]["ruleset"]["_loader_universe_size"] = len(skeleton)
+
+    return snapshots
 
 
 # ---- install / uninstall on the dotbio rulesets resource path -------------

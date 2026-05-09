@@ -1,5 +1,5 @@
 {
-  "experiment": "Experiment 8 \u2014 multi-omics extension (methylation pilot)",
+  "experiment": "Experiment 8 — multi-omics extension (methylation pilot)",
   "spec_section": "3.8",
   "modality": "methylation",
   "platform": "Illumina HumanMethylation450",
@@ -8,8 +8,10 @@
     "name": "horvath_clock",
     "source": "Horvath S. 2013. DNA methylation age of human tissues and cell types. Genome Biology 14:R115",
     "source_url": "https://genomebiology.biomedcentral.com/articles/10.1186/gb-2013-14-10-r115",
+    "supplementary_url": "https://static-content.springer.com/esm/art%3A10.1186%2Fgb-2013-14-10-r115/MediaObjects/13059_2013_3156_MOESM3_ESM.csv",
     "type": "epigenetic_age_estimator",
-    "version": "2013"
+    "version": "2013",
+    "coefficients": "real (Horvath 2013 Additional file 3, CoefficientTraining column)"
   },
   "subject": "subject:6f28668ba845",
   "scopes": {
@@ -18,12 +20,13 @@
     "methylation_probe_count": 353
   },
   "demo_age_estimate": {
-    "claim": "Predicted epigenetic age (Horvath 2013): 35.33 years for sample demo_subject_001",
+    "claim": "Predicted epigenetic age (Horvath 2013): 37.50 years for sample demo_subject_001",
     "level": "epigenetic_age",
     "n_probe_targets": 353,
     "guideline": null,
     "ruleset": "horvath_clock@2013",
-    "predicted_age_years": 35.33
+    "predicted_age_years": 37.5,
+    "linear_score": 0.833517
   },
   "n_facts": 353,
   "n_commits": 1,
@@ -35,8 +38,8 @@
     "time_as_dimension": true
   },
   "caveats": [
-    "Synthetic Horvath coefficients (deterministic seed=2013) used in v0; round 2 must replace with actual Horvath 2013 supplementary coefficients (CC BY 2.0).",
-    "Demo \u03b2-values are randomly generated within plausible 0-1 range; not a real patient methylation array."
+    "Coefficients are the actual published Horvath 2013 values (CC BY 2.0); demo β-values are deterministically derived from the published medianByCpG distribution + N(0, 0.05) perturbation (seed=2013) — not a real patient methylation array.",
+    "Intercept stored as 0.6955 (published rounded value, matches the paper text); precise published value 0.695507258 retained in ruleset _provenance for traceability."
   ],
-  "round1_status": "smoke_pass"
+  "round2_status": "real_coefficients_in_place"
 }

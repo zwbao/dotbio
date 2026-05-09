@@ -61,10 +61,13 @@ def test_horvath_ruleset_loads_with_353_probes() -> None:
     for pid in rs["probes"]:
         assert pid.startswith("cg")
         assert len(pid) >= 10
-    # Coefficients are floats and bounded to plausible magnitudes
+    # Coefficients are floats and bounded to plausible magnitudes.
+    # Horvath 2013 published weights are unitless elastic-net regression
+    # coefficients (against transformed age); 12 of 353 have |c| >= 1.0,
+    # with the largest published magnitude near 3.07 (cg14424579).
     for coef in rs["probes"].values():
         assert isinstance(coef, (int, float))
-        assert abs(coef) < 1.0
+        assert abs(coef) < 5.0
     # Intercept matches the Horvath 2013 published value
     assert rs["intercept"] == pytest.approx(0.6955, abs=1e-6)
     assert rs["adult_age"] == 20

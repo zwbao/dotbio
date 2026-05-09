@@ -47,14 +47,23 @@ Coefficients live in `horvath_clock.json` under `"probes": {probe_id: coef, …}
 - **Citation**: Horvath S. (2013). *DNA methylation age of human tissues
   and cell types.* **Genome Biology** 14:R115.
   <https://genomebiology.biomedcentral.com/articles/10.1186/gb-2013-14-10-r115>
+- **Round 2 update**: the 353 probe coefficients are now the
+  **actual published Horvath 2013 values** taken from Additional file 3
+  (`CoefficientTraining` column) of the open-access paper. Source CSV:
+  <https://static-content.springer.com/esm/art%3A10.1186%2Fgb-2013-14-10-r115/MediaObjects/13059_2013_3156_MOESM3_ESM.csv>.
+  The retrieval URL, retrieval timestamp, and CC BY 2.0 license are
+  recorded in the ruleset JSON's `_provenance` field for traceability.
 - The intercept (0.6955) and the piecewise age transform are taken
-  verbatim from the open-access paper. The 353 probe coefficients in this
-  pilot are **synthetic but deterministically generated** (seed=2013) to
-  plausible magnitudes — see SPEC §3.8 acceptance criteria, which
-  explicitly permits synthetic methylation data for the pilot. The
-  ruleset's `note` field documents this. **Not for clinical use.**
+  verbatim from the open-access paper. The precise published intercept
+  value is 0.695507258; the ruleset stores the rounded 0.6955 (matching
+  the paper text and the existing test) and keeps the precise value in
+  `_provenance.intercept_precise`.
 - The Horvath 2013 paper is published under CC BY 2.0; coefficient tables
   in Additional file 3 are publicly available for reproduction.
+- **Not for clinical use** — the demo subject's β-values are still
+  synthetic (deterministically derived from Horvath's published
+  `medianByCpG` distribution plus seed-locked Gaussian noise; see
+  caveats in `bench/v2/results/exp08_methylation.json`).
 
 ## Running the demo
 
@@ -73,9 +82,11 @@ ls demo.bio/                        # facts/ commits/ views/ refs/ manifest.json
 cat demo.bio/views/epigenetic-age.md
 ```
 
-For the synthetic demo subject, the predicted DNAm age is **~35.3 years**
-(linear score ≈ 0.730). The number is reproducible because both the
-ruleset and the demo β-values are seed-locked.
+For the demo subject, the predicted DNAm age is **~37.5 years**
+(linear score ≈ 0.834). The number is reproducible because both the
+demo β-values are seed-locked (`seed=2013`, perturbation around the
+published `medianByCpG` distribution) and the coefficients are now the
+real published Horvath 2013 values.
 
 ## Extending further
 

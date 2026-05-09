@@ -1,0 +1,114 @@
+gene	chrom	start	end	panel	condition
+ABCB1	chr7	87503018	87713295	PharmGKB_VIP	Many drugs (digoxin, fexofenadine)
+ABCG2	chr4	88090265	88158853	PharmGKB_VIP	Allopurinol, rosuvastatin
+ACTA2	chr10	88935074	88997241	ACMG_SF_v3.2	Familial thoracic aortic aneurysm
+ACTC1	chr15	34790230	34796212	ACMG_SF_v3.2	Hypertrophic / dilated cardiomyopathy
+ACVRL1	chr12	51906724	51923387	ACMG_SF_v3.2	HHT type 2
+ADRB1	chr10	114043866	114046904	PharmGKB_VIP	Beta-blocker response
+APC	chr5	112707498	112846239	ACMG_SF_v3.2	Familial adenomatous polyposis
+APOB	chr2	21001429	21044072	ACMG_SF_v3.2	Familial hypercholesterolemia
+APOE	chr19	44905782	44909393	PharmGKB_VIP	Statin response, AD risk
+ATP7B	chr13	51932612	52012137	ACMG_SF_v3.2	Wilson disease
+BAG3	chr10	119651370	119677811	ACMG_SF_v3.2	Dilated cardiomyopathy
+BMPR1A	chr10	86755785	86927982	ACMG_SF_v3.2	Juvenile polyposis
+BRCA1	chr17	43044295	43170245	ACMG_SF_v3.2	Hereditary breast/ovarian cancer
+BRCA2	chr13	32315474	32400266	ACMG_SF_v3.2	Hereditary breast/ovarian cancer
+BTD	chr3	15642859	15686439	ACMG_SF_v3.2	Biotinidase deficiency
+CACNA1S	chr1	201039727	201112013	ACMG_SF_v3.2	Malignant hyperthermia susceptibility
+CACNA1S_pgx	chr1	201039727	201112013	PharmGKB_VIP	Malignant hyperthermia (anesthesia)
+CASQ2	chr1	115700830	115772121	ACMG_SF_v3.2	CPVT
+CFTR	chr7	117480025	117668665	PharmGKB_VIP	Ivacaftor responsiveness
+COL3A1	chr2	188974372	189012745	ACMG_SF_v3.2	Vascular Ehlers-Danlos
+COMT	chr22	19929262	19957498	PharmGKB_VIP	Levodopa, opioids, antipsychotics
+CYP1A2	chr15	74748844	74756607	PharmGKB_VIP	Caffeine, theophylline
+CYP2C19	chr10	94762700	94855547	PharmGKB_VIP	Clopidogrel, voriconazole, PPIs
+CYP2C9	chr10	94938657	94989390	PharmGKB_VIP	Warfarin, NSAIDs, phenytoin
+CYP2D6	chr22	42126499	42130881	PharmGKB_VIP	Many drugs (codeine, tamoxifen, antidepressants)
+CYP3A4	chr7	99354604	99381888	PharmGKB_VIP	Many drugs (statins, immunosuppressants)
+CYP3A5	chr7	99245814	99277621	PharmGKB_VIP	Tacrolimus
+CYP4F2	chr19	15877814	15897801	PharmGKB_VIP	Warfarin
+DPYD	chr1	97077741	97927507	PharmGKB_VIP	Fluoropyrimidines (5-FU, capecitabine)
+DRD2	chr11	113280317	113346003	PharmGKB_VIP	Antipsychotic response
+DSC2	chr18	31065317	31106820	ACMG_SF_v3.2	Arrhythmogenic cardiomyopathy
+DSG2	chr18	31497290	31552108	ACMG_SF_v3.2	Arrhythmogenic cardiomyopathy
+DSP	chr6	7541869	7586979	ACMG_SF_v3.2	Arrhythmogenic cardiomyopathy
+ENG	chr9	127815013	127855059	ACMG_SF_v3.2	Hereditary hemorrhagic telangiectasia
+F2	chr11	46719207	46739506	PharmGKB_VIP	Hormonal therapy / VTE risk
+F5	chr1	169511950	169586746	PharmGKB_VIP	Hormonal therapy / VTE risk
+FBN1	chr15	48408313	48645714	ACMG_SF_v3.2	Marfan syndrome
+FLNC	chr7	128830658	128859410	ACMG_SF_v3.2	Dilated cardiomyopathy
+G6PD	chrX	154531390	154547569	PharmGKB_VIP	G6PD-deficiency drug-induced hemolysis
+GAA	chr17	80101537	80119881	ACMG_SF_v3.2	Pompe disease
+GLA	chrX	101397803	101407795	ACMG_SF_v3.2	Fabry disease
+HFE	chr6	26087509	26098571	ACMG_SF_v3.2	Hereditary hemochromatosis
+HLA-A	chr6	29942532	29945870	PharmGKB_VIP	Carbamazepine HSR
+HLA-B	chr6	31353871	31367067	PharmGKB_VIP	Abacavir, allopurinol, carbamazepine HSR
+HLA-DQA1	chr6	32637402	32643605	PharmGKB_VIP	DILI risk
+HLA-DRB1	chr6	32578769	32589836	PharmGKB_VIP	DILI risk
+HNF1A	chr12	120978540	121002512	ACMG_SF_v3.2	MODY3
+IFNL3	chr19	39248147	39252858	PharmGKB_VIP	Pegylated interferon response (HCV)
+IFNL4	chr19	39238673	39247568	PharmGKB_VIP	HCV treatment response
+KCNH2	chr7	150944737	150979024	ACMG_SF_v3.2	Long QT syndrome
+KCNQ1	chr11	2444691	2849110	ACMG_SF_v3.2	Long QT syndrome
+LDLR	chr19	11089462	11133820	ACMG_SF_v3.2	Familial hypercholesterolemia
+LMNA	chr1	156082546	156140089	ACMG_SF_v3.2	Dilated cardiomyopathy / Emery-Dreifuss MD
+MAX	chr14	65007100	65102885	ACMG_SF_v3.2	Hereditary paraganglioma
+MEN1	chr11	64803515	64811294	ACMG_SF_v3.2	Multiple endocrine neoplasia type 1
+MLH1	chr3	36993332	37050918	ACMG_SF_v3.2	Lynch syndrome
+MSH2	chr2	47403067	47634501	ACMG_SF_v3.2	Lynch syndrome
+MSH6	chr2	47783146	47806916	ACMG_SF_v3.2	Lynch syndrome
+MTHFR	chr1	11789989	11806923	PharmGKB_VIP	Methotrexate, folate metabolism
+MUTYH	chr1	45329163	45340663	ACMG_SF_v3.2	MUTYH-associated polyposis
+MYBPC3	chr11	47331407	47352702	ACMG_SF_v3.2	Hypertrophic cardiomyopathy
+MYH11	chr16	15795995	15950886	ACMG_SF_v3.2	Familial thoracic aortic aneurysm
+MYH7	chr14	23412866	23436564	ACMG_SF_v3.2	Hypertrophic / dilated cardiomyopathy
+MYL2	chr12	110910819	110921077	ACMG_SF_v3.2	Hypertrophic cardiomyopathy
+MYL3	chr3	46857800	46864884	ACMG_SF_v3.2	Hypertrophic cardiomyopathy
+MYL5	chr4	673764	682611	ACMG_SF_v3.2	Hypertrophic cardiomyopathy
+NAT2	chr8	18391245	18401219	PharmGKB_VIP	Isoniazid
+NF2	chr22	29603556	29701045	ACMG_SF_v3.2	Neurofibromatosis type 2
+NUDT15	chr13	48037803	48051670	PharmGKB_VIP	Thiopurines
+OPRM1	chr6	154010496	154246867	PharmGKB_VIP	Opioid response
+OTC	chrX	38352543	38421450	ACMG_SF_v3.2	Ornithine transcarbamylase deficiency
+PALB2	chr16	23603153	23641413	ACMG_SF_v3.2	Hereditary breast cancer (added v3.2)
+PCSK9	chr1	55039548	55064852	ACMG_SF_v3.2	Familial hypercholesterolemia
+PKP2	chr12	32790628	32898531	ACMG_SF_v3.2	Arrhythmogenic cardiomyopathy
+PMS2	chr7	5970925	6048737	ACMG_SF_v3.2	Lynch syndrome
+POLG	chr15	89316130	89334284	PharmGKB_VIP	Valproate hepatotoxicity
+PRKAG2	chr7	151568641	151843029	ACMG_SF_v3.2	Hypertrophic cardiomyopathy with WPW
+PTEN	chr10	87863438	87971930	ACMG_SF_v3.2	Cowden / PHTS
+RB1	chr13	48303256	48481890	ACMG_SF_v3.2	Retinoblastoma
+RET	chr10	43077128	43130351	ACMG_SF_v3.2	MEN2; medullary thyroid cancer
+RPE65	chr1	68424376	68446504	ACMG_SF_v3.2	Leber congenital amaurosis
+RPS19	chr19	41859396	41872189	ACMG_SF_v3.2	Diamond-Blackfan anemia (illustrative)
+RYR1	chr19	38433691	38595049	ACMG_SF_v3.2	Malignant hyperthermia susceptibility
+RYR1_pgx	chr19	38433691	38595049	PharmGKB_VIP	Malignant hyperthermia (anesthesia)
+RYR2	chr1	237042137	237833988	ACMG_SF_v3.2	Catecholaminergic polymorphic VT
+SCN5A	chr3	38548028	38649687	ACMG_SF_v3.2	Long QT syndrome / Brugada syndrome
+SDHAF2	chr11	61429894	61446993	ACMG_SF_v3.2	Hereditary paraganglioma
+SDHB	chr1	17018722	17054032	ACMG_SF_v3.2	Hereditary paraganglioma
+SDHC	chr1	161314393	161364091	ACMG_SF_v3.2	Hereditary paraganglioma
+SDHD	chr11	112086788	112095210	ACMG_SF_v3.2	Hereditary paraganglioma-pheochromocytoma
+SLC6A4	chr17	30192984	30236005	PharmGKB_VIP	SSRI response
+SLCO1B1	chr12	21178605	21288368	PharmGKB_VIP	Simvastatin myopathy risk
+SMAD3	chr15	67064125	67195169	ACMG_SF_v3.2	Loeys-Dietz syndrome
+SMAD4	chr18	51030212	51085044	ACMG_SF_v3.2	Juvenile polyposis / HHT
+STK11	chr19	1205797	1228435	ACMG_SF_v3.2	Peutz-Jeghers syndrome
+TGFBR1	chr9	99104071	99154192	ACMG_SF_v3.2	Loeys-Dietz syndrome
+TGFBR2	chr3	30606450	30694142	ACMG_SF_v3.2	Loeys-Dietz syndrome
+TMEM127	chr2	96247070	96265003	ACMG_SF_v3.2	Hereditary paraganglioma
+TMEM43	chr3	14123426	14152994	ACMG_SF_v3.2	Arrhythmogenic cardiomyopathy
+TNNI3	chr19	55151767	55157742	ACMG_SF_v3.2	Hypertrophic / dilated cardiomyopathy
+TNNT2	chr1	201328142	201346878	ACMG_SF_v3.2	Hypertrophic / dilated cardiomyopathy
+TP53	chr17	7661779	7687550	ACMG_SF_v3.2	Li-Fraumeni syndrome
+TPM1	chr15	63043692	63353331	ACMG_SF_v3.2	Hypertrophic / dilated cardiomyopathy
+TPMT	chr6	18130918	18155374	PharmGKB_VIP	Thiopurines (azathioprine, 6-MP)
+TRDN	chr6	123133922	123553031	ACMG_SF_v3.2	CPVT
+TSC1	chr9	132891349	132945269	ACMG_SF_v3.2	Tuberous sclerosis
+TSC2	chr16	2047800	2090133	ACMG_SF_v3.2	Tuberous sclerosis
+TTN	chr2	178525989	178830802	ACMG_SF_v3.2	Dilated cardiomyopathy
+TTR	chr18	31591877	31598821	ACMG_SF_v3.2	Hereditary transthyretin amyloidosis (added v3.2)
+UGT1A1	chr2	233754041	233773300	PharmGKB_VIP	Irinotecan, atazanavir
+VHL	chr3	10141778	10153688	ACMG_SF_v3.2	von Hippel-Lindau syndrome
+VKORC1	chr16	31090842	31097820	PharmGKB_VIP	Warfarin
+WT1	chr11	32379149	32435571	ACMG_SF_v3.2	WT1-related Wilms tumor

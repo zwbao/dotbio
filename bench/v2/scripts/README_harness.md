@@ -11,11 +11,15 @@ Drives Experiment 3 (end-to-end LLM correctness, SPEC §3.3).
 | `llm_clients/anthropic.py` | Claude live-mode adapter (lazy SDK import, `ANTHROPIC_API_KEY`) |
 | `llm_clients/openai.py` | GPT-4o live-mode adapter (`OPENAI_API_KEY`) |
 | `llm_clients/gemini.py` | Gemini live-mode adapter (`GEMINI_API_KEY`) |
+| `llm_clients/openrouter.py` | **Round-2** unified OpenRouter client (`OPENROUTER_API_KEY`); routes any provider through `https://openrouter.ai/api/v1/chat/completions`, exposes `usage.cost`, retries on 429/5xx |
 | `llm_clients/mock.py` | Deterministic fixture-driven client; always available |
 | `llm_clients/__init__.py` | `get_client(family, force_mock=...)` factory |
 | `llm_scoring.py` | Pure-function rubric scorers + JSON extractor |
-| `../tests/test_llm_scoring.py` | Pytest suite (≥ 5 tests, deterministic) |
+| `../tests/test_llm_scoring.py` | Pytest suite for scoring (≥ 5 tests, deterministic) |
+| `../tests/test_openrouter_client.py` | Pytest suite for the OpenRouter client (mocked HTTP) |
 | `../results/exp03_llm_eval_smoke.json` | Smoke-run output (mock client) |
+| `../results/exp03_llm_eval_real.json` | **Round-2** real multi-LLM eval (OpenRouter) |
+| `../results/exp03_llm_eval_real_summary.md` | Human-readable summary of the real run |
 
 ## Quickstart
 
@@ -33,6 +37,42 @@ python -m bench.v2.scripts.llm_harness \
 The CLI also accepts `python bench/v2/scripts/llm_harness.py …` for ad
 hoc invocation; the two paths are equivalent.
 
+### Round-2 real eval via OpenRouter
+
+OpenRouter's unified API lets a single key hit Anthropic, OpenAI,
+Google, and Meta endpoints. Set `OPENROUTER_API_KEY` and pass
+`--client openrouter --model "<comma-separated slugs>"`. The
+`--models` family flag is ignored in this mode — the slug *is* the
+selector and the per-record `model_family` field is derived from the
+slug head (`anthropic/...` → `claude`, etc.).
+
+```bash
+export OPENROUTER_API_KEY=sk-or-v1-...
+
+python -m bench.v2.scripts.llm_harness \
+    --client openrouter \
+    --model "anthropic/claude-sonnet-4.6,openai/gpt-5.4-mini,google/gemini-3.1-flash-lite,meta-llama/llama-4-maverick" \
+    --question "q01,q05,q11,q15,q21,q22,q31,q34,q41,q43" \
+    --formats "A1,B,C,D,E,F" \
+    --n-replicates 3 \
+    --temperature 0.7 \
+    --base-seed 20260509 \
+    --load-questions-from-yaml \
+    --cost-cap-usd 4.80 \
+    --out bench/v2/results/exp03_llm_eval_real.json
+```
+
+The above is the exact command used to produce
+`bench/v2/results/exp03_llm_eval_real.json` for round-2 task R5
+(10 questions × 4 models × 6 formats × N=3 = 720 calls, hard cap
+$4.80, wall-clock cap 60 min).
+
+The OpenRouter client adds `"usage": {"include": true}` to each
+request body so the response carries a per-call dollar cost; the
+harness sums these and stops when `--cost-cap-usd` is reached. On
+early termination the output JSON sets `"partial": true` and
+`"stop_reason"` is populated.
+
 ### Environment variables
 
 | Var | Used by | Live model |
@@ -40,7 +80,8 @@ hoc invocation; the two paths are equivalent.
 | `ANTHROPIC_API_KEY` | `llm_clients/anthropic.py` | `claude-3-5-sonnet-20241022` |
 | `OPENAI_API_KEY` | `llm_clients/openai.py` | `gpt-4o-2024-08-06` |
 | `GEMINI_API_KEY` | `llm_clients/gemini.py` | `gemini-1.5-pro` |
-| *(none — Together)* | Llama 3 currently routed to mock | `llama-3-70b` (round 2) |
+| `OPENROUTER_API_KEY` | `llm_clients/openrouter.py` | any slug from `/models`, default `anthropic/claude-3.5-sonnet` |
+| *(none — Together)* | Llama 3 currently routed to mock | `llama-3-70b` (also reachable via OpenRouter as `meta-llama/llama-4-maverick`) |
 
 When the env var is unset *or* the live SDK is not installed, the
 factory automatically substitutes the mock client; no command-line flag
@@ -69,6 +110,25 @@ extra per-record fields. Top level:
   "conditions": [ /* one per (format, model, question, replicate) */ ]
 }
 ```
+
+When run via `--client openrouter` the top level adds:
+```jsonc
+{
+  "client": "openrouter",
+  "model_slugs": ["anthropic/claude-sonnet-4.6", ...],
+  "n_calls": <int>,
+  "n_calls_ok": <int>,
+  "n_calls_err": <int>,
+  "tokens_in_total": <int>,
+  "tokens_out_total": <int>,
+  "cost_total_usd": <float>,
+  "cost_cap_usd": <float|null>,
+  "partial": <bool>,
+  "stop_reason": <string|null>
+}
+```
+and each record gains `call_cost_usd` (per-call dollar cost from
+OpenRouter) plus `is_error` (true when the call failed after retries).
 
 Each `conditions[i]` record:
 
@@ -148,18 +208,24 @@ This determinism is enforced by
 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 pytest bench/v2/ -v
 ```
 
-The suite includes 8 test functions (parametrize expands to 22 cases)
+The suite includes 13 test functions (parametrize expands to 27 cases)
 covering JSON extraction, all five scoring criteria, the aggregator,
-and end-to-end determinism of the mock-mode smoke run.
+end-to-end determinism of the mock-mode smoke run, and the OpenRouter
+client (availability gate, happy-path usage parsing, 429-retry, hard
+404, and exhausted-retry behaviour).
 
-## Round-2 follow-ups (out of scope here)
+## Round-2 status
 
-- Wire up Together AI / Llama 3 client (currently routed to mock).
-- Load the full 50-question bank from
-  `bench/v2/data/questions/qNN.yaml` once Task 4 lands; the harness
-  already takes a `--question` list.
+- **Done (R5):** OpenRouter client + real multi-LLM eval at the 10-question /
+  6-format / 4-model / N=3 scale. Results in
+  `bench/v2/results/exp03_llm_eval_real.json` and a human-readable summary
+  in `bench/v2/results/exp03_llm_eval_real_summary.md`.
+- **Done:** YAML question loading from `bench/v2/data/questions/qNN.yaml`
+  via `--load-questions-from-yaml`.
+- Together AI / direct Llama path remains routed to mock; in practice
+  `meta-llama/llama-4-maverick` over OpenRouter covers the same family.
 - Inter-rater agreement (Cohen's κ ≥ 0.7) requires two human raters
   scoring `harm_risk_if_acted_on`; out of scope for the automated
   harness.
 - McNemar / Friedman tests on the per-format binary outcomes per
-  SPEC §4.
+  SPEC §4 are computed in `make_figures.py` (pending round-3).
